@@ -1,0 +1,7 @@
+/* Original admin forms: constrain intrinsic table/image widths without changing
+   the original card, section, option and checklist presentation. */
+.original-admin-catalog, .original-admin-catalog > *, .original-admin-catalog section, .original-admin-catalog form {min-width:0;max-width:100%;}
+.original-admin-catalog input.sr-only {width:1px!important;height:1px!important;min-height:0!important;padding:0!important;border:0!important;}
+.original-admin-catalog .catalog-form-section > .grid {min-width:0;}
+.original-admin-catalog .catalog-form-section label {min-width:0;}
+.original-admin-catalog .catalog-form-section input, .original-admin-catalog .catalog-form-section select, .original-admin-catalog .catalog-form-section textarea {max-width:100%;}
