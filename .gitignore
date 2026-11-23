@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production builds
+dist/
+*/dist/
+.next/
+*/.next/
+
+# Environment files
+.env.*
+!.env.example
+.env
+*/.env
+.env*.local
+*/.env*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# OS / Editor
+.DS_Store
+*.tsbuildinfo
+# Private disposable test cluster and read-only inspection artifacts
+adminbr/.local/
+playwright-report/
+test-results/
+
+adminfr/docs/screenshots/

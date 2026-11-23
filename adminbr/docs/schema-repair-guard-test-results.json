@@ -1,0 +1,51 @@
+{
+  "target": "127.0.0.1:55489 (disposable local databases only)",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "missing_floor",
+      "result": "PASS",
+      "error": "CONTEXT:  PL/pgSQL function inline_code_block line 6 at RAISE",
+      "rollback": "new columns and canonical counter absent"
+    },
+    {
+      "name": "alternate_counter",
+      "result": "PASS",
+      "error": "CONTEXT:  PL/pgSQL function inline_code_block line 14 at RAISE",
+      "rollback": "new columns and canonical counter absent"
+    },
+    {
+      "name": "bad_index",
+      "result": "PASS",
+      "error": "CONTEXT:  PL/pgSQL function inline_code_block line 9 at RAISE",
+      "rollback": "new columns and canonical counter absent"
+    },
+    {
+      "name": "duplicate_codes",
+      "result": "PASS",
+      "error": "DETAIL:  Key (mylonex_code)=(MYLO100) is duplicated.",
+      "rollback": "new columns and canonical counter absent"
+    },
+    {
+      "name": "bad_column",
+      "result": "PASS",
+      "error": "CONTEXT:  PL/pgSQL function inline_code_block line 8 at RAISE",
+      "rollback": "new columns and canonical counter absent"
+    },
+    {
+      "name": "replay_lower_floor",
+      "result": "PASS",
+      "preservedCounter": 9034
+    },
+    {
+      "name": "catalog_max_overrides_lower_floor",
+      "result": "PASS",
+      "counter": 12000
+    },
+    {
+      "name": "higher_existing_counter_not_reset",
+      "result": "PASS",
+      "counter": 15000
+    }
+  ]
+}

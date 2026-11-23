@@ -1,0 +1,8 @@
+{
+  "migration": "adminbr/prisma/migrations/20261118083000_restore_catalog_projection/migration.sql",
+  "sha256": "25e7c4a857afce7afadcdc1a325e8061e943ef9a1b4d402c1476f81ee13b388a",
+  "appliedToShared": false,
+  "localDatabase": "127.0.0.1:55489/schema_repair_test",
+  "localResult": "PASS",
+  "productionReady": false
+}

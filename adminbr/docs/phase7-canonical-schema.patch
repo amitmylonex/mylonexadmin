@@ -1,0 +1,38 @@
+--- a/prisma/schema.prisma
++++ b/prisma/schema.prisma
+@@ -615,6 +615,8 @@
+   updatedAt DateTime                      @updatedAt @map("updated_at")
+   response  CommunicationRequestResponse?
+ 
++  dispatchAttempts RfqDispatchAttempt[]
++
+   @@unique([communicationRequestId, sourceType, sourceId, supplierId])
+   @@index([communicationRequestId])
+   @@index([supplierId])
+@@ -622,6 +624,26 @@
+   @@index([adminReviewedByUserId])
+   @@index([whatsappMessageId])
+   @@map("communication_request_matches")
++}
++
++model RfqDispatchAttempt {
++  id String @id @default(uuid())
++  matchId String @map("match_id")
++  match CommunicationRequestMatch @relation(fields:[matchId],references:[id],onDelete:Cascade)
++  kind String
++  status String
++  providerMessageId String? @unique @map("provider_message_id")
++  requestedAt DateTime @default(now()) @map("requested_at")
++  requestedByUserId String? @map("requested_by_user_id")
++  reason String?
++  sentAt DateTime? @map("sent_at")
++  deliveredAt DateTime? @map("delivered_at")
++  readAt DateTime? @map("read_at")
++  failureCode String? @map("failure_code")
++  updatedAt DateTime @updatedAt @map("updated_at")
++  @@index([matchId,requestedAt])
++  @@index([status,requestedAt])
++  @@map("rfq_dispatch_attempts")
+ }
+ 
+ model CommunicationRequestResponse {

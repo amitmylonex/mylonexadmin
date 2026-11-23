@@ -1,0 +1,5 @@
+import {Prisma} from "@prisma/client";
+import {prisma} from "../../infrastructure/db.js";
+export async function list(where:Prisma.SupplierProfileWhereInput,page:number,pageSize:number){const[suppliers,totalCount]=await Promise.all([prisma.supplierProfile.findMany({where,orderBy:[{createdAt:'desc'},{id:'asc'}],skip:(page-1)*pageSize,take:pageSize,select:{id:true,companyName:true,city:true,phone:true,status:true,whatsappConsent:true,createdAt:true,user:{select:{email:true,fullName:true}},_count:{select:{supplierCatalogEntries:true,fabricCollections:true,communicationRequestMatches:true,wovenProducts:true}}}}),prisma.supplierProfile.count({where})]);return{suppliers,totalCount,page,pageSize,totalPages:Math.max(1,Math.ceil(totalCount/pageSize))};}
+export const detail=(id:string)=>prisma.supplierProfile.findUnique({where:{id},include:{user:{select:{id:true,email:true,fullName:true,createdAt:true}},_count:{select:{supplierCatalogEntries:true,fabricCollections:true,communicationRequestMatches:true,wovenProducts:true,capabilities:true}}}});
+export const consent=(id:string,data:Prisma.SupplierProfileUpdateInput)=>prisma.supplierProfile.update({where:{id},data});

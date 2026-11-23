@@ -1,0 +1,66 @@
+
+> mylonex-admin-workspace@1.0.0 test
+> npm --prefix adminbr test
+
+
+> adminbr@1.0.0 test
+> tsx --test test/*.test.ts
+
+{"level":30,"time":1794989227395,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/suppliers","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227403,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":5.863299999999981,"msg":"request completed"}
+{"level":30,"time":1794989227404,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/suppliers","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227412,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":8.275000000000091,"msg":"request completed"}
+{"level":30,"time":1794989227413,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227414,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":1.4984999999999218,"msg":"request completed"}
+{"level":30,"time":1794989227415,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"GET","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227415,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":401},"responseTime":0.43220000000019354,"msg":"request completed"}
+{"level":30,"time":1794989227416,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/excel-import","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227417,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":401},"responseTime":1.0285000000001219,"msg":"request completed"}
+{"level":30,"time":1794989227418,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-6","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/images","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227423,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-6","res":{"statusCode":401},"responseTime":1.2321000000001732,"msg":"request completed"}
+{"level":30,"time":1794989227423,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-7","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/collections","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227424,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-7","res":{"statusCode":401},"responseTime":0.6616999999998825,"msg":"request completed"}
+{"level":30,"time":1794989227424,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-8","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/collections/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227425,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-8","res":{"statusCode":401},"responseTime":0.4677999999998974,"msg":"request completed"}
+{"level":30,"time":1794989227425,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-9","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/fabrics","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227426,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-9","res":{"statusCode":401},"responseTime":0.8428000000001248,"msg":"request completed"}
+{"level":30,"time":1794989227427,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-a","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/fabrics/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227428,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-a","res":{"statusCode":401},"responseTime":0.7243000000000848,"msg":"request completed"}
+{"level":30,"time":1794989227428,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-b","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/woven","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227429,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-b","res":{"statusCode":401},"responseTime":0.6715999999998985,"msg":"request completed"}
+{"level":30,"time":1794989227429,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-c","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/woven/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227429,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-c","res":{"statusCode":401},"responseTime":0.43650000000002365,"msg":"request completed"}
+{"level":30,"time":1794989227430,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-d","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/capabilities","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227430,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-d","res":{"statusCode":401},"responseTime":0.4552000000001044,"msg":"request completed"}
+{"level":30,"time":1794989227430,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-e","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/capabilities/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ all sensitive supplier/catalog endpoints reject unauthenticated access (677.9609ms)
+✔ a valid supplier token cannot impersonate an admin, even if token metadata claims ADMIN (1.0058ms)
+✔ expired and unknown sessions fail closed (0.2812ms)
+✔ approval, suspension and reactivation use atomic expected-status updates (3.2202ms)
+{"level":30,"time":1794989227431,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-e","res":{"statusCode":401},"responseTime":0.3158000000000811,"msg":"request completed"}
+{"level":30,"time":1794989227431,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-f","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1794989227432,"pid":12676,"hostname":"DESKTOP-LB495KL","reqId":"req-f","res":{"statusCode":200},"responseTime":0.40239999999994325,"msg":"request completed"}
+✔ publication requires genuine positive commercial values, GSM and state (23.35ms)
+✔ supplier input normalizes email and rejects invalid GST, phone, location and roles (2.3453ms)
+✔ query validation bounds pages and supported statuses (0.8617ms)
+✔ capability ranges and blended material requirements (1.2618ms)
+✔ woven specs reject unknown and duplicate keys (1.1419ms)
+✔ import validation never invents required prices and reports original row numbers (1.2629ms)
+✔ image upload rejects spoofed content, SVG and oversize input (60.8509ms)
+✔ foreign collection association is rejected before any write (2.0177ms)
+✔ capability linked products must belong to the organization (1.052ms)
+✔ duplicate fabric is rejected without generating another code (7.0412ms)
+✔ foreign edit and foreign activation are rejected (1.2502ms)
+✔ activation revalidates legacy listings and explicit deactivate remains possible (0.9623ms)
+✔ import detects duplicates inside transaction and reports skipped counts (1.6034ms)
+✔ rate limiter bounds writes per actor and resets (0.4741ms)
+✔ supplier creation links invited identity and starts pending (1.5126ms)
+✔ invitation failure never creates a disconnected supplier profile (0.6005ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1955.0247

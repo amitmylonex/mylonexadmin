@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-18",
+  "build": {
+    "backend": "PASS",
+    "frontend": "PASS"
+  },
+  "typecheck": {
+    "backend": "PASS",
+    "frontend": "PASS"
+  },
+  "lint": {
+    "backend": "PASS",
+    "frontend": "PASS",
+    "implementation": "tsc --noEmit; no ESLint configured"
+  },
+  "unitTests": {
+    "passed": 31,
+    "failed": 0
+  },
+  "disposableDatabase": {
+    "checksPassed": 14,
+    "target": "127.0.0.1:55489/schema_repair_test",
+    "syntheticOnly": true
+  },
+  "sharedDatabaseWrites": 0,
+  "externalMessagesSent": 0,
+  "productionReady": false
+}

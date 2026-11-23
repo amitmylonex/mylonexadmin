@@ -1,0 +1,9 @@
+{
+  "target": "127.0.0.1:55489/schema_repair_test",
+  "status": "PASS",
+  "oldSourceCreates": 8,
+  "adminSourceCreates": 8,
+  "uniqueCodes": 16,
+  "startFloor": 15000,
+  "finalCounter": 15016
+}

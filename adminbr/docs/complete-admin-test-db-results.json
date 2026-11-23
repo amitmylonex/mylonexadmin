@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "target": "127.0.0.1:55489/schema_repair_test",
+  "syntheticOnly": true,
+  "externalMessagesSent": 0,
+  "checks": [
+    {
+      "name": "supplier invitation adapter + approval persist without external Auth/email calls",
+      "status": "PASS"
+    },
+    {
+      "name": "manual match is pending and scoped to existing RFQ / approved supplier",
+      "status": "PASS"
+    },
+    {
+      "name": "suspended supplier cannot receive forwarded RFQ",
+      "status": "PASS"
+    },
+    {
+      "name": "RFQ decisions use pending compare-and-set; stale rejection cannot overwrite forward",
+      "status": "PASS"
+    },
+    {
+      "name": "paged RFQ detail reads review actor, supplier and match state",
+      "status": "PASS"
+    },
+    {
+      "name": "concurrent quote approval releases once, snapshots original price and preserves WhatsApp validity",
+      "status": "PASS"
+    },
+    {
+      "name": "tracking SQL search/counts/detail project actual quote evidence without private metadata IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "sample quote computes rate × quantity, persists and rejects repeated release",
+      "status": "PASS"
+    },
+    {
+      "name": "sample rejection stores reason/actor and blocks subsequent quote",
+      "status": "PASS"
+    },
+    {
+      "name": "accepted-source views and concurrent delivery guards preserve accepted decisions",
+      "status": "PASS"
+    },
+    {
+      "name": "Order Master View preserves platform records, fabric, supplier/buyer and milestones",
+      "status": "PASS"
+    },
+    {
+      "name": "buyer counts use accepted quote/sample sources; derived engagement and role-scoped detail are correct",
+      "status": "PASS"
+    },
+    {
+      "name": "original dashboard aggregate SQL and current moderation metrics execute",
+      "status": "PASS"
+    },
+    {
+      "name": "actual old-project Prisma/pg adapter reads persisted quote, sample and order outcomes",
+      "status": "PASS"
+    }
+  ]
+}

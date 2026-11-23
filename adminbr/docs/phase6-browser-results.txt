@@ -1,0 +1,45 @@
+
+> adminfr@1.0.0 test:browser
+> playwright test
+
+[WebServer] (node:12264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 30 tests using 1 worker
+
+(node:33180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 test\browser\buyers.spec.ts:46:1 › buyer directory paginates, searches, sorts and applies joined-date filters (9.3s)
+  ok  2 test\browser\buyers.spec.ts:66:1 › buyer profile shows authoritative badges, billing details and all three activity tabs (1.4s)
+  ok  3 test\browser\buyers.spec.ts:87:1 › buyer without a business profile has honest badges and graceful RFQ/sample/order empty states (636ms)
+  ok  4 test\browser\buyers.spec.ts:99:1 › empty directory and missing buyer profile offer clear feedback (766ms)
+  ok  5 test\browser\catalog.spec.ts:61:1 › official template downloads through authenticated API as XLSX (1.9s)
+  ok  6 test\browser\catalog.spec.ts:67:1 › workbook mapping, defaults and import show created/skipped/failure results without losing the wizard (2.8s)
+  ok  7 test\browser\catalog.spec.ts:104:1 › review edits recalculate GLM/OZ and preserve physical coordinates after row operations (2.5s)
+  ok  8 test\browser\catalog.spec.ts:131:1 › manual quick-add and listing publication use their canonical API routes (1.2s)
+  ok  9 test\browser\catalog.spec.ts:147:1 › woven editor submits commercial values and all four technical specifications (1.3s)
+  ok 10 test\browser\catalog.spec.ts:166:1 › upload rejects unsupported/oversize files and accepts legacy XLS and CSV (3.5s)
+  ok 11 test\browser\catalog.spec.ts:181:1 › review bounds rendered rows and rejects oversized batches before editing (2.2s)
+  ok 12 test\browser\foundation.spec.ts:21:1 › unauthenticated admin deep link redirects to login with safe return path (367ms)
+  ok 13 test\browser\foundation.spec.ts:29:1 › desktop shell shows all routes, active highlight, email and top header (650ms)
+  ok 14 test\browser\foundation.spec.ts:47:1 › mobile drawer toggles, traps focus, closes on Escape and navigates (1.2s)
+  ok 15 test\browser\foundation.spec.ts:67:1 › API 401 clears the console, redirects to login and displays a session toast (664ms)
+  ok 16 test\browser\foundation.spec.ts:78:1 › sign out confirmation clears the shell and returns to login (762ms)
+  ok 17 test\browser\foundation.spec.ts:89:1 › non-admin session never renders the admin shell (467ms)
+  ok 18 test\browser\quote-commercial.spec.ts:20:1 › quote review compares targets, calculates margin versus markup and releases final price with expiry (1.0s)
+  ok 19 test\browser\quote-commercial.spec.ts:35:1 › invalid prices block release; rejection requires its own reason and does not send markup (700ms)
+  ok 20 test\browser\quote-commercial.spec.ts:42:1 › a conflicting release stays in the dialog with actionable server feedback (689ms)
+  ok 21 test\browser\quote-commercial.spec.ts:46:1 › quote calculator fits a mobile modal and shows a negative margin honestly (1.0s)
+  ok 22 test\browser\rfq-moderation.spec.ts:32:1 › RFQ queue shows anonymized buyer specs and dashboard-only routing preview (930ms)
+  ok 23 test\browser\rfq-moderation.spec.ts:45:1 › single approval refreshes queue and reports routing separately from delivery (619ms)
+  ok 24 test\browser\rfq-moderation.spec.ts:50:1 › reject dialog requires a reason and submits it with the RFQ ID (673ms)
+  ok 25 test\browser\rfq-moderation.spec.ts:56:1 › bulk approval retains failed RFQs and reports isolated failures (806ms)
+  ok 26 test\browser\rfq-moderation.spec.ts:61:1 › mobile empty queue fits the viewport (603ms)
+  ok 27 test\browser\suppliers.spec.ts:43:1 › supplier list supports pagination, filters, search and catalog deep links (1.8s)
+  ok 28 test\browser\suppliers.spec.ts:61:1 › suspend from actions dropdown updates status and preserves order fixture (928ms)
+  ok 29 test\browser\suppliers.spec.ts:72:1 › create form blocks invalid input and submits only the confirmed supplier fields (731ms)
+  ok 30 test\browser\suppliers.spec.ts:88:1 › detail masks phone, requires explicit consent, edits phone and confirms revocation (1.8s)
+
+  30 passed (55.2s)

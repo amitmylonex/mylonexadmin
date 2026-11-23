@@ -1,0 +1,13 @@
+# Shared database compatibility
+
+Read-only capture: 2026-11-18T09:10:55.040Z. Target: `aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres`, schema public, credentials/user tenant redacted. Both apps share this configured source of truth. No DDL/DML was executed by this inspection.
+
+All Prisma scalar/enum columns were compared to information_schema by mapped table/column name. Missing: account_deletion_requests.reason. Type mismatches: 0. Existing nullable array columns: 17; these are pre-existing differences from Prisma required-list declarations, so null arrays must not be assumed populated in new projections. Full metadata/index inventory: `shared-database-schema-inspection.json`.
+
+The six catalog repair columns and system_counters now exist. The repair is absent from the 34-row Prisma history: it appears to have been applied outside Prisma after prior review; actual backup/code-floor/operator confirmation is not established by this fact. DO NOT replay it or auto-mark applied. An authorized deployment operator must reconcile schema/migration checksum history separately. Do not infer the historical floor from the previous example 1042 or from present row count.
+
+Historical inspection: Admin SupplierCatalog.weaveType used SupplierWeaveType to match the observed PostgreSQL enum; old source declared String. Original migration 20260310100000_flow2_catalog_cutover creates that enum column. As of the 2026-11-19 handoff alignment, the confirmed domain requirement is free-text weave. The local projection now uses String and the client has been regenerated; deployment requires checking the actual target type and reviewing the prepared conversion in `catalog-free-text-weave.sql`. That conversion has not been applied. See `catalog-handoff-implementation.md` for deployment prerequisites and limits.
+
+Missing account_deletion_requests.reason is unrelated to the source Admin workflows. Do not use or query that model through an unqualified full Prisma selection in these modules. Account-deletion workflow parity is not claimed. Any repair needs its own reviewed additive SQL/backup/rollback/test plan and approval; no migration was added/applied for it in this phase.
+
+No new shared tables are required for the migrated CRUD/read/guarded state transitions. Durable notification outbox, general audit/import history, memberships, normalized supplier state and extra indexes remain explicit separate schema decisions. Existing schema-repair plan/sql-review/rollback documents remain the approved-review artifacts; none authorize new shared changes. Tests must use a loopback disposable database only. Live read verification is distinct from test DB persistence, authenticated browser verification and production readiness.

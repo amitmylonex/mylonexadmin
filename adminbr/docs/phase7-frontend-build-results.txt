@@ -1,0 +1,52 @@
+
+> adminfr@1.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1821 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                  0.81 kB │ gzip:   0.45 kB
+dist/assets/SupplierDetailPage-BJYfw0-5.css     18.85 kB │ gzip:   3.78 kB
+dist/assets/index-JntNU21q.css                  46.41 kB │ gzip:   8.16 kB
+dist/assets/useDebouncedValue-T7wSdhph.js        0.19 kB │ gzip:   0.17 kB
+dist/assets/Dialog-D0lz5jq9.js                   0.78 kB │ gzip:   0.51 kB
+dist/assets/Badge-BSeBa1RF.js                    0.84 kB │ gzip:   0.44 kB
+dist/assets/useAdminList-DTtNE0FN.js             1.23 kB │ gzip:   0.69 kB
+dist/assets/AllRfqsPage-BO9qH20r.js              2.40 kB │ gzip:   1.11 kB
+dist/assets/DashboardPage-Gz2PCIrc.js            3.22 kB │ gzip:   1.21 kB
+dist/assets/CatalogControlPage-DMzte72v.js       3.41 kB │ gzip:   1.32 kB
+dist/assets/AdminTable-BeDlu2hc.js               3.42 kB │ gzip:   1.30 kB
+dist/assets/BuyersPage-DBG5HnJK.js               3.47 kB │ gzip:   1.40 kB
+dist/assets/RfqDetailPage-CVbWs8Hu.js            4.49 kB │ gzip:   1.77 kB
+dist/assets/RfqTrackingPage-DsrY8dIS.js          4.71 kB │ gzip:   1.88 kB
+dist/assets/BuyerDetailPage-B_aOdA7_.js          4.79 kB │ gzip:   1.87 kB
+dist/assets/AcceptedOrdersPage-Bh62QYLP.js       5.36 kB │ gzip:   1.95 kB
+dist/assets/SamplesPage-DVQQvAq3.js              5.52 kB │ gzip:   2.11 kB
+dist/assets/StatusUpdateModal-D3BK3M2P.js        6.03 kB │ gzip:   2.41 kB
+dist/assets/QuoteApprovalsPage-_wHMJGd4.js       6.98 kB │ gzip:   2.66 kB
+dist/assets/RfqApprovalsPage-BRaqej-W.js         7.65 kB │ gzip:   2.69 kB
+dist/assets/RfqTrackingDetailPage-C1nv4GRP.js    9.90 kB │ gzip:   3.40 kB
+dist/assets/SuppliersPage-GYzbObGv.js           11.71 kB │ gzip:   4.05 kB
+dist/assets/SupplierDetailPage-CadyzCxK.js      52.70 kB │ gzip:  14.54 kB
+dist/assets/schemas-Doy1yutn.js                 88.72 kB │ gzip:  25.38 kB
+dist/assets/index-Bs6N6olf.js                  403.43 kB │ gzip: 115.06 kB
+dist/assets/ExcelCatalogImport-DBtuyQSN.js     428.42 kB │ gzip: 142.02 kB
+✓ built in 15.94s
+
+> adminfr@1.0.0 lint
+> tsc --noEmit
+

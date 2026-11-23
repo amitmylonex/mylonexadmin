@@ -1,0 +1,41 @@
+
+> adminfr@1.0.0 test:browser
+> playwright test
+
+[WebServer] (node:16000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 26 tests using 1 worker
+
+(node:12956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 test\browser\buyers.spec.ts:46:1 › buyer directory paginates, searches, sorts and applies joined-date filters (2.4s)
+  ok  2 test\browser\buyers.spec.ts:66:1 › buyer profile shows authoritative badges, billing details and all three activity tabs (1.6s)
+  ok  3 test\browser\buyers.spec.ts:87:1 › buyer without a business profile has honest badges and graceful RFQ/sample/order empty states (614ms)
+  ok  4 test\browser\buyers.spec.ts:99:1 › empty directory and missing buyer profile offer clear feedback (862ms)
+  ok  5 test\browser\catalog.spec.ts:61:1 › official template downloads through authenticated API as XLSX (2.0s)
+  ok  6 test\browser\catalog.spec.ts:67:1 › workbook mapping, defaults and import show created/skipped/failure results without losing the wizard (2.7s)
+  ok  7 test\browser\catalog.spec.ts:104:1 › review edits recalculate GLM/OZ and preserve physical coordinates after row operations (2.4s)
+  ok  8 test\browser\catalog.spec.ts:131:1 › manual quick-add and listing publication use their canonical API routes (1.2s)
+  ok  9 test\browser\catalog.spec.ts:147:1 › woven editor submits commercial values and all four technical specifications (1.2s)
+  ok 10 test\browser\catalog.spec.ts:166:1 › upload rejects unsupported/oversize files and accepts legacy XLS and CSV (3.3s)
+  ok 11 test\browser\catalog.spec.ts:181:1 › review bounds rendered rows and rejects oversized batches before editing (2.2s)
+  ok 12 test\browser\foundation.spec.ts:21:1 › unauthenticated admin deep link redirects to login with safe return path (385ms)
+  ok 13 test\browser\foundation.spec.ts:29:1 › desktop shell shows all routes, active highlight, email and top header (690ms)
+  ok 14 test\browser\foundation.spec.ts:47:1 › mobile drawer toggles, traps focus, closes on Escape and navigates (1.3s)
+  ok 15 test\browser\foundation.spec.ts:67:1 › API 401 clears the console, redirects to login and displays a session toast (630ms)
+  ok 16 test\browser\foundation.spec.ts:78:1 › sign out confirmation clears the shell and returns to login (733ms)
+  ok 17 test\browser\foundation.spec.ts:89:1 › non-admin session never renders the admin shell (698ms)
+  ok 18 test\browser\rfq-moderation.spec.ts:32:1 › RFQ queue shows anonymized buyer specs and dashboard-only routing preview (1.1s)
+  ok 19 test\browser\rfq-moderation.spec.ts:45:1 › single approval refreshes queue and reports routing separately from delivery (587ms)
+  ok 20 test\browser\rfq-moderation.spec.ts:50:1 › reject dialog requires a reason and submits it with the RFQ ID (644ms)
+  ok 21 test\browser\rfq-moderation.spec.ts:56:1 › bulk approval retains failed RFQs and reports isolated failures (629ms)
+  ok 22 test\browser\rfq-moderation.spec.ts:61:1 › mobile empty queue fits the viewport (581ms)
+  ok 23 test\browser\suppliers.spec.ts:43:1 › supplier list supports pagination, filters, search and catalog deep links (2.0s)
+  ok 24 test\browser\suppliers.spec.ts:61:1 › suspend from actions dropdown updates status and preserves order fixture (863ms)
+  ok 25 test\browser\suppliers.spec.ts:72:1 › create form blocks invalid input and submits only the confirmed supplier fields (783ms)
+  ok 26 test\browser\suppliers.spec.ts:88:1 › detail masks phone, requires explicit consent, edits phone and confirms revocation (1.7s)
+
+  26 passed (44.8s)

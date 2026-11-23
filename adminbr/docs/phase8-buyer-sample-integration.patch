@@ -1,0 +1,330 @@
+--- /dev/null
++++ b/src/domains/requests/sample-money.mjs
+@@ -0,0 +1,14 @@
++const maximum = 999999999999n;
++export function sampleChargeCents(value) {
++  if (typeof value !== "string" && typeof value !== "number") return null;
++  const raw = String(value);
++  if (!/^\d{1,10}(?:\.\d{1,2})?$/.test(raw)) return null;
++  const [whole, fraction = ""] = raw.split(".");
++  const cents = BigInt(whole) * 100n + BigInt(fraction.padEnd(2,"0"));
++  return cents <= maximum ? cents : null;
++}
++export function formatSampleCents(cents) { return `${cents / 100n}.${String(cents % 100n).padStart(2,"0")}`; }
++export function sampleTotal(material, courier) {
++  const left = sampleChargeCents(material), right = sampleChargeCents(courier);
++  return left === null || right === null || left + right > maximum ? null : formatSampleCents(left + right);
++}
+--- /dev/null
++++ b/src/domains/requests/sample-money.d.mts
+@@ -0,0 +1,3 @@
++export function sampleChargeCents(value: unknown): bigint | null;
++export function formatSampleCents(cents: bigint): string;
++export function sampleTotal(material: unknown, courier: unknown): string | null;
+--- /dev/null
++++ b/src/domains/requests/sample-buyer-decision.ts
+@@ -0,0 +1,23 @@
++import {randomUUID} from "node:crypto";
++import type {PrismaClient} from "@prisma/client";
++import {sampleTotal} from "./sample-money.mjs";
++/** Buyer-owned decision boundary. Used by the prepared marketplace integration;
++ * no ADMIN endpoint impersonates a buyer's acceptance. */
++export async function decideSampleQuote(client: PrismaClient, sampleId:string, buyerId:string, decision:"accepted"|"rejected", reason?:string) {
++  return client.$transaction(async tx=>{
++    await tx.$queryRaw`SELECT id FROM samples WHERE id=${sampleId} FOR UPDATE`;
++    const sample=await tx.sample.findFirst({where:{id:sampleId,buyerId}});
++    if(!sample||sample.status!=="quoted"||sample.buyerDecision)throw new Error("CONFLICT: Sample is no longer awaiting this requester's decision");
++    if(decision==="accepted") {
++      if(!sample.quoteValidUntil||sample.quoteValidUntil<=new Date())throw new Error("CONFLICT: Sample quote has expired");
++      if(sampleTotal(sample.quoteSampleCostInr?.toString(),sample.quoteCourierCostInr?.toString())===null)throw new Error("CONFLICT: Sample quote costs are incomplete");
++      await tx.$queryRaw`SELECT id FROM "SupplierProfile" WHERE id=${sample.supplierId} FOR SHARE`;
++      const supplier=await tx.supplierProfile.findFirst({where:{id:sample.supplierId,status:"APPROVED"},select:{id:true}});
++      if(!supplier)throw new Error("CONFLICT: Sample fulfillment supplier is unavailable; contact support");
++    }
++    const updated=await tx.sample.update({where:{id:sample.id},data:{status:decision==="accepted"?"accepted_by_buyer":"rejected_by_buyer",buyerDecision:decision,buyerDecisionReason:reason?.trim()||null,buyerDecisionAt:new Date()}});
++    if(decision==="accepted")await tx.order.create({data:{orderNumber:`ORD-SMPL-${randomUUID()}`,orderType:"sampling",sampleId:sample.id,buyerId:sample.buyerId,supplierId:sample.supplierId,status:"PENDING_PAYMENT",
++      milestones:{create:{title:"Sample order placed",description:"Requester accepted the sample quotation.",status:"PENDING_PAYMENT"}}}});
++    return updated;
++  });
++}
+--- /dev/null
++++ b/src/domains/requests/sample-requester.ts
+@@ -0,0 +1,4 @@
++/** Safe requester view; administrative notes and actor IDs remain admin-only. */
++export function requesterSample(sample:any) {
++  return sample ? {...sample,quoteInternalNotes:null,quotedByUserId:null,rejectedByUserId:null,deliveredByUserId:null} : null;
++}
+--- a/src/domains/requests/sample-repo.ts
++++ b/src/domains/requests/sample-repo.ts
+@@ -1,3 +1,4 @@
++import {decideSampleQuote} from "./sample-buyer-decision";
+ import { db } from "@/src/lib/db";
+ 
+ /** Fetch a sample by ID (admin context — no buyer ownership filter). */
+@@ -68,37 +69,8 @@
+ /** Record the buyer's decision (accept or reject) on a quoted sample.
+  *  Uses a compound where clause so concurrent double-submits fail safely
+  *  (Prisma throws P2025 if the row no longer matches). */
+-export async function updateSampleBuyerDecision(
+-    sampleId: string,
+-    decision: "accepted" | "rejected",
+-    reason?: string
+-) {
+-    const statusMap = {
+-        accepted: "accepted_by_buyer",
+-        rejected: "rejected_by_buyer",
+-    } as const;
+-
+-    try {
+-        return await db.sample.update({
+-            where: {
+-                id: sampleId,
+-                status: "quoted",
+-                buyerDecision: null,
+-            },
+-            data: {
+-                buyerDecision: decision,
+-                buyerDecisionReason: reason ?? null,
+-                buyerDecisionAt: new Date(),
+-                status: statusMap[decision],
+-            },
+-        });
+-    } catch (error: any) {
+-        // P2025 = record not found (concurrent write already changed status/decision)
+-        if (error.code === "P2025") {
+-            throw new Error("CONFLICT: Sample has already been decided or is no longer in a quotable state");
+-        }
+-        throw error;
+-    }
++export async function updateSampleBuyerDecision(sampleId:string,decision:"accepted"|"rejected",reason:string|undefined,buyerId:string) {
++    return decideSampleQuote(db,sampleId,buyerId,decision,reason);
+ }
+ 
+ // ── Notification Context Queries ───────────────────────────
+--- a/app/api/buyer/samples/[id]/decision/route.ts
++++ b/app/api/buyer/samples/[id]/decision/route.ts
+@@ -1,3 +1,4 @@
++import {requesterSample} from "@/src/domains/requests/sample-requester";
+ import { NextRequest } from "next/server";
+ import { requireRole } from "@/src/lib/auth/session";
+ import { apiError, apiSuccess, captureApiError } from "@/src/lib/api-utils";
+@@ -51,7 +52,8 @@
+             updated = await updateSampleBuyerDecision(
+                 params.id,
+                 parsed.data.decision,
+-                parsed.data.reason?.trim()
++                parsed.data.reason?.trim(),
++                user.id
+             );
+         } catch (err: any) {
+             if (err.message?.startsWith("CONFLICT")) {
+@@ -79,7 +81,7 @@
+             console.error("Failed to send sample decision notification", { sampleId: params.id, error: notifErr });
+         }
+ 
+-        return apiSuccess({ sample: updated });
++        return apiSuccess({ sample: requesterSample(updated) });
+     } catch (error) {
+         return captureApiError(error, {
+             route: "POST /api/buyer/samples/[id]/decision",
+--- a/app/api/supplier/samples/[id]/decision/route.ts
++++ b/app/api/supplier/samples/[id]/decision/route.ts
+@@ -1,3 +1,4 @@
++import {requesterSample} from "@/src/domains/requests/sample-requester";
+ import { NextRequest } from "next/server";
+ import { requireRole } from "@/src/lib/auth/session";
+ import { apiError, apiSuccess, captureApiError } from "@/src/lib/api-utils";
+@@ -50,11 +51,18 @@
+             );
+         }
+ 
+-        const updated = await updateSampleBuyerDecision(
++        let updated;
++        try {
++            updated = await updateSampleBuyerDecision(
+             params.id,
+             parsed.data.decision,
+-            parsed.data.reason?.trim()
++            parsed.data.reason?.trim(),
++                user.id
+         );
++        } catch (error: any) {
++            if (error.message?.startsWith("CONFLICT")) return apiError("CONFLICT",error.message.replace("CONFLICT: ",""),409);
++            throw error;
++        }
+ 
+         // Notify admin of sample decision (fire-and-forget)
+         try {
+@@ -75,7 +83,7 @@
+             console.error("Failed to send sample decision notification", { sampleId: params.id, error: notifErr });
+         }
+ 
+-        return apiSuccess({ sample: updated });
++        return apiSuccess({ sample: requesterSample(updated) });
+     } catch (error) {
+         return captureApiError(error, {
+             route: "POST /api/supplier/samples/[id]/decision",
+--- a/src/domains/requests/repo.ts
++++ b/src/domains/requests/repo.ts
+@@ -1,3 +1,4 @@
++import {requesterSample} from "./sample-requester";
+ import { db } from "@/src/lib/db";
+ import { Prisma } from "@prisma/client";
+ import { readWhatsAppQuoteMetadata } from "./quote-metadata";
+@@ -48,10 +49,11 @@
+ }
+ 
+ export async function listSamplesByBuyerId(buyerId: string) {
+-    return db.sample.findMany({
++    const samples = await db.sample.findMany({
+         where: { buyerId },
+         orderBy: { createdAt: "desc" },
+     });
++    return samples.map(requesterSample);
+ }
+ 
+ /** Count sampling requests that are still open (not completed/cancelled). */
+@@ -102,9 +104,10 @@
+ }
+ 
+ export async function getSampleByIdAndBuyer(id: string, buyerId: string) {
+-    return db.sample.findFirst({
++    const sample = await db.sample.findFirst({
+         where: { id, buyerId },
+     });
++    return requesterSample(sample);
+ }
+ 
+ export async function listSupplierRequestMatches(supplierId: string) {
+--- a/src/domains/admin/sample-actions.ts
++++ b/src/domains/admin/sample-actions.ts
+@@ -73,7 +73,7 @@
+                     sampleCostInr: Number(ctx.quoteSampleCostInr ?? 0),
+                     courierCostInr: Number(ctx.quoteCourierCostInr ?? 0),
+                     deliveryTimeline: ctx.quoteDeliveryTimeline ?? "",
+-                    quoteNotes: ctx.quoteInternalNotes,
++                    quoteNotes: null,
+                 });
+             }
+         } catch (err) {
+--- a/app/buyer/inquiries/samples/[id]/page.tsx
++++ b/app/buyer/inquiries/samples/[id]/page.tsx
+@@ -99,12 +99,10 @@
+                     </div>
+ 
+                     {/* Notes from admin (if provided with the quote) */}
+-                    {sample.quoteInternalNotes && (
+-                        <div className="mt-4 rounded-xl border border-[#dfe3eb] bg-[#f8fafc] p-4">
+-                            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#98a2b3]">Notes</p>
+-                            <p className="mt-1 text-sm leading-relaxed text-[#344054]">{sample.quoteInternalNotes}</p>
+-                        </div>
+-                    )}
++                    <div className="mt-4 rounded-xl border border-[#dfe3eb] p-4 text-sm">
++                        <p>Refund policy: {({full:"Full refund upon bulk order",partial:"Partial refund upon bulk order",none:"No refund"} as Record<string,string>)[sample.quoteRefundPolicy || ""] || "Not recorded"}</p>
++                        {sample.courierTrackingNumber && <p>Courier: {sample.courierName} · Tracking: {sample.courierTrackingNumber}</p>}
++                    </div>
+ 
+                     {/* Buyer accept/reject actions or status summary */}
+                     <BuyerSampleQuoteActions
+--- a/app/supplier/inquiries/samples/[id]/page.tsx
++++ b/app/supplier/inquiries/samples/[id]/page.tsx
+@@ -100,12 +100,10 @@
+                     </div>
+ 
+                     {/* Notes from admin (if provided with the quote) */}
+-                    {sample.quoteInternalNotes && (
+-                        <div className="mt-4 rounded-xl border border-[#dfe3eb] bg-[#f8fafc] p-4">
+-                            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#98a2b3]">Notes</p>
+-                            <p className="mt-1 text-sm leading-relaxed text-[#344054]">{sample.quoteInternalNotes}</p>
+-                        </div>
+-                    )}
++                    <div className="mt-4 rounded-xl border border-[#dfe3eb] p-4 text-sm">
++                        <p>Refund policy: {({full:"Full refund upon bulk order",partial:"Partial refund upon bulk order",none:"No refund"} as Record<string,string>)[sample.quoteRefundPolicy || ""] || "Not recorded"}</p>
++                        {sample.courierTrackingNumber && <p>Courier: {sample.courierName} · Tracking: {sample.courierTrackingNumber}</p>}
++                    </div>
+ 
+                     {/* Supplier-requester accept/reject actions */}
+                     <RequesterSampleQuoteActions
+--- a/prisma/schema.prisma
++++ b/prisma/schema.prisma
+@@ -385,6 +385,9 @@
+   deliveredAt       DateTime? @map("delivered_at")
+   deliveredByUserId String?   @map("delivered_by_user_id")
+ 
++  courierName String? @map("courier_name")
++  courierTrackingNumber String? @map("courier_tracking_number")
++
+   order Order?
+ 
+   specPayload Json     @map("spec_payload")
+@@ -392,6 +395,7 @@
+   updatedAt   DateTime @updatedAt @map("updated_at")
+ 
+   @@index([buyerId])
++  @@index([status,createdAt,id], map: "samples_queue_idx")
+   @@map("samples")
+ }
+ 
+--- a/src/domains/orders/service.ts
++++ b/src/domains/orders/service.ts
+@@ -1,3 +1,5 @@
++import {requesterSample} from "../requests/sample-requester";
++function sanitizeSampleOrder<T extends {sample?:any}>(order:T):T { return {...order,sample:requesterSample(order.sample)}; }
+ import { requireRole } from "@/src/lib/auth/session";
+ import { getBuyerOrders, getSupplierOrders, getOrderById } from "./repo";
+ import { OrderStatus } from "@prisma/client";
+@@ -5,14 +7,14 @@
+ 
+ export async function fetchMyBuyerOrders() {
+     const user = await requireRole("BUYER");
+-    return getBuyerOrders(user.id);
++    return (await getBuyerOrders(user.id)).map(sanitizeSampleOrder);
+ }
+ 
+ export async function fetchMySupplierOrders() {
+     const user = await requireRole("SUPPLIER");
+     const profile = await db.supplierProfile.findUnique({ where: { userId: user.id } });
+     if (!profile) throw new Error("Supplier profile not found");
+-    return getSupplierOrders(profile.id);
++    return (await getSupplierOrders(profile.id)).map(sanitizeSampleOrder);
+ }
+ 
+ export async function fetchOrderAsBuyer(orderId: string) {
+@@ -21,7 +23,7 @@
+     if (!order || order.buyerId !== user.id) {
+         throw new Error("Order not found");
+     }
+-    return order;
++    return sanitizeSampleOrder(order);
+ }
+ 
+ export async function fetchOrderAsSupplier(orderId: string) {
+@@ -32,7 +34,7 @@
+     if (!order || order.supplierId !== profile.id) {
+         throw new Error("Order not found");
+     }
+-    return order;
++    return sanitizeSampleOrder(order);
+ }
+ 
+ export async function advanceOrderStatus(orderId: string, status: OrderStatus, trackingNumber?: string, invoiceUrl?: string) {
+--- a/docs/data/schema.md
++++ b/docs/data/schema.md
+@@ -501,3 +501,7 @@
+ transient until the buyer explicitly confirms selected changes. The current source
+ and manual field corrections stay intact during review. Existing RFQ snapshot,
+ submission, matching and notification persistence are unchanged.
++
++## Phase 8 sample cost and delivery additions
++
++Sample adds nullable courierName/courierTrackingNumber (courier_name/courier_tracking_number) and a status/createdAt/id queue index. Existing quoteRefundPolicy stores full/partial/none. Buyer acceptance creates a sampling Order linked uniquely by sampleId in the same transaction as the decision. Administrative sample notes and actor IDs are excluded from requester/sample-order views. Apply the reviewed shared migration before regenerating clients.
+--- a/docs/api/contracts.md
++++ b/docs/api/contracts.md
+@@ -1265,3 +1265,7 @@
+ No inquiry creation, storage of audio, matching, or notifications occur here.
+ This is bounded recording, not realtime voice. The UI limits recording to two
+ minutes; the server enforces byte limits, not independently measured duration.
++
++## Phase 8 sample acceptance integration
++
++Existing buyer and supplier-requester sample decision routes retain their public payload. Acceptance now checks ownership and quote expiry under a sample row lock, validates the approved fulfillment supplier, and atomically creates one PENDING_PAYMENT sampling Order and initial milestone. An order creation failure rolls back acceptance; duplicate/conflicting decisions return 409. Sample detail/list/decision and requester order projections withhold quoteInternalNotes. Requester sample pages display refund policy and courier tracking when recorded.

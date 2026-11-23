@@ -1,35 +1,17 @@
 {
-  "name": "adminfr",
-  "private": true,
+  "name": "mylonex-admin-workspace",
   "version": "1.0.0",
-  "type": "module",
+  "private": true,
+  "description": "MyloNex Admin Monorepo Workspace (adminfr & adminbr)",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "tsc --noEmit",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
-    "test:browser": "playwright test"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.49.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.475.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.6.0",
-    "xlsx": "^0.18.5",
-    "zod": "^4.6.7"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3",
-    "vite": "^5.4.14"
+    "dev:backend": "npm --prefix adminbr run dev",
+    "dev:frontend": "npm --prefix adminfr run dev",
+    "build:backend": "npm --prefix adminbr run build",
+    "build:frontend": "npm --prefix adminfr run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "typecheck": "npm --prefix adminbr run typecheck && npm --prefix adminfr run typecheck",
+    "lint": "npm --prefix adminbr run lint && npm --prefix adminfr run lint",
+    "test": "npm --prefix adminbr test",
+    "test:browser": "npm --prefix adminfr run test:browser"
   }
 }

@@ -1,0 +1,8 @@
+
+> adminbr@1.0.0 build
+> tsc
+
+
+> adminbr@1.0.0 lint
+> tsc --noEmit
+

@@ -1,0 +1,68 @@
+
+> mylonex-admin-workspace@1.0.0 build
+> npm run build:backend && npm run build:frontend
+
+
+> mylonex-admin-workspace@1.0.0 build:backend
+> npm --prefix adminbr run build
+
+
+> adminbr@1.0.0 build
+> tsc
+
+
+> mylonex-admin-workspace@1.0.0 build:frontend
+> npm --prefix adminfr run build
+
+
+> adminfr@1.0.0 build
+> tsc && vite build
+
+vite v5.4.21 building for production...
+transforming...
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1820 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                  0.81 kB │ gzip:   0.45 kB
+dist/assets/SupplierDetailPage-BJYfw0-5.css     18.85 kB │ gzip:   3.78 kB
+dist/assets/index-vxdCd5op.css                  47.79 kB │ gzip:   8.37 kB
+dist/assets/useDebouncedValue-DQlCI1BX.js        0.19 kB │ gzip:   0.17 kB
+dist/assets/NotificationNotice-ZCL7Kkcy.js       0.38 kB │ gzip:   0.29 kB
+dist/assets/Dialog-Boe4eleD.js                   0.78 kB │ gzip:   0.51 kB
+dist/assets/useAdminList-lXhaCs4e.js             1.10 kB │ gzip:   0.64 kB
+dist/assets/AllRfqsPage-CEfF3P7U.js              1.41 kB │ gzip:   0.72 kB
+dist/assets/BuyersPage-Dbk_p95o.js               1.66 kB │ gzip:   0.85 kB
+dist/assets/BuyerDetailPage-BgpPkTs2.js          2.52 kB │ gzip:   1.12 kB
+dist/assets/DashboardPage-6xzuNumi.js            3.22 kB │ gzip:   1.21 kB
+dist/assets/AdminTable-CLcBa5gd.js               3.35 kB │ gzip:   1.27 kB
+dist/assets/CatalogControlPage-BP4holDu.js       3.41 kB │ gzip:   1.32 kB
+dist/assets/RfqTrackingDetailPage-BpvoOrMg.js    3.59 kB │ gzip:   1.34 kB
+dist/assets/RfqApprovalsPage-Df9XTXTo.js         3.94 kB │ gzip:   1.55 kB
+dist/assets/RfqDetailPage-D5yM-Bcl.js            4.44 kB │ gzip:   1.75 kB
+dist/assets/RfqTrackingPage-pUHQ9lgV.js          4.71 kB │ gzip:   1.88 kB
+dist/assets/QuoteApprovalsPage-CxtgrK4t.js       4.98 kB │ gzip:   2.01 kB
+dist/assets/SamplesPage-BKILT6NF.js              5.25 kB │ gzip:   1.97 kB
+dist/assets/AcceptedOrdersPage-DsH7zrA6.js       5.36 kB │ gzip:   1.95 kB
+dist/assets/StatusUpdateModal-BYh99B4f.js        6.72 kB │ gzip:   2.57 kB
+dist/assets/SuppliersPage-B0VcQ2-Y.js           13.80 kB │ gzip:   4.11 kB
+dist/assets/SupplierDetailPage-yLlFo2KF.js      57.14 kB │ gzip:  15.27 kB
+dist/assets/index-B7dtSxui.js                  403.27 kB │ gzip: 115.00 kB
+dist/assets/ExcelCatalogImport-101toMUB.js     610.08 kB │ gzip: 194.92 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 7.74s

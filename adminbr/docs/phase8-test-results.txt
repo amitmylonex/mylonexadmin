@@ -1,0 +1,286 @@
+
+> adminbr@1.0.0 test
+> tsx --test test/*.test.ts
+
+{"level":30,"time":1795084379854,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/suppliers","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ all sensitive supplier/catalog endpoints reject unauthenticated access (902.3497ms)
+✔ a valid supplier token cannot impersonate an admin, even if token metadata claims ADMIN (1.584ms)
+✔ expired and unknown sessions fail closed (0.4038ms)
+✔ approval, suspension and reactivation use atomic expected-status updates (4.7356ms)
+{"level":30,"time":1795084379979,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/buyers/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ all restored parity mutation/detail endpoints require Admin auth before data access (83.9157ms)
+{"level":30,"time":1795084379876,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":20.254899999999907,"msg":"request completed"}
+{"level":30,"time":1795084379877,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/suppliers","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379879,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":1.0828000000001339,"msg":"request completed"}
+{"level":30,"time":1795084379879,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379880,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":0.952900000000227,"msg":"request completed"}
+{"level":30,"time":1795084379881,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"GET","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379883,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":401},"responseTime":1.2092000000002372,"msg":"request completed"}
+{"level":30,"time":1795084379883,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/excel-import","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379884,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":401},"responseTime":0.7354000000004817,"msg":"request completed"}
+{"level":30,"time":1795084379885,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-6","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/images","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379885,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-6","res":{"statusCode":401},"responseTime":0.6954999999998108,"msg":"request completed"}
+{"level":30,"time":1795084379886,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-7","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/collections","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379887,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-7","res":{"statusCode":401},"responseTime":0.6981000000005224,"msg":"request completed"}
+{"level":30,"time":1795084379887,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-8","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/collections/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379888,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-8","res":{"statusCode":401},"responseTime":0.6024999999999636,"msg":"request completed"}
+{"level":30,"time":1795084379889,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-9","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/fabrics","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379890,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-9","res":{"statusCode":401},"responseTime":0.7853999999997541,"msg":"request completed"}
+{"level":30,"time":1795084379890,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-a","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/fabrics/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379891,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-a","res":{"statusCode":401},"responseTime":0.9471999999996115,"msg":"request completed"}
+{"level":30,"time":1795084379892,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-b","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/woven","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379892,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-b","res":{"statusCode":401},"responseTime":0.5309999999999491,"msg":"request completed"}
+{"level":30,"time":1795084379893,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-c","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/woven/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379893,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-c","res":{"statusCode":401},"responseTime":0.5395000000007713,"msg":"request completed"}
+{"level":30,"time":1795084379894,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-d","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/capabilities","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379894,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-d","res":{"statusCode":401},"responseTime":0.45200000000022555,"msg":"request completed"}
+{"level":30,"time":1795084379895,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-e","req":{"method":"PUT","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/manage/capabilities/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379895,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-e","res":{"statusCode":401},"responseTime":0.5870999999997366,"msg":"request completed"}
+{"level":30,"time":1795084379896,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-f","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379898,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-f","res":{"statusCode":200},"responseTime":1.9567999999999302,"msg":"request completed"}
+{"level":30,"time":1795084379980,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":0.5630999999993946,"msg":"request completed"}
+{"level":30,"time":1795084379981,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"GET","url":"/api/v1/admin/rfqs/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379981,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":0.734599999999773,"msg":"request completed"}
+{"level":30,"time":1795084379982,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"GET","url":"/api/v1/admin/rfq-tracking/11111111-1111-4111-8111-111111111111","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379982,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":0.4452999999994063,"msg":"request completed"}
+{"level":30,"time":1795084379983,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"POST","url":"/api/v1/admin/rfq-approvals/bulk","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379984,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":401},"responseTime":0.9672999999993408,"msg":"request completed"}
+{"level":30,"time":1795084379984,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"POST","url":"/api/v1/admin/rfqs/11111111-1111-4111-8111-111111111111/manual-match","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379985,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":401},"responseTime":0.49070000000028813,"msg":"request completed"}
+{"level":30,"time":1795084379985,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-6","req":{"method":"POST","url":"/api/v1/admin/quote-approvals/11111111-1111-4111-8111-111111111111/approve","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379986,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-6","res":{"statusCode":401},"responseTime":0.9493000000002212,"msg":"request completed"}
+{"level":30,"time":1795084379986,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-7","req":{"method":"POST","url":"/api/v1/admin/quote-approvals/11111111-1111-4111-8111-111111111111/reject","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379987,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-7","res":{"statusCode":401},"responseTime":1.0208999999995285,"msg":"request completed"}
+{"level":30,"time":1795084379988,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-8","req":{"method":"POST","url":"/api/v1/admin/samples/11111111-1111-4111-8111-111111111111/quote","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379988,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-8","res":{"statusCode":401},"responseTime":0.4969999999993888,"msg":"request completed"}
+{"level":30,"time":1795084379989,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-9","req":{"method":"POST","url":"/api/v1/admin/samples/11111111-1111-4111-8111-111111111111/reject","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379990,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-9","res":{"statusCode":401},"responseTime":0.5115999999998166,"msg":"request completed"}
+{"level":30,"time":1795084379991,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-a","req":{"method":"GET","url":"/api/v1/admin/accepted-orders/production","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379991,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-a","res":{"statusCode":401},"responseTime":0.4591999999993277,"msg":"request completed"}
+{"level":30,"time":1795084379991,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-b","req":{"method":"POST","url":"/api/v1/admin/accepted-orders/production/11111111-1111-4111-8111-111111111111/delivered","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379992,"pid":33600,"hostname":"DESKTOP-LB495KL","reqId":"req-b","res":{"statusCode":401},"responseTime":0.3752999999996973,"msg":"request completed"}
+✔ buyer filters reject invalid dates and bound pagination, with inclusive IST date boundaries (9.9828ms)
+✔ directory loads only the requested page and aggregates only those buyer IDs (18.1249ms)
+✔ an empty directory page skips page-scoped grouping and returns a bounded empty result (0.7683ms)
+✔ order estimates use recorded totals, exact decimal multiplication and sample/courier values (1.8041ms)
+✔ order summary is a database aggregate with a bound buyer ID and explicit unknown values (1.092ms)
+✔ actual order tab is independently paginated and does not expose raw quote metadata (1.0264ms)
+✔ profile scopes BUYER role, bounds activity, returns sample type and never invents billing address (2.1447ms)
+✔ verified email needs matching authoritative email confirmation; GST is never automatically verified (1.1225ms)
+{"level":30,"time":1795084379826,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/buyers","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ buyer routes validate queries, enforce ADMIN and return 404 for an absent buyer (817.8942ms)
+{"level":30,"time":1795084379842,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":14.03440000000046,"msg":"request completed"}
+{"level":30,"time":1795084379843,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"GET","url":"/api/v1/admin/buyers?pageSize=1000","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379846,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":400},"responseTime":2.8130999999993946,"msg":"request completed"}
+{"level":30,"time":1795084379847,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"GET","url":"/api/v1/admin/buyers/11111111-1111-4111-8111-111111111111?tab=orders","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379848,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":200},"responseTime":1.4971999999997934,"msg":"request completed"}
+{"level":30,"time":1795084379849,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"GET","url":"/api/v1/admin/buyers/22222222-2222-4222-8222-222222222222","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379850,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":404},"responseTime":1.4311999999999898,"msg":"request completed"}
+{"level":30,"time":1795084379851,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"GET","url":"/api/v1/admin/buyers/not-a-uuid","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379853,"pid":23652,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":400},"responseTime":1.7541000000001077,"msg":"request completed"}
+✔ browser and server spreadsheet engines remain identical across module resolution formats (18.9823ms)
+✔ server recalculates dimensions, merges count, permits blank names and preserves free weave (71.9178ms)
+✔ missing weave, unconfirmed defaults, unsupported yarn, invalid width and ready-stock block writes (7.8629ms)
+✔ allocator lock precedes active duplicate check and every source field is persisted (2.7222ms)
+✔ row failure preserves earlier commits, continues later rows and retries skip active successes (5.3648ms)
+✔ consent requires explicit confirmation and persists normalized phone (1.9458ms)
+✔ empty image cells are allowed and preview never opens a write transaction (1.6587ms)
+✔ missing historical allocator fails closed before catalog writes (0.842ms)
+✔ an imported blank title can be reactivated using its existing MYLO display code (2.1961ms)
+✔ server template is binary XLSX with instructions and a sample accepted by the real browser/server engines (313.9371ms)
+{"level":30,"time":1795084380826,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/excel-template","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380839,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":10.292199999999866,"msg":"request completed"}
+{"level":30,"time":1795084380839,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/quick-add","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380840,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":0.9477999999999156,"msg":"request completed"}
+{"level":30,"time":1795084380841,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"PATCH","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/products/22222222-2222-4222-8222-222222222222","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380842,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":0.6105999999999767,"msg":"request completed"}
+{"level":30,"time":1795084380842,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"GET","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/excel-template","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380860,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":200},"responseTime":17.394400000000132,"msg":"request completed"}
+{"level":30,"time":1795084380861,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"POST","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/quick-add","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+[AUDIT_EVENT] {"actorId":"admin","actorEmail":"admin@example.invalid","targetType":"SUPPLIER_PROFILE","targetId":"11111111-1111-4111-8111-111111111111","action":"QUICK_ADD_FABRIC","reason":"Admin manual catalog creation","requestId":"req-5","timestamp":"2026-11-19T10:33:00.864Z"}
+{"level":30,"time":1795084380865,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":201},"responseTime":4.256900000000314,"msg":"request completed"}
+{"level":30,"time":1795084380866,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-6","req":{"method":"PATCH","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/products/22222222-2222-4222-8222-222222222222","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+[AUDIT_EVENT] {"actorId":"admin","actorEmail":"admin@example.invalid","targetType":"SUPPLIER_CATALOG_ITEM","targetId":"22222222-2222-4222-8222-222222222222","action":"DEACTIVATE_LISTING","newState":{"isActive":false,"sourceType":"woven"},"reason":"Admin catalog publication","requestId":"req-6","timestamp":"2026-11-19T10:33:00.867Z"}
+{"level":30,"time":1795084380868,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-6","res":{"statusCode":200},"responseTime":2.139799999999923,"msg":"request completed"}
+{"level":30,"time":1795084380870,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-7","req":{"method":"PATCH","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/catalog/products/22222222-2222-4222-8222-222222222222","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ active template, quick-add and PATCH publication routes enforce ADMIN access and validate parameters (801.9622ms)
+✔ manual quick-add and imports share allocator ordering, free weave and active duplicate checks (3.0068ms)
+✔ 501 import rows fail before any supplier lookup or writes (7.0593ms)
+✔ staging keeps physical row coordinates through removal, remapping, defaults and width recalculation (5.765ms)
+✔ authenticated binary API downloads preserve data without attempting JSON parsing (5.3569ms)
+✔ woven listing creation saves technical specs with the newly created product identity (1.0054ms)
+{"level":30,"time":1795084380873,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-7","res":{"statusCode":400},"responseTime":2.595800000000054,"msg":"request completed"}
+{"level":30,"time":1795084380873,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-8","req":{"method":"GET","url":"/api/v1/admin/suppliers/not-uuid/catalog/excel-template","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380874,"pid":28396,"hostname":"DESKTOP-LB495KL","reqId":"req-8","res":{"statusCode":400},"responseTime":0.8681000000005952,"msg":"request completed"}
+✔ publication requires genuine positive commercial values, GSM and state (26.6027ms)
+✔ supplier input normalizes email and rejects invalid GST, phone, location and roles (2.0098ms)
+✔ query validation bounds pages and supported statuses (0.8724ms)
+✔ capability ranges and blended material requirements (3.1957ms)
+✔ woven specs reject unknown and duplicate keys (1.444ms)
+✔ import validation never invents required prices and reports original row numbers (53.3122ms)
+✔ image upload rejects spoofed content, SVG and oversize input (104.9511ms)
+✔ foreign collection association is rejected before any write (1.8879ms)
+✔ capability linked products must belong to the organization (2.0091ms)
+✔ duplicate fabric is rejected without generating another code (0.9732ms)
+✔ foreign edit and foreign activation are rejected (1.3732ms)
+✔ activation revalidates legacy listings and explicit deactivate remains possible (1.0205ms)
+✔ import detects duplicates inside transaction and reports skipped counts (4.5613ms)
+✔ rate limiter bounds writes per actor and resets (0.4663ms)
+✔ supplier creation links invited identity and starts pending (3.224ms)
+✔ invitation failure never creates a disconnected supplier profile (0.9583ms)
+{"level":30,"time":1795084379852,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/auth/me","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ namespace guard, ADMIN access, CORS preflight and security headers (914.5331ms)
+{"level":30,"time":1795084379956,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/test-validation","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ error envelopes retain validation details and mask unexpected failures (64.4265ms)
+✔ database role is authoritative and an absent user is forbidden (1.5934ms)
+✔ pool defaults are bounded and preserve Supabase pooler options (0.5479ms)
+✔ API client attaches JWT, reads structured errors and expires 401 sessions (8.3088ms)
+{"level":30,"time":1795084379869,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":15.684900000000198,"msg":"request completed"}
+{"level":30,"time":1795084379871,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"GET","url":"/api/v1/admin/future-module","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379872,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":1.1289999999999054,"msg":"request completed"}
+{"level":30,"time":1795084379873,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"GET","url":"/api/v1/admin","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379874,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":0.8825999999999112,"msg":"request completed"}
+{"level":30,"time":1795084379874,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"POST","url":"/api/v1/admin/suppliers","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379875,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":401},"responseTime":0.8244999999997162,"msg":"request completed"}
+{"level":30,"time":1795084379876,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"GET","url":"/api/v1/admin/auth/me","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379879,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":200},"responseTime":2.9377999999996973,"msg":"request completed"}
+{"level":30,"time":1795084379885,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-6","req":{"method":"GET","url":"/api/v1/admin/auth/me","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379887,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-6","res":{"statusCode":401},"responseTime":1.2953999999999724,"msg":"request completed"}
+{"level":30,"time":1795084379887,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-7","req":{"method":"GET","url":"/api/v1/admin/auth/me","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379888,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-7","res":{"statusCode":403},"responseTime":0.7804000000005544,"msg":"request completed"}
+{"level":30,"time":1795084379889,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-8","req":{"method":"OPTIONS","url":"/api/v1/admin/auth/me","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379890,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-8","res":{"statusCode":204},"responseTime":0.6283999999996013,"msg":"request completed"}
+{"level":30,"time":1795084379890,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-9","req":{"method":"GET","url":"/health","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379891,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-9","res":{"statusCode":200},"responseTime":0.8087999999997919,"msg":"request completed"}
+{"level":30,"time":1795084379892,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-a","req":{"method":"GET","url":"/ready","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379893,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-a","res":{"statusCode":200},"responseTime":1.0399999999999636,"msg":"request completed"}
+{"level":30,"time":1795084379960,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":400},"responseTime":3.310699999999997,"msg":"request completed"}
+{"level":30,"time":1795084379960,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"GET","url":"/test-failure","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":50,"time":1795084379961,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-2","err":{"type":"Error","message":"private connection string","stack":"Error: private connection string\n    at Object.<anonymous> (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\test\\foundation.test.ts:47:48)\n    at preHandlerCallbackInner (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\handle-request.js:190:24)\n    at preHandlerCallback (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\handle-request.js:155:5)\n    at validationCompleted (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\handle-request.js:145:5)\n    at preValidationCallback (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\handle-request.js:122:5)\n    at handler (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\handle-request.js:99:7)\n    at Object.handleRequest (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\handle-request.js:35:5)\n    at runPreParsing (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\route.js:692:19)\n    at next (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\hooks.js:236:9)\n    at handleResolve (D:\\Amit Stuff\\Office\\MyloNex\\MylonexAdmin\\adminbr\\node_modules\\fastify\\lib\\hooks.js:253:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"},"requestId":"req-2","msg":"Request failed"}
+{"level":30,"time":1795084379962,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":500},"responseTime":1.9844999999995707,"msg":"request completed"}
+{"level":30,"time":1795084379963,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"GET","url":"/ready","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084379963,"pid":1864,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":503},"responseTime":0.7224999999998545,"msg":"request completed"}
+✔ quote queue withholds private provider identifiers (5.6126ms)
+✔ all list bounds and bulk identifiers are validated (28.7627ms)
+✔ quote edit preserves first supplier price and protected WhatsApp validity (1.5643ms)
+✔ ordinary website notes remain editable; rejecting cannot overwrite commercial terms (1.0519ms)
+✔ sample quote validates rate/courier, future expiry and reason; Decimal totals round once (5.4641ms)
+✔ buyer engagement matches old derived states instead of invented verification flags (0.4996ms)
+✔ RFQ status precedence matches the old source (0.5556ms)
+✔ tracking rejects impossible dates and reversed ranges (2.6504ms)
+✔ tracking never treats a quote as a read receipt; deduplicates retained messages and supplier pairs (2.2592ms)
+✔ tracking projection retains terms but withholds private metadata identifiers (26.6466ms)
+✔ approval inputs enforce positive precise INR prices, calendar-valid expiry and explicit rejection reason (9.2786ms)
+✔ approval without a markup always snapshots the original supplier price (18.0066ms)
+✔ markup changes only final price and preserves supplier metadata and previously recorded original price (1.8258ms)
+✔ rejection requires a reason before database access and never alters commercial prices or queues email (1.4258ms)
+✔ concurrent reviews release once without replacing the supplier price or queueing twice (1.202ms)
+✔ notification failure after commit does not undo release or financial audit fields (0.9544ms)
+✔ buyer serialization exposes final price only and excludes supplier estimates, metadata and internal notes (0.678ms)
+✔ calculator distinguishes final-price margin from cost-based markup and supports discounts honestly (0.4341ms)
+✔ quote list bounds database pagination and includes buyer price targets, sample, dispatch and images (2.039ms)
+✔ buyer notification claim sends only final price once, never supplier audit metadata (1.3926ms)
+✔ ambiguous buyer delivery is not retried; expired quotes are not emailed (0.7721ms)
+✔ Postmark HTTP-200 provider errors cannot be reported as sent (5.4809ms)
+{"level":30,"time":1795084380676,"pid":27748,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/quote-approvals","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380687,"pid":27748,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":8.919800000000578,"msg":"request completed"}
+{"level":30,"time":1795084380688,"pid":27748,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/quote-approvals/11111111-1111-4111-8111-111111111111/reject","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+[AUDIT_EVENT] {"actorId":"admin","actorEmail":"admin@example.invalid","targetType":"RFQ","targetId":"11111111-1111-4111-8111-111111111111","action":"QUOTE_APPROVE","reason":"Admin quote review","requestId":"req-3","timestamp":"2026-11-19T10:33:00.707Z"}
+{"level":30,"time":1795084380704,"pid":27748,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":400},"responseTime":15.50170000000071,"msg":"request completed"}
+{"level":30,"time":1795084380705,"pid":27748,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"POST","url":"/api/v1/admin/quote-approvals/11111111-1111-4111-8111-111111111111/approve","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ quote HTTP endpoints require ADMIN and reject blank reasons before mutation (863.1249ms)
+✔ disabled or incomplete buyer-email configuration leaves the durable queue unclaimed (0.481ms)
+{"level":30,"time":1795084380707,"pid":27748,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":200},"responseTime":2.590400000000045,"msg":"request completed"}
+✔ registry validates quantity/date/status filters and applies full IST calendar boundaries (11.4055ms)
+✔ registry paginates all RFQ roles/states without loading all supplier matches (13.7695ms)
+✔ lifecycle never fabricates approval, acceptance or an order from routing/quotes (0.5478ms)
+✔ detail lifecycle aggregates cover all matches while supplier rows remain paginated (0.9926ms)
+✔ delivered is not read, lowercase statuses work, and queued does not imply sent (21.8101ms)
+✔ manual route is immediate for active RFQs, staged for pending, and consent-free routing stays on portal (5.5627ms)
+✔ manual routing refuses suspended, closed and accepted RFQs, and concurrent duplicates (2.5153ms)
+✔ resend queues independently and preserves original message ID/read receipts (3.2798ms)
+✔ resend limits persist across workers and reject revocation, ambiguity, quotes and expired deadlines (2.4639ms)
+✔ resend worker claims once, rechecks eligibility and does not replace historical receipt fields (2.5399ms)
+✔ dispatch receipts remain per message, monotonic and never invent delivery timestamps (1.9311ms)
+✔ receipt bridge authenticates canonical payload and rejects tampering, stale timestamps and missing secret (2.3805ms)
+✔ dispatch log pages omit provider IDs, private reasons and phones (0.6619ms)
+{"level":30,"time":1795084380941,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"POST","url":"/api/v1/admin/rfqs/11111111-1111-4111-8111-111111111111/manual-match","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380952,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":9.166400000000067,"msg":"request completed"}
+{"level":30,"time":1795084380953,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/rfq-tracking/33333333-3333-4333-8333-333333333333/resend-whatsapp","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380954,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":0.619300000000294,"msg":"request completed"}
+{"level":30,"time":1795084380954,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"GET","url":"/api/v1/admin/rfq-tracking/33333333-3333-4333-8333-333333333333/dispatch-logs","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380955,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":0.6508000000003449,"msg":"request completed"}
+{"level":30,"time":1795084380956,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"POST","url":"/api/v1/internal/rfq-dispatch-receipts","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084380968,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":401},"responseTime":11.90350000000035,"msg":"request completed"}
+{"level":30,"time":1795084380969,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"POST","url":"/api/v1/internal/rfq-dispatch-receipts","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ tracking mutation/log HTTP endpoints remain ADMIN-only; signed receipt bridge works independently (751.3382ms)
+✔ a signed provider callback can reconcile an ambiguous send through the provider-echoed attempt ID (0.6139ms)
+✔ an early read receipt cannot be downgraded when the original provider acknowledgement completes (0.8825ms)
+{"level":30,"time":1795084380971,"pid":4420,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":200},"responseTime":2.6354999999994106,"msg":"request completed"}
+✔ composition scoring compares fiber identities, ratios and percentages (28.8224ms)
+✔ exact selected fabric never broadens to another listing or a manual match (15.6276ms)
+✔ matching reads keyset catalog pages of 200 and retains eight distinct approved suppliers (8.916ms)
+✔ approval commits dashboard routes, approval metadata and consented durable queue together (4.0998ms)
+✔ non-consented suppliers receive dashboard routing without WhatsApp calls or queue entries (1.5422ms)
+✔ supplier suspended after preview and inactive listings cannot receive matches (2.6315ms)
+✔ stale RFQs and opposing decisions conflict; rejection preserves forwarded history (1.5525ms)
+✔ rejection persists required reason and actor without creating supplier matches (1.9695ms)
+✔ bulk validates all IDs, reasons and size before writes, and isolates per-RFQ failures (8.8977ms)
+✔ queue list is paginated and sanitizes anonymous buyer contacts from nested specs (3.7094ms)
+✔ two notification workers claim a queued entry only once (1.5712ms)
+✔ worker rechecks revocation/suspension, and never retries ambiguous provider failures (1.5589ms)
+{"level":30,"time":1795084381029,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"GET","url":"/api/v1/admin/rfq-approvals","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084381037,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":6.098299999999654,"msg":"request completed"}
+{"level":30,"time":1795084381037,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/rfq-approvals/11111111-1111-4111-8111-111111111111/approve","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084381038,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":401},"responseTime":0.5796999999993204,"msg":"request completed"}
+{"level":30,"time":1795084381038,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"POST","url":"/api/v1/admin/rfq-approvals/11111111-1111-4111-8111-111111111111/reject","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084381039,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":401},"responseTime":0.5907000000006519,"msg":"request completed"}
+{"level":30,"time":1795084381039,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-4","req":{"method":"POST","url":"/api/v1/admin/rfq-approvals/bulk","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084381040,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-4","res":{"statusCode":401},"responseTime":0.6111999999993714,"msg":"request completed"}
+{"level":30,"time":1795084381040,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-5","req":{"method":"POST","url":"/api/v1/admin/rfq-approvals/11111111-1111-4111-8111-111111111111/reject","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084381053,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-5","res":{"statusCode":400},"responseTime":12.20300000000043,"msg":"request completed"}
+{"level":30,"time":1795084381053,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-6","req":{"method":"POST","url":"/api/v1/admin/rfq-approvals/11111111-1111-4111-8111-111111111111/approve","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+[AUDIT_EVENT] {"actorId":"admin","actorEmail":"admin@example.invalid","targetType":"RFQ","targetId":"11111111-1111-4111-8111-111111111111","action":"RFQ_APPROVE","reason":"Admin review","requestId":"req-6","timestamp":"2026-11-19T10:33:01.055Z"}
+✔ RFQ moderation HTTP routes require authentication and use RFQ-level handlers (713.8818ms)
+{"level":30,"time":1795084381056,"pid":25776,"hostname":"DESKTOP-LB495KL","reqId":"req-6","res":{"statusCode":200},"responseTime":2.3028000000003885,"msg":"request completed"}
+✔ sample charge totals use integer cents, allow free samples and reject precision/overflow (2.9734ms)
+✔ sample quote takes a total yardage charge, preserves exact decimals and records refund/internal terms (15.2817ms)
+✔ placeholder supplier samples require explicit approved fulfillment assignment (1.1513ms)
+✔ rejection validates its reason and changes only requested samples (0.6537ms)
+✔ concurrent quote reviews cannot overwrite a released quote (0.713ms)
+✔ sample list is paginated and combines legacy delivery evidence with search without overwriting filters (0.9576ms)
+✔ owned buyer acceptance creates exactly one real sampling order and initial milestone atomically (1.4367ms)
+✔ concurrent buyer acceptance creates one order and order failure rolls back acceptance (0.8312ms)
+✔ buyer acceptance rejects wrong owners, expired quotes and unavailable suppliers (0.8543ms)
+✔ buyer rejection creates no order and requester projection withholds administrative notes (0.6303ms)
+✔ physical delivery saves courier details, sample/order states and one milestone together (0.8865ms)
+✔ delivery refuses missing tracking, unaccepted requests, cancelled orders and legacy missing-order records (0.6796ms)
+✔ delivered samples remain in the accepted order queue (0.8669ms)
+{"level":30,"time":1795084383254,"pid":17868,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"POST","url":"/api/v1/admin/samples/11111111-1111-4111-8111-111111111111/delivered","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084383260,"pid":17868,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":5.3091999999996915,"msg":"request completed"}
+{"level":30,"time":1795084383261,"pid":17868,"hostname":"DESKTOP-LB495KL","reqId":"req-2","req":{"method":"POST","url":"/api/v1/admin/samples/11111111-1111-4111-8111-111111111111/reject","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1795084383272,"pid":17868,"hostname":"DESKTOP-LB495KL","reqId":"req-2","res":{"statusCode":400},"responseTime":11.537000000000262,"msg":"request completed"}
+{"level":30,"time":1795084383273,"pid":17868,"hostname":"DESKTOP-LB495KL","reqId":"req-3","req":{"method":"POST","url":"/api/v1/admin/samples/11111111-1111-4111-8111-111111111111/quote","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+[AUDIT_EVENT] {"actorId":"admin","actorEmail":"admin@example.invalid","targetType":"SAMPLE","targetId":"11111111-1111-4111-8111-111111111111","action":"SAMPLE_QUOTE","reason":"Released sample quote","requestId":"req-3","timestamp":"2026-11-19T10:33:03.275Z"}
+✔ sample HTTP routes protect delivery and validate new quote/rejection contracts (421.9877ms)
+{"level":30,"time":1795084383275,"pid":17868,"hostname":"DESKTOP-LB495KL","reqId":"req-3","res":{"statusCode":200},"responseTime":2.470299999999952,"msg":"request completed"}
+✔ confirmed random-password identity and atomic pending profile precede password email (12.0025ms)
+✔ profile failure removes only newly provisioned auth identity and sends no email (0.8547ms)
+✔ cleanup failure and ambiguous commit require reconciliation without deleting committed accounts (1.0021ms)
+✔ email failure retains the committed supplier and returns actionable delivery status (0.6959ms)
+✔ Postmark response error codes are checked even with HTTP 200 (3.1283ms)
+✔ list bounds, search and status compose before paginated repository access (1.1377ms)
+✔ suspension updates profile status alone and preserves existing order history (0.5802ms)
+✔ consent rejects missing/false confirmation and invalid phones, and revocation clears timestamp (0.997ms)
+✔ client validates core provisioning fields without mandatory location or legacy supplier types (3.6954ms)
+{"level":30,"time":1795084383353,"pid":18724,"hostname":"DESKTOP-LB495KL","reqId":"req-1","req":{"method":"PATCH","url":"/api/v1/admin/suppliers/11111111-1111-4111-8111-111111111111/status","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+✔ PATCH governance endpoint rejects unauthenticated access before any state changes (414.3594ms)
+{"level":30,"time":1795084383360,"pid":18724,"hostname":"DESKTOP-LB495KL","reqId":"req-1","res":{"statusCode":401},"responseTime":5.793700000000172,"msg":"request completed"}
+ℹ tests 128
+ℹ suites 0
+ℹ pass 128
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9171.0941

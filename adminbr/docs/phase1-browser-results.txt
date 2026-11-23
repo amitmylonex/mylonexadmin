@@ -1,0 +1,25 @@
+
+> mylonex-admin-workspace@1.0.0 test:browser
+> npm --prefix adminfr run test:browser
+
+
+> adminfr@1.0.0 test:browser
+> playwright test
+
+[WebServer] (node:31064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:7160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 test\browser\foundation.spec.ts:21:1 › unauthenticated admin deep link redirects to login with safe return path (563ms)
+  ok 2 test\browser\foundation.spec.ts:29:1 › desktop shell shows all routes, active highlight, email and top header (1.1s)
+  ok 3 test\browser\foundation.spec.ts:47:1 › mobile drawer toggles, traps focus, closes on Escape and navigates (1.2s)
+  ok 4 test\browser\foundation.spec.ts:67:1 › API 401 clears the console, redirects to login and displays a session toast (676ms)
+  ok 5 test\browser\foundation.spec.ts:78:1 › sign out confirmation clears the shell and returns to login (683ms)
+  ok 6 test\browser\foundation.spec.ts:89:1 › non-admin session never renders the admin shell (493ms)
+
+  6 passed (11.0s)

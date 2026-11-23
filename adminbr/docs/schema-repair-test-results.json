@@ -1,0 +1,76 @@
+{
+  "target": "127.0.0.1:55489/schema_repair_test",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "all 3 pre-repair business-row fingerprints unchanged",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "all six new fields nullable without invented backfill",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "actual old-project Prisma 6.19.2 PostgreSQL adapter reads legacy rows",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "supplier creation persists; invitation adapter stubbed, no Auth/email call",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "collection create/edit persists",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "quick-add persists above approved synthetic floor 9000",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "woven listing and technical specs persist",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "capability persists with owned links",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "Excel normalized-row validation returns original row error",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "Excel import transaction and duplicate retry handling",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "32 concurrent creates across 4 organizations have unique increasing MYLO codes",
+      "result": "PASS",
+      "detail": {
+        "firstCounter": 9002,
+        "finalCounter": 9034,
+        "uniqueCodes": 32
+      }
+    },
+    {
+      "name": "database has no duplicate nonnull MYLO code",
+      "result": "PASS",
+      "detail": true
+    },
+    {
+      "name": "legacy fingerprints remain unchanged after workflow/concurrency tests",
+      "result": "PASS",
+      "detail": true
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,238 @@
+{
+  "note": "Current reviewed implementation file inventory; no Git metadata exists to compute a historical diff. Dynamic route templates retain variables; approve/reject, forward/reject and sample quote/reject expand from loops.",
+  "files": [
+    "adminbr/src/app.ts",
+    "adminbr/src/common/auth/request-limit.ts",
+    "adminbr/src/common/errors/public-error.ts",
+    "adminbr/src/common/logging/audit.ts",
+    "adminbr/src/common/pagination/query.ts",
+    "adminbr/src/config/index.ts",
+    "adminbr/src/config.ts",
+    "adminbr/src/database/client.ts",
+    "adminbr/src/index.ts",
+    "adminbr/src/infrastructure/audit.ts",
+    "adminbr/src/infrastructure/db.ts",
+    "adminbr/src/infrastructure/readiness.ts",
+    "adminbr/src/modules/auth/admin-session.ts",
+    "adminbr/src/modules/auth/auth.routes.ts",
+    "adminbr/src/modules/auth/verify-admin.ts",
+    "adminbr/src/modules/auth/write-limit.ts",
+    "adminbr/src/modules/buyers/buyer.repository.ts",
+    "adminbr/src/modules/buyers/buyer.routes.ts",
+    "adminbr/src/modules/buyers/buyer.service.ts",
+    "adminbr/src/modules/buyers/engagement.ts",
+    "adminbr/src/modules/catalog/catalog-legacy.routes.ts",
+    "adminbr/src/modules/catalog/catalog.import.ts",
+    "adminbr/src/modules/catalog/catalog.routes.ts",
+    "adminbr/src/modules/catalog/catalog.schema.ts",
+    "adminbr/src/modules/catalog/catalog.service.ts",
+    "adminbr/src/modules/catalog/catalog.upload.ts",
+    "adminbr/src/modules/catalog/constants.ts",
+    "adminbr/src/modules/catalog/templates.ts",
+    "adminbr/src/modules/dashboard/dashboard.repository.ts",
+    "adminbr/src/modules/dashboard/dashboard.routes.ts",
+    "adminbr/src/modules/dashboard/dashboard.service.ts",
+    "adminbr/src/modules/notifications/notification-status.ts",
+    "adminbr/src/modules/notifications/phone.ts",
+    "adminbr/src/modules/orders/order.repository.ts",
+    "adminbr/src/modules/orders/order.routes.ts",
+    "adminbr/src/modules/orders/order.service.ts",
+    "adminbr/src/modules/quotes/quote-metadata.ts",
+    "adminbr/src/modules/quotes/quote-validity.ts",
+    "adminbr/src/modules/quotes/quote.repository.ts",
+    "adminbr/src/modules/quotes/quote.routes.ts",
+    "adminbr/src/modules/quotes/quote.schema.ts",
+    "adminbr/src/modules/quotes/quote.service.ts",
+    "adminbr/src/modules/rfqs/display-status.ts",
+    "adminbr/src/modules/rfqs/rfq.repository.ts",
+    "adminbr/src/modules/rfqs/rfq.routes.ts",
+    "adminbr/src/modules/rfqs/rfq.service.ts",
+    "adminbr/src/modules/rfqs/tracking/projection.ts",
+    "adminbr/src/modules/rfqs/tracking/query.ts",
+    "adminbr/src/modules/rfqs/tracking/repo.ts",
+    "adminbr/src/modules/rfqs/tracking/schema.ts",
+    "adminbr/src/modules/rfqs/tracking/select.ts",
+    "adminbr/src/modules/rfqs/tracking/service.ts",
+    "adminbr/src/modules/rfqs/tracking/state.ts",
+    "adminbr/src/modules/rfqs/tracking/types.ts",
+    "adminbr/src/modules/samples/sample.repository.ts",
+    "adminbr/src/modules/samples/sample.routes.ts",
+    "adminbr/src/modules/samples/sample.schema.ts",
+    "adminbr/src/modules/samples/sample.service.ts",
+    "adminbr/src/modules/suppliers/supplier-create.service.ts",
+    "adminbr/src/modules/suppliers/supplier-status.service.ts",
+    "adminbr/src/modules/suppliers/supplier.repository.ts",
+    "adminbr/src/modules/suppliers/supplier.routes.ts",
+    "adminbr/src/modules/suppliers/supplier.schema.ts",
+    "adminbr/src/modules/suppliers/supplier.service.ts",
+    "adminbr/src/server.ts",
+    "adminfr/src/app/App.tsx",
+    "adminfr/src/components/Badge.tsx",
+    "adminfr/src/components/Button.tsx",
+    "adminfr/src/components/CreateSupplierForm.tsx",
+    "adminfr/src/components/ErrorBoundary.tsx",
+    "adminfr/src/components/ExcelCatalogImport.tsx",
+    "adminfr/src/components/FabricLoader.tsx",
+    "adminfr/src/components/layout/ConfirmSignOutModal.tsx",
+    "adminfr/src/components/layout/Header.tsx",
+    "adminfr/src/components/layout/Logo.tsx",
+    "adminfr/src/components/layout/PortalFooter.tsx",
+    "adminfr/src/components/layout/Sidebar.tsx",
+    "adminfr/src/components/StatusUpdateModal.tsx",
+    "adminfr/src/components/SupplierWhatsAppConsentCard.tsx",
+    "adminfr/src/components/tables/AdminTable.tsx",
+    "adminfr/src/components/ui/Dialog.tsx",
+    "adminfr/src/features/auth/AdminAccess.tsx",
+    "adminfr/src/features/auth/pages/LoginPage.tsx",
+    "adminfr/src/features/buyers/pages/BuyerDetailPage.tsx",
+    "adminfr/src/features/buyers/pages/BuyersPage.tsx",
+    "adminfr/src/features/catalog/capability-options.ts",
+    "adminfr/src/features/catalog/CatalogEditor.tsx",
+    "adminfr/src/features/catalog/CatalogPreview.tsx",
+    "adminfr/src/features/catalog/CatalogWorkspace.tsx",
+    "adminfr/src/features/catalog/ChipSelector.tsx",
+    "adminfr/src/features/catalog/EditorFields.tsx",
+    "adminfr/src/features/catalog/fields.ts",
+    "adminfr/src/features/catalog/ImageUpload.tsx",
+    "adminfr/src/features/catalog/pages/CatalogControlPage.tsx",
+    "adminfr/src/features/dashboard/pages/DashboardPage.tsx",
+    "adminfr/src/features/notifications/NotificationNotice.tsx",
+    "adminfr/src/features/orders/pages/AcceptedOrdersPage.tsx",
+    "adminfr/src/features/quotes/pages/QuoteApprovalsPage.tsx",
+    "adminfr/src/features/rfqs/pages/AllRfqsPage.tsx",
+    "adminfr/src/features/rfqs/pages/RfqApprovalsPage.tsx",
+    "adminfr/src/features/rfqs/pages/RfqDetailPage.tsx",
+    "adminfr/src/features/rfqs/pages/RfqTrackingDetailPage.tsx",
+    "adminfr/src/features/rfqs/pages/RfqTrackingPage.tsx",
+    "adminfr/src/features/rfqs/tracking-metrics.ts",
+    "adminfr/src/features/samples/pages/SamplesPage.tsx",
+    "adminfr/src/features/suppliers/pages/SupplierDetailPage.tsx",
+    "adminfr/src/features/suppliers/pages/SuppliersPage.tsx",
+    "adminfr/src/hooks/useAdminList.ts",
+    "adminfr/src/hooks/useDebouncedValue.ts",
+    "adminfr/src/lib/api.ts",
+    "adminfr/src/lib/supabase.ts",
+    "adminfr/src/main.tsx",
+    "adminfr/src/routes/useAdminRoute.ts",
+    "adminfr/src/services/admin-api.ts",
+    "adminbr/test/auth.test.ts",
+    "adminbr/test/catalog.test.ts",
+    "adminbr/test/database-smoke.ts",
+    "adminbr/test/parity.test.ts",
+    "adminbr/test/tracking-fixtures.ts",
+    "tools/admin-parity/inspect-schema.mjs",
+    "tools/admin-parity/verify-workflows.mts"
+  ],
+  "apiRoutes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/auth/me",
+      "source": "adminbr/src/modules/auth/auth.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/buyers",
+      "source": "adminbr/src/modules/buyers/buyer.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/buyers/:id",
+      "source": "adminbr/src/modules/buyers/buyer.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/catalog/suppliers",
+      "source": "adminbr/src/modules/catalog/catalog.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/suppliers/:id/catalog/images",
+      "source": "adminbr/src/modules/catalog/catalog.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/dashboard",
+      "source": "adminbr/src/modules/dashboard/dashboard.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/orders",
+      "source": "adminbr/src/modules/orders/order.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/accepted-orders/:kind",
+      "source": "adminbr/src/modules/orders/order.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/accepted-orders/:kind/:id/delivered",
+      "source": "adminbr/src/modules/orders/order.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/quote-approvals",
+      "source": "adminbr/src/modules/quotes/quote.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/quote-approvals/:id/${decision}",
+      "source": "adminbr/src/modules/quotes/quote.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/rfqs",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/rfqs/:id",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/rfq-approvals",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/rfq-approvals/:id/${decision}",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/rfq-approvals/bulk",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/rfqs/:id/manual-match",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/rfq-tracking",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/rfq-tracking/:id",
+      "source": "adminbr/src/modules/rfqs/rfq.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/samples",
+      "source": "adminbr/src/modules/samples/sample.routes.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/admin/samples/:id",
+      "source": "adminbr/src/modules/samples/sample.routes.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/admin/samples/:id/${action}",
+      "source": "adminbr/src/modules/samples/sample.routes.ts"
+    }
+  ]
+}

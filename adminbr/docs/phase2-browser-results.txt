@@ -1,0 +1,29 @@
+
+> mylonex-admin-workspace@1.0.0 test:browser
+> npm --prefix adminfr run test:browser
+
+
+> adminfr@1.0.0 test:browser
+> playwright test
+
+[WebServer] (node:26732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:14516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 test\browser\foundation.spec.ts:21:1 › unauthenticated admin deep link redirects to login with safe return path (7.7s)
+  ok  2 test\browser\foundation.spec.ts:29:1 › desktop shell shows all routes, active highlight, email and top header (640ms)
+  ok  3 test\browser\foundation.spec.ts:47:1 › mobile drawer toggles, traps focus, closes on Escape and navigates (1.1s)
+  ok  4 test\browser\foundation.spec.ts:67:1 › API 401 clears the console, redirects to login and displays a session toast (546ms)
+  ok  5 test\browser\foundation.spec.ts:78:1 › sign out confirmation clears the shell and returns to login (484ms)
+  ok  6 test\browser\foundation.spec.ts:89:1 › non-admin session never renders the admin shell (404ms)
+  ok  7 test\browser\suppliers.spec.ts:43:1 › supplier list supports pagination, filters, search and catalog deep links (1.8s)
+  ok  8 test\browser\suppliers.spec.ts:60:1 › suspend from actions dropdown updates status and preserves order fixture (763ms)
+  ok  9 test\browser\suppliers.spec.ts:71:1 › create form blocks invalid input and submits only the confirmed supplier fields (661ms)
+  ok 10 test\browser\suppliers.spec.ts:87:1 › detail masks phone, requires explicit consent, edits phone and confirms revocation (1.2s)
+
+  10 passed (20.0s)

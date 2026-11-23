@@ -1,0 +1,1332 @@
+[
+  {
+    "path": "app/admin/accepted-orders/AcceptedOrdersClient.tsx",
+    "exports": [],
+    "imports": [
+      "date-fns"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 62
+  },
+  {
+    "path": "app/admin/accepted-orders/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/accepted-orders",
+      "./AcceptedOrdersClient"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 20
+  },
+  {
+    "path": "app/admin/buyers/[id]/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "date-fns",
+      "@/src/domains/admin/buyers",
+      "@/src/domains/buyers/engagement",
+      "@/src/domains/requests/display-status"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 278
+  },
+  {
+    "path": "app/admin/buyers/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "date-fns",
+      "@/src/domains/admin/buyers",
+      "@/src/domains/buyers/engagement"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 125
+  },
+  {
+    "path": "app/admin/dashboard/loading.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/components/ui/Skeleton"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 70
+  },
+  {
+    "path": "app/admin/dashboard/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/actions",
+      "@/src/domains/admin/buyers"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 97
+  },
+  {
+    "path": "app/admin/layout.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/components/portal/PortalFooter",
+      "@/src/components/admin/AdminSidebar"
+    ],
+    "queries": [],
+    "roleChecks": 1,
+    "lines": 25
+  },
+  {
+    "path": "app/admin/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/lib/auth/session",
+      "next/navigation"
+    ],
+    "queries": [],
+    "roleChecks": 1,
+    "lines": 11
+  },
+  {
+    "path": "app/admin/quote-approvals/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/approvals",
+      "./QuoteApprovalsTable"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 22
+  },
+  {
+    "path": "app/admin/quote-approvals/QuoteApprovalsTable.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/admin/approvals",
+      "date-fns",
+      "@/src/domains/quotes/pricing",
+      "@/src/domains/requests/quote-metadata",
+      "./WhatsAppQuoteTerms"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 346
+  },
+  {
+    "path": "app/admin/quote-approvals/WhatsAppQuoteTerms.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/requests/quote-metadata",
+      "@/src/domains/requests/quote-validity"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 36
+  },
+  {
+    "path": "app/admin/rfq-approvals/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/approvals",
+      "./RfqApprovalsTable"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 22
+  },
+  {
+    "path": "app/admin/rfq-approvals/RfqApprovalsTable.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/admin/approvals",
+      "date-fns",
+      "next/link",
+      "@/src/components/ui/LoadingButton"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 277
+  },
+  {
+    "path": "app/admin/rfq-tracking/[id]/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "@/src/lib/auth/session",
+      "@/src/domains/admin/rfq-tracking/service",
+      "../components/TrackingSupplier",
+      "../components/TrackingRefresh",
+      "../components/TrackingCommon",
+      "../components/format"
+    ],
+    "queries": [],
+    "roleChecks": 1,
+    "lines": 30
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/format.ts",
+    "exports": [
+      "trackingHref"
+    ],
+    "imports": [],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 11
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingCommon.tsx",
+    "exports": [
+      "TrackingBadge",
+      "TrackingHistoryNotice",
+      "TrackingPagination",
+      "TrackingAsOf"
+    ],
+    "imports": [
+      "next/link",
+      "./format"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 30
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingFilters.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/rfq-tracking/schema"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 15
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingList.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "@/src/domains/admin/rfq-tracking/types",
+      "./format",
+      "./TrackingCommon"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 25
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingQuote.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/rfq-tracking/types",
+      "./format"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 19
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingRefresh.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "next/navigation"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 8
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingSummary.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/rfq-tracking/types",
+      "./format"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 13
+  },
+  {
+    "path": "app/admin/rfq-tracking/components/TrackingSupplier.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/rfq-tracking/types",
+      "./TrackingCommon",
+      "./TrackingQuote",
+      "./format"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 34
+  },
+  {
+    "path": "app/admin/rfq-tracking/loading.tsx",
+    "exports": [],
+    "imports": [],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 1
+  },
+  {
+    "path": "app/admin/rfq-tracking/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/domains/admin/rfq-tracking/service",
+      "@/src/domains/admin/rfq-tracking/schema",
+      "./components/TrackingFilters",
+      "./components/TrackingList",
+      "./components/TrackingSummary",
+      "./components/TrackingRefresh",
+      "./components/TrackingCommon"
+    ],
+    "queries": [],
+    "roleChecks": 1,
+    "lines": 23
+  },
+  {
+    "path": "app/admin/rfqs/[id]/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/approvals",
+      "@/src/components/rfq/RfqSpecDisplay",
+      "@/src/components/rfq/ReferenceImageGallery",
+      "./RfqDetailActions",
+      "@/src/components/rfq/SelectedFabricShades"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 127
+  },
+  {
+    "path": "app/admin/rfqs/[id]/RfqDetailActions.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/admin/approvals",
+      "date-fns",
+      "next/navigation",
+      "@/src/components/rfq/ProductionQuoteTotals"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 531
+  },
+  {
+    "path": "app/admin/rfqs/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/approvals",
+      "next/link",
+      "date-fns",
+      "@/src/domains/requests/display-status"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 103
+  },
+  {
+    "path": "app/admin/samples/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/actions",
+      "./SampleRequestsList"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 22
+  },
+  {
+    "path": "app/admin/samples/SampleQuoteDrawer.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/admin/sample-actions",
+      "@/src/domains/quotes/pricing"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 182
+  },
+  {
+    "path": "app/admin/samples/SampleRequestsList.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "date-fns",
+      "./SampleQuoteDrawer",
+      "@/src/domains/admin/sample-actions",
+      "@/src/components/rfq/ReferenceImageGallery",
+      "@/src/domains/rfq/images",
+      "@/src/components/rfq/SampleQuoteBreakdown"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 315
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/AdminCatalogCreateForms.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/app/supplier/catalog/upload/components/CreateCollectionForm",
+      "@/app/supplier/catalog/upload/components/QuickAddForm",
+      "@/app/supplier/catalog/upload/components/WovenListingForm",
+      "@/app/supplier/catalog/upload/components/CapabilityForm",
+      "./excel-import/ExcelCatalogImportSection"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 62
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/capabilities/[id]/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "@/src/domains/admin/catalog-service",
+      "@/app/supplier/catalog/upload/components/CapabilityForm"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 43
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/CatalogStatusActions.tsx",
+    "exports": [],
+    "imports": [
+      "next/navigation",
+      "react"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 74
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelCatalogImportSection.tsx",
+    "exports": [],
+    "imports": [
+      "./ExcelImportDropzone",
+      "./ExcelImportMappingWorkspace",
+      "./ExcelImportEditableGrid",
+      "./ExcelImportBuyerPreview",
+      "./ExcelImportConfirmPanel",
+      "./useExcelImportWorkspace"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 45
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportBuyerPreview.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/types",
+      "@/src/domains/catalog/excel/row-schema",
+      "@/src/domains/catalog/excel/staging"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 47
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportConfirmPanel.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/catalog/excel/types",
+      "@/src/domains/catalog/excel/row-schema",
+      "@/src/domains/catalog/excel/staging"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 49
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportDropzone.tsx",
+    "exports": [],
+    "imports": [
+      "react"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 146
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportEditableCell.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 379
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportEditableGrid.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/catalog/excel/fields",
+      "@/src/domains/catalog/excel/types",
+      "./ExcelImportToolbar",
+      "./ExcelImportEditableRow",
+      "./ExcelImportMobileRow",
+      "./ExcelImportRowFields",
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 47
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportEditableRow.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/fields",
+      "./ExcelImportRowFields"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 9
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportMappingMobile.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 136
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportMappingTable.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 153
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportMappingWorkspace.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/catalog/excel/types",
+      "./ExcelImportMappingTable",
+      "./ExcelImportMappingMobile",
+      "./ExcelImportUnmappedColumns"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 264
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportMobileRow.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/fields",
+      "./ExcelImportRowFields"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 11
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportResultsModal.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 106
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportRowFields.tsx",
+    "exports": [
+      "CatalogField",
+      "RowActions"
+    ],
+    "imports": [
+      "./ExcelImportEditableCell",
+      "@/src/domains/catalog/excel/fields",
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 58
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportSummaryBar.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 143
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportToolbar.tsx",
+    "exports": [],
+    "imports": [],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 193
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/ExcelImportUnmappedColumns.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 97
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/excel-import/useExcelImportWorkspace.ts",
+    "exports": [
+      "useExcelImportWorkspace"
+    ],
+    "imports": [
+      "react",
+      "xlsx",
+      "@/src/domains/catalog/excel/analyzer",
+      "@/src/domains/catalog/excel/staging",
+      "@/src/domains/catalog/excel/validation",
+      "@/src/domains/catalog/excel/fields",
+      "@/src/domains/catalog/excel/types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 102
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/fabric-collections/[id]/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "@/src/domains/admin/catalog-service",
+      "@/app/supplier/catalog/fabric-collections/[id]/CollectionEditForm",
+      "../../CatalogStatusActions"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 77
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/fabrics/[sourceType]/[id]/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "@/src/domains/admin/catalog-service",
+      "@/app/supplier/catalog/upload/components/QuickAddForm",
+      "@/app/supplier/catalog/upload/components/WovenListingForm"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 59
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/catalog/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "@/src/domains/admin/catalog-service",
+      "./CatalogStatusActions",
+      "./AdminCatalogCreateForms"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 167
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "next/navigation",
+      "date-fns",
+      "@/src/domains/admin/actions",
+      "./SupplierWhatsAppConsentCard"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 97
+  },
+  {
+    "path": "app/admin/suppliers/[supplierId]/SupplierWhatsAppConsentCard.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/domains/admin/actions",
+      "@/src/components/ui/ConfirmDialog"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 276
+  },
+  {
+    "path": "app/admin/suppliers/catalog/page.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "@/src/domains/admin/actions"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 52
+  },
+  {
+    "path": "app/admin/suppliers/CreateSupplierForm.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "@/src/components/ui/LoadingButton",
+      "@/src/domains/suppliers/create-account-action"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 80
+  },
+  {
+    "path": "app/admin/suppliers/page.tsx",
+    "exports": [],
+    "imports": [
+      "@/src/domains/admin/actions",
+      "./CreateSupplierForm",
+      "./SupplierTable"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 22
+  },
+  {
+    "path": "app/admin/suppliers/SupplierTable.tsx",
+    "exports": [],
+    "imports": [
+      "next/link",
+      "react",
+      "@prisma/client",
+      "@/src/domains/admin/actions",
+      "@/src/components/ui/ConfirmDialog"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 154
+  },
+  {
+    "path": "app/api/admin/rfq-tracking/[id]/route.ts",
+    "exports": [
+      "GET"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/rfq-tracking/service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 9
+  },
+  {
+    "path": "app/api/admin/rfq-tracking/route.ts",
+    "exports": [
+      "GET"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/rfq-tracking/service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 9
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/capabilities/[id]/route.ts",
+    "exports": [
+      "PATCH",
+      "DELETE"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 42
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/capabilities/route.ts",
+    "exports": [
+      "POST"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 18
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/excel-import/route.ts",
+    "exports": [
+      "POST"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-excel-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 37
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/excel-template/route.ts",
+    "exports": [
+      "GET"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-excel-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 27
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/fabric-collections/[id]/restore/route.ts",
+    "exports": [
+      "PATCH"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 20
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/fabric-collections/[id]/route.ts",
+    "exports": [
+      "PATCH",
+      "DELETE"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 42
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/fabric-collections/route.ts",
+    "exports": [
+      "POST"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 18
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/images/route.ts",
+    "exports": [
+      "POST"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 22
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/products/[id]/route.ts",
+    "exports": [
+      "PATCH"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 21
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/quick-add/[id]/route.ts",
+    "exports": [
+      "PATCH",
+      "DELETE"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 42
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/quick-add/route.ts",
+    "exports": [
+      "POST"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 18
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/route.ts",
+    "exports": [
+      "GET"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 17
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/woven-listings/[id]/route.ts",
+    "exports": [
+      "PATCH",
+      "DELETE"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 42
+  },
+  {
+    "path": "app/api/admin/suppliers/[supplierId]/catalog/woven-listings/route.ts",
+    "exports": [
+      "POST"
+    ],
+    "imports": [
+      "@/src/lib/api-utils",
+      "@/src/domains/admin/catalog-service"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 18
+  },
+  {
+    "path": "src/domains/admin/accepted-orders.ts",
+    "exports": [
+      "getAcceptedProductionQuotes",
+      "getAcceptedSamples",
+      "getAllOrders"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/lib/db"
+    ],
+    "queries": [
+      [
+        "communicationRequestResponse",
+        "findMany"
+      ],
+      [
+        "order",
+        "findMany"
+      ],
+      [
+        "sample",
+        "findMany"
+      ]
+    ],
+    "roleChecks": 3,
+    "lines": 102
+  },
+  {
+    "path": "src/domains/admin/actions.ts",
+    "exports": [
+      "getDashboardMetrics",
+      "getSuppliers",
+      "getSamplingRequests",
+      "updateSupplierStatus",
+      "getSupplierDetail",
+      "updateSupplierWhatsAppConsent"
+    ],
+    "imports": [
+      "@/src/lib/db",
+      "@/src/lib/auth/session",
+      "@prisma/client",
+      "next/cache",
+      "zod",
+      "@/src/domains/notifications/whatsapp"
+    ],
+    "queries": [
+      [
+        "communicationRequest",
+        "count"
+      ],
+      [
+        "communicationRequestResponse",
+        "count"
+      ],
+      [
+        "communicationRequestResponse",
+        "findMany"
+      ],
+      [
+        "inquiry",
+        "count"
+      ],
+      [
+        "inquiryResponse",
+        "count"
+      ],
+      [
+        "inquiryResponse",
+        "findMany"
+      ],
+      [
+        "sample",
+        "findMany"
+      ],
+      [
+        "supplierProfile",
+        "findMany"
+      ],
+      [
+        "supplierProfile",
+        "findUnique"
+      ],
+      [
+        "supplierProfile",
+        "update"
+      ]
+    ],
+    "roleChecks": 6,
+    "lines": 241
+  },
+  {
+    "path": "src/domains/admin/approvals.ts",
+    "exports": [
+      "getPendingRfqMatchApprovals",
+      "forwardRfqMatch",
+      "rejectRfqMatch",
+      "bulkForwardRfqMatches",
+      "retrySupplierRfqWhatsAppNotification",
+      "bulkRejectRfqMatches",
+      "getPendingQuoteApprovals",
+      "approveQuote",
+      "rejectQuote",
+      "editAndApproveQuote",
+      "getAllRfqs",
+      "getRfqDetail",
+      "getApprovedSuppliers",
+      "createManualMatchForRfq",
+      "rematchRfq"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/domains/requests/repo",
+      "@/src/domains/requests/matching",
+      "@/src/domains/notifications/buyer-email",
+      "@/src/domains/notifications/supplier-email",
+      "@/src/domains/notifications/whatsapp-supplier",
+      "@/src/domains/notifications/whatsapp",
+      "next/cache",
+      "@/src/lib/api-utils",
+      "@/src/domains/requests/response-schema",
+      "@/src/domains/requests/response-schema",
+      "@/src/lib/db",
+      "@/src/domains/requests/quote-metadata"
+    ],
+    "queries": [
+      [
+        "communicationRequestMatch",
+        "findUnique"
+      ],
+      [
+        "communicationRequestResponse",
+        "findFirst"
+      ],
+      [
+        "communicationRequestResponse",
+        "update"
+      ],
+      [
+        "communicationRequestResponse",
+        "updateMany"
+      ]
+    ],
+    "roleChecks": 15,
+    "lines": 463
+  },
+  {
+    "path": "src/domains/admin/buyers.ts",
+    "exports": [
+      "getBuyerMetrics",
+      "getBuyers",
+      "getBuyerDetail"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/domains/buyers/repo"
+    ],
+    "queries": [],
+    "roleChecks": 3,
+    "lines": 59
+  },
+  {
+    "path": "src/domains/admin/catalog-excel-service.ts",
+    "exports": [
+      "adminGetExcelCatalogTemplate",
+      "adminImportExcelCatalogRows"
+    ],
+    "imports": [
+      "next/cache",
+      "@/src/lib/auth/session",
+      "@/src/domains/catalog/repo",
+      "@/src/domains/catalog/excel/types",
+      "@/src/domains/catalog/excel/template",
+      "@/src/domains/catalog/excel/import-service"
+    ],
+    "queries": [],
+    "roleChecks": 2,
+    "lines": 87
+  },
+  {
+    "path": "src/domains/admin/catalog-service.ts",
+    "exports": [
+      "getAdminSupplierCatalog",
+      "adminCreateFabricCollection",
+      "adminUpdateFabricCollection",
+      "adminDeleteFabricCollection",
+      "adminRestoreFabricCollection",
+      "adminQuickAdd",
+      "adminUpdateQuickAdd",
+      "adminCreateWovenListing",
+      "adminUpdateWovenListing",
+      "adminCreateCapability",
+      "adminUpdateCapability",
+      "adminSetListingActive",
+      "adminSoftDeleteListing",
+      "adminUploadCatalogImages"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/domains/catalog/service",
+      "@/src/domains/catalog/repo",
+      "next/cache"
+    ],
+    "queries": [],
+    "roleChecks": 4,
+    "lines": 224
+  },
+  {
+    "path": "src/domains/admin/delivery-actions.ts",
+    "exports": [
+      "markProductionOrderDelivered",
+      "markSampleOrderDelivered"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/lib/db",
+      "@/src/lib/api-utils",
+      "next/cache"
+    ],
+    "queries": [
+      [
+        "communicationRequestResponse",
+        "updateMany"
+      ],
+      [
+        "sample",
+        "updateMany"
+      ]
+    ],
+    "roleChecks": 2,
+    "lines": 62
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/projection.ts",
+    "exports": [
+      "projectTrackingQuote",
+      "projectTrackingListItem",
+      "projectTrackingSupplier"
+    ],
+    "imports": [
+      "@/src/domains/requests/display-status",
+      "@/src/domains/requests/quote-metadata",
+      "@/src/domains/requests/quote-validity",
+      "./state",
+      "./select",
+      "./types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 88
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/query.ts",
+    "exports": [
+      "trackingPredicates",
+      "trackingWhere"
+    ],
+    "imports": [
+      "@prisma/client",
+      "./schema"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 38
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/repo.ts",
+    "exports": [
+      "listTrackingRecords",
+      "getTrackingDetailRecord",
+      "getTrackingWebhookRecords"
+    ],
+    "imports": [
+      "@prisma/client",
+      "@/src/lib/db",
+      "./select",
+      "./query",
+      "./schema",
+      "./types"
+    ],
+    "queries": [
+      [
+        "communicationRequest",
+        "findFirst"
+      ],
+      [
+        "communicationRequest",
+        "findMany"
+      ],
+      [
+        "communicationRequestMatch",
+        "findMany"
+      ],
+      [
+        "whatsAppWebhookEvent",
+        "findMany"
+      ]
+    ],
+    "roleChecks": 0,
+    "lines": 48
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/schema.ts",
+    "exports": [],
+    "imports": [
+      "zod"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 15
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/select.ts",
+    "exports": [],
+    "imports": [
+      "@prisma/client"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 16
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/service.ts",
+    "exports": [
+      "getRfqTracking",
+      "getRfqTrackingDetail"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/domains/requests/quote-metadata",
+      "@/src/domains/requests/display-status",
+      "./schema",
+      "./repo",
+      "./projection",
+      "./types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 53
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/state.ts",
+    "exports": [
+      "supplierEligibility",
+      "trackingState",
+      "summarizeMatches"
+    ],
+    "imports": [
+      "@/src/domains/notifications/whatsapp",
+      "./select",
+      "./types"
+    ],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 40
+  },
+  {
+    "path": "src/domains/admin/rfq-tracking/types.ts",
+    "exports": [],
+    "imports": [],
+    "queries": [],
+    "roleChecks": 0,
+    "lines": 34
+  },
+  {
+    "path": "src/domains/admin/sample-actions.ts",
+    "exports": [
+      "releaseSampleQuoteAction",
+      "rejectSampleRequestAction"
+    ],
+    "imports": [
+      "@/src/lib/auth/session",
+      "@/src/lib/api-utils",
+      "next/cache",
+      "@/src/domains/requests/sample-repo",
+      "@/src/domains/requests/sample-schema",
+      "@/src/domains/quotes/pricing",
+      "@/src/domains/notifications/buyer-email",
+      "requested"
+    ],
+    "queries": [],
+    "roleChecks": 2,
+    "lines": 112
+  }
+]

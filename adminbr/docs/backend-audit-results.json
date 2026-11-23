@@ -1,0 +1,120 @@
+{
+  "schemaMissing": [],
+  "checks": [
+    {
+      "url": "/health",
+      "status": 200,
+      "ms": 136
+    },
+    {
+      "url": "/ready",
+      "status": 200,
+      "ms": 2635
+    },
+    {
+      "url": "/api/v1/admin/dashboard",
+      "status": 200,
+      "ms": 7677
+    },
+    {
+      "url": "/api/v1/admin/suppliers",
+      "status": 200,
+      "ms": 2866
+    },
+    {
+      "url": "/api/v1/admin/buyers",
+      "status": 200,
+      "ms": 5220
+    },
+    {
+      "url": "/api/v1/admin/rfq-approvals",
+      "status": 200,
+      "ms": 9323
+    },
+    {
+      "url": "/api/v1/admin/quote-approvals",
+      "status": 200,
+      "ms": 2452
+    },
+    {
+      "url": "/api/v1/admin/rfqs",
+      "status": 200,
+      "ms": 5739
+    },
+    {
+      "url": "/api/v1/admin/rfq-tracking",
+      "status": 200,
+      "ms": 5118
+    },
+    {
+      "url": "/api/v1/admin/samples",
+      "status": 200,
+      "ms": 2046
+    },
+    {
+      "url": "/api/v1/admin/orders",
+      "status": 200,
+      "ms": 2051
+    },
+    {
+      "url": "/api/v1/admin/accepted-orders/production",
+      "status": 200,
+      "ms": 2457
+    },
+    {
+      "url": "/api/v1/admin/accepted-orders/sampling",
+      "status": 200,
+      "ms": 1982
+    },
+    {
+      "url": "/api/v1/admin/suppliers/89e5b29b-fba0-4028-91e0-2351aa8d3f1a",
+      "status": 200,
+      "ms": 2833
+    },
+    {
+      "url": "/api/v1/admin/suppliers/89e5b29b-fba0-4028-91e0-2351aa8d3f1a/catalog",
+      "status": 200,
+      "ms": 5117
+    },
+    {
+      "url": "/api/v1/admin/suppliers/b574c968-7593-4e2b-bd0a-0d18afbbe77f",
+      "status": 200,
+      "ms": 2717
+    },
+    {
+      "url": "/api/v1/admin/suppliers/b574c968-7593-4e2b-bd0a-0d18afbbe77f/catalog",
+      "status": 200,
+      "ms": 4974
+    },
+    {
+      "url": "/api/v1/admin/suppliers/dc3a9c58-dbb8-4f9a-a5d9-6273d9508a72",
+      "status": 200,
+      "ms": 2719
+    },
+    {
+      "url": "/api/v1/admin/suppliers/dc3a9c58-dbb8-4f9a-a5d9-6273d9508a72/catalog",
+      "status": 200,
+      "ms": 5359
+    },
+    {
+      "url": "/api/v1/admin/buyers/14a03bb0-6db8-4a32-904a-31e904dd43a6",
+      "status": 200,
+      "ms": 8621
+    },
+    {
+      "url": "/api/v1/admin/buyers/f632956f-422d-4376-adb3-74e6e9e7e951",
+      "status": 200,
+      "ms": 7773
+    },
+    {
+      "url": "/api/v1/admin/rfqs/1f61c493-1b22-4227-a68a-15d4c9a18b99",
+      "status": 200,
+      "ms": 4701
+    },
+    {
+      "url": "/api/v1/admin/rfq-tracking/1f61c493-1b22-4227-a68a-15d4c9a18b99",
+      "status": 200,
+      "ms": 4507
+    }
+  ]
+}

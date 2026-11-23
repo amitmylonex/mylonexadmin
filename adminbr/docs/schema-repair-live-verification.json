@@ -1,0 +1,174 @@
+{
+  "capturedAt": "2026-11-18T08:27:21.959Z",
+  "liveUnchanged": true,
+  "catalog": [
+    {
+      "total": "0"
+    }
+  ],
+  "missingColumns": [
+    "mylonex_code",
+    "weight_unit",
+    "weight_value",
+    "width_unit",
+    "width_value",
+    "sample_availability"
+  ],
+  "counterTable": null,
+  "codeColumns": [
+    {
+      "table_schema": "public",
+      "table_name": "SupplierProfile",
+      "column_name": "phone_country_code"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "communication_requests",
+      "column_name": "delivery_pincode"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "samples",
+      "column_name": "pincode"
+    }
+  ],
+  "sourceHistory": [
+    {
+      "migration": "20260226093043_baseline",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260226100539_add_product_model",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260227080515_add_inquiry_match",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260227084100_add_inquiry_response",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260309190000_add_rfq_and_samples",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260310071737_added_new_flows",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260310100000_flow2_catalog_cutover",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260310150000_add_collection_images_and_links",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260310170000_fix_comm_request_match_index_name",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260406093355_supplier_portal_enhancements",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260406102730_add_collection_source_type",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260406103748_add_quote_type_and_response_images",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260407113000_add_buyer_image_urls",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260408110049_add_supplier_locations",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260413160000_capabilities_and_fabric_collections",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260413183000_add_image_to_fabric_collections",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260414190000_admin_gated_rfq_quote_and_admin_catalog",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260415173000_add_india_city_state_lookup",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260422110000_add_manual_source_type",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260427151935_add_sample_quote_fields",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260428114531_add_signup_profile_fields",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260502144203_add_buyer_decision_to_responses",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260502175140_add_delivery_tracking",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260526120000_supplier_rfq_rejection",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260526130000_communication_request_contact_phone",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260614181057_add_supplier_original_price",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260715120000_supplier_catalog_shade_cards",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260918065741_add_orders_models",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20260925113000_add_ai_chat_models",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20261007151500_add_account_deletion_request",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20261014130000_whatsapp_rfq_tracking_and_consent",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20261016120000_add_whatsapp_webhook_events",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20261028120000_allow_omitted_import_material",
+      "status": "checksum matches (raw or LF normalized)"
+    },
+    {
+      "migration": "20261030100000_buyer_rfq_batches",
+      "status": "checksum matches (raw or LF normalized)"
+    }
+  ],
+  "sourceMigrationCount": 34
+}

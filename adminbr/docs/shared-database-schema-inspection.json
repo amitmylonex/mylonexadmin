@@ -1,0 +1,4321 @@
+{
+  "capturedAt": "2026-11-18T09:10:55.040Z",
+  "target": {
+    "host": "aws-0-ap-southeast-2.pooler.supabase.com",
+    "port": "6543",
+    "database": "/postgres",
+    "schema": "public",
+    "user": "postgres.[REDACTED]",
+    "password": "[REDACTED]"
+  },
+  "readOnly": true,
+  "missing": [
+    "account_deletion_requests.reason"
+  ],
+  "mismatches": [],
+  "nullableArrays": [
+    "SupplierProfile.fulfillmentRegions",
+    "communication_requests.routing_targets",
+    "communication_requests.buyer_image_urls",
+    "supplier_catalog.color_options",
+    "supplier_catalog.finish_options",
+    "supplier_catalog.image_urls",
+    "woven_products.images",
+    "supplier_capabilities.structures",
+    "supplier_capabilities.material_types",
+    "supplier_capabilities.fibers",
+    "supplier_capabilities.fabric_states",
+    "supplier_capabilities.weave_types",
+    "supplier_capabilities.finish_tags",
+    "supplier_capabilities.print_methods",
+    "supplier_capabilities.coating_types",
+    "supplier_capabilities.dye_methods",
+    "communication_request_responses.response_image_urls"
+  ],
+  "columns": [
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "userId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "company",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "phone",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "city",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "BuyerProfile",
+      "column_name": "gst_number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "buyerId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "fiberType",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "weave",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "gsmMin",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "gsmMax",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "width",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "quantity",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "deliveryTimeline",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "InquiryStatus",
+      "is_nullable": "NO",
+      "column_default": "'OPEN'::\"InquiryStatus\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Inquiry",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "inquiryId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "productId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "supplierId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "score",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "explanation",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryMatch",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "inquiryMatchId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "price",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "leadTimeDays",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "InquiryResponse",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "supplierId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "fiberType",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "weave",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "gsm",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Product",
+      "column_name": "width",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Product",
+      "column_name": "color",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "moq",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Product",
+      "column_name": "priceMin",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "priceMax",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "leadTimeDays",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "Product",
+      "column_name": "isPublished",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "true",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "isDeleted",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "false",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "Product",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "userId",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "companyName",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "city",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "address",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "phone",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "gstNumber",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "fulfillmentRegions",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierStatus",
+      "is_nullable": "NO",
+      "column_default": "'PENDING'::\"SupplierStatus\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "dispatch_location",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "warehouse_location",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "supplier_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierType",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "whatsapp_consent",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "false",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "whatsapp_consent_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "phone_country_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": "'91'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "SupplierProfile",
+      "column_name": "preferred_language",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'en_US'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "User",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "User",
+      "column_name": "email",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "User",
+      "column_name": "role",
+      "data_type": "USER-DEFINED",
+      "udt_name": "UserRole",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "User",
+      "column_name": "fullName",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "User",
+      "column_name": "createdAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "User",
+      "column_name": "updatedAt",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "id",
+      "data_type": "character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "checksum",
+      "data_type": "character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "finished_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "migration_name",
+      "data_type": "character varying",
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "logs",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "rolled_back_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "started_at",
+      "data_type": "timestamp with time zone",
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "column_default": "now()",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "_prisma_migrations",
+      "column_name": "applied_steps_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "account_deletion_requests",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "account_deletion_requests",
+      "column_name": "user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "account_deletion_requests",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "AccountDeletionStatus",
+      "is_nullable": "NO",
+      "column_default": "'PENDING'::\"AccountDeletionStatus\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "account_deletion_requests",
+      "column_name": "requested_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "account_deletion_requests",
+      "column_name": "processed_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "communication_request_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "source_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "CatalogSourceType",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "source_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "score",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "explanation",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "listing_snapshot",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "route_meta",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "CommunicationRequestMatchStatus",
+      "is_nullable": "NO",
+      "column_default": "'PENDING_ADMIN_REVIEW'::\"CommunicationRequestMatchStatus\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "admin_reviewed_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "admin_reviewed_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "admin_review_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "forwarded_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "supplier_rejection_reason",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "supplier_rejected_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "supplier_rejected_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "whatsapp_message_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "whatsapp_status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "whatsapp_sent_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "whatsapp_delivered_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "whatsapp_read_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "whatsapp_last_error",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "reminder_count",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "last_reminder_sent_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_matches",
+      "column_name": "quote_deadline_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "request_match_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "price",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "lead_time_days",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "additional_notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "dispatch_location",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "moq",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "sample_availability",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "total_value_estimate",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "quote_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'indicative'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "response_image_urls",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "CommunicationRequestResponseStatus",
+      "is_nullable": "NO",
+      "column_default": "'PENDING_ADMIN_REVIEW'::\"CommunicationRequestResponseStatus\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "admin_reviewed_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "admin_reviewed_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "admin_review_note",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "submission_revision",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "1",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "buyer_decision",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "buyer_decision_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "buyer_decision_reason",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "delivered_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "delivered_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_request_responses",
+      "column_name": "supplier_original_price",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "buyer_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "request_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'quote'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "buyer_message",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "fabric_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "quantity",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "delivery_pincode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "target_price_min",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "target_price_max",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "required_delivery_date",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "production_cycle",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "rfq_number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "auto_routed_to",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "routing_targets",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "routing_reason",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'pending'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "priority",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'normal'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "anonymized_buyer_reference",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "buyer_identity_disclosed",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "false",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "spec_payload",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "buyer_image_urls",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "requester_role",
+      "data_type": "USER-DEFINED",
+      "udt_name": "UserRole",
+      "is_nullable": "NO",
+      "column_default": "'BUYER'::\"UserRole\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "communication_requests",
+      "column_name": "contact_phone",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "conversations",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "conversations",
+      "column_name": "user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "conversations",
+      "column_name": "title",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'New Chat'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "conversations",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "conversations",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "image_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "fabric_collections",
+      "column_name": "is_archived",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "false",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "city",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "state",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "country",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'India'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "city_normalized",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "state_normalized",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "india_city_states",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "messages",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "messages",
+      "column_name": "conversation_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "messages",
+      "column_name": "role",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "messages",
+      "column_name": "content",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "messages",
+      "column_name": "metadata",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "messages",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "order_milestones",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "order_milestones",
+      "column_name": "order_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "order_milestones",
+      "column_name": "title",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "order_milestones",
+      "column_name": "description",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "order_milestones",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "OrderStatus",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "order_milestones",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "order_number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "order_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "response_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "sample_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "buyer_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "status",
+      "data_type": "USER-DEFINED",
+      "udt_name": "OrderStatus",
+      "is_nullable": "NO",
+      "column_default": "'PENDING_PAYMENT'::\"OrderStatus\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "tracking_number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "invoice_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "purchase_order_url",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "orders",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "buyer_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "idempotency_key",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "payload_hash",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "result",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "claimed_line_ids",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "completed_line_ids",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "failed_line_ids",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "rfq_batches",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "sample_number",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "buyer_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "sample_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "fabric_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "fabric_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "composition",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "gsm",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quantity_meters",
+      "data_type": "double precision",
+      "udt_name": "float8",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 53,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "delivery_address",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "pincode",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "contact_phone",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "special_instructions",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'requested'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "revision_number",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "1",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "samples",
+      "column_name": "valid_for_production",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "false",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "spec_payload",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "buyer_decision",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "buyer_decision_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "buyer_decision_reason",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quote_courier_cost_inr",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quote_delivery_timeline",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quote_internal_notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quote_refund_policy",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quote_sample_cost_inr",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quote_valid_until",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quoted_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "quoted_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "rejected_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "rejected_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "rejection_reason",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "delivered_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "samples",
+      "column_name": "delivered_by_user_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "capability_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "structures",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "material_types",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "fibers",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "fabric_states",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "gsm_min",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "gsm_max",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "width_min_inches",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "width_max_inches",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "count_range_min",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "count_range_max",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "weave_types",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "finish_tags",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "print_methods",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "coating_types",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "dye_methods",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "price_min_inr",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "price_max_inr",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "moq_meters",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "lead_time_days",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "listing_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "ListingType",
+      "is_nullable": "NO",
+      "column_default": "'ready_stock'::\"ListingType\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "mill_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "city",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "location_state",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "is_active",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "true",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "image_urls",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "linked_supplier_catalog_ids",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "linked_woven_product_ids",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "NO",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "blend_description",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "color_options_with_quantity",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "construction_range_max",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "construction_range_min",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_capabilities",
+      "column_name": "material_purity",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'pure'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "fabric_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "fabric_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierCatalogFabricType",
+      "is_nullable": "YES",
+      "column_default": "'cotton'::\"SupplierCatalogFabricType\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "composition_text",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "gsm",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "100",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "width_inches",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "construction",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "weave_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierWeaveType",
+      "is_nullable": "NO",
+      "column_default": "'plain'::\"SupplierWeaveType\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "production_cycle",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierProductionCycle",
+      "is_nullable": "NO",
+      "column_default": "'made_to_order'::\"SupplierProductionCycle\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "stock_quantity",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "0",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "price_per_meter",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "minimum_order_quantity",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "1000",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "lead_time_days",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "21",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "city",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "location_state",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "description",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "supplier_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierType",
+      "is_nullable": "NO",
+      "column_default": "'mill'::\"SupplierType\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "is_active",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "true",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "color_options",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "finish_options",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "image_urls",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "blend_description",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "material_purity",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": "'pure'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "fabric_collection_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "fabric_state",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierFabricState",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "dye_method",
+      "data_type": "USER-DEFINED",
+      "udt_name": "SupplierDyeMethod",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "shade_variants",
+      "data_type": "jsonb",
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "column_default": "'[]'::jsonb",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "mylonex_code",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "weight_unit",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "weight_value",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "width_unit",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "width_value",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "supplier_catalog",
+      "column_name": "sample_availability",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "system_counters",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "system_counters",
+      "column_name": "value",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "whatsapp_webhook_events",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "whatsapp_webhook_events",
+      "column_name": "event_type",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'message'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "whatsapp_webhook_events",
+      "column_name": "status",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'PROCESSING'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "whatsapp_webhook_events",
+      "column_name": "error",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "whatsapp_webhook_events",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "whatsapp_webhook_events",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "product_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "spec_key",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "value_num",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": 14,
+      "numeric_scale": 4
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "value_text",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "unit",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "system",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "is_required",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "false",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "display_group",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "source",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_product_specs",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "supplier_id",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "structure",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": "'woven'::text",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "material_family",
+      "data_type": "USER-DEFINED",
+      "udt_name": "WovenMaterialFamily",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "composition_text",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "weave_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "WovenWeaveType",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "finish_category",
+      "data_type": "USER-DEFINED",
+      "udt_name": "WovenFinishCategory",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "gsm_finished",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "width_finished_in",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 8,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "listing_type",
+      "data_type": "USER-DEFINED",
+      "udt_name": "ListingType",
+      "is_nullable": "NO",
+      "column_default": "'ready_stock'::\"ListingType\"",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "price_inr_per_m",
+      "data_type": "numeric",
+      "udt_name": "numeric",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": 12,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "moq_meters",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "500",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "lead_time_days",
+      "data_type": "integer",
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "column_default": "21",
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "mill_name",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "city",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "location_state",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "notes",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "images",
+      "data_type": "ARRAY",
+      "udt_name": "_text",
+      "is_nullable": "YES",
+      "column_default": "ARRAY[]::text[]",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "construction_label",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "spec_summary",
+      "data_type": "text",
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "is_active",
+      "data_type": "boolean",
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "column_default": "true",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "created_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "woven_products",
+      "column_name": "updated_at",
+      "data_type": "timestamp without time zone",
+      "udt_name": "timestamp",
+      "is_nullable": "NO",
+      "column_default": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    }
+  ],
+  "indexes": [
+    {
+      "tablename": "InquiryResponse",
+      "indexname": "InquiryResponse_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"InquiryResponse_pkey\" ON public.\"InquiryResponse\" USING btree (id)"
+    },
+    {
+      "tablename": "InquiryResponse",
+      "indexname": "InquiryResponse_inquiryMatchId_key",
+      "indexdef": "CREATE UNIQUE INDEX \"InquiryResponse_inquiryMatchId_key\" ON public.\"InquiryResponse\" USING btree (\"inquiryMatchId\")"
+    },
+    {
+      "tablename": "woven_products",
+      "indexname": "woven_products_pkey",
+      "indexdef": "CREATE UNIQUE INDEX woven_products_pkey ON public.woven_products USING btree (id)"
+    },
+    {
+      "tablename": "woven_products",
+      "indexname": "woven_products_supplier_id_idx",
+      "indexdef": "CREATE INDEX woven_products_supplier_id_idx ON public.woven_products USING btree (supplier_id)"
+    },
+    {
+      "tablename": "woven_products",
+      "indexname": "woven_products_is_active_idx",
+      "indexdef": "CREATE INDEX woven_products_is_active_idx ON public.woven_products USING btree (is_active)"
+    },
+    {
+      "tablename": "woven_product_specs",
+      "indexname": "woven_product_specs_pkey",
+      "indexdef": "CREATE UNIQUE INDEX woven_product_specs_pkey ON public.woven_product_specs USING btree (id)"
+    },
+    {
+      "tablename": "woven_product_specs",
+      "indexname": "woven_product_specs_product_id_spec_key_key",
+      "indexdef": "CREATE UNIQUE INDEX woven_product_specs_product_id_spec_key_key ON public.woven_product_specs USING btree (product_id, spec_key)"
+    },
+    {
+      "tablename": "woven_product_specs",
+      "indexname": "woven_product_specs_product_id_idx",
+      "indexdef": "CREATE INDEX woven_product_specs_product_id_idx ON public.woven_product_specs USING btree (product_id)"
+    },
+    {
+      "tablename": "supplier_capabilities",
+      "indexname": "supplier_capabilities_pkey",
+      "indexdef": "CREATE UNIQUE INDEX supplier_capabilities_pkey ON public.supplier_capabilities USING btree (id)"
+    },
+    {
+      "tablename": "supplier_capabilities",
+      "indexname": "supplier_capabilities_supplier_id_idx",
+      "indexdef": "CREATE INDEX supplier_capabilities_supplier_id_idx ON public.supplier_capabilities USING btree (supplier_id)"
+    },
+    {
+      "tablename": "supplier_capabilities",
+      "indexname": "supplier_capabilities_is_active_idx",
+      "indexdef": "CREATE INDEX supplier_capabilities_is_active_idx ON public.supplier_capabilities USING btree (is_active)"
+    },
+    {
+      "tablename": "fabric_collections",
+      "indexname": "fabric_collections_pkey",
+      "indexdef": "CREATE UNIQUE INDEX fabric_collections_pkey ON public.fabric_collections USING btree (id)"
+    },
+    {
+      "tablename": "fabric_collections",
+      "indexname": "fabric_collections_supplier_id_name_key",
+      "indexdef": "CREATE UNIQUE INDEX fabric_collections_supplier_id_name_key ON public.fabric_collections USING btree (supplier_id, name)"
+    },
+    {
+      "tablename": "fabric_collections",
+      "indexname": "fabric_collections_supplier_id_idx",
+      "indexdef": "CREATE INDEX fabric_collections_supplier_id_idx ON public.fabric_collections USING btree (supplier_id)"
+    },
+    {
+      "tablename": "fabric_collections",
+      "indexname": "fabric_collections_is_archived_idx",
+      "indexdef": "CREATE INDEX fabric_collections_is_archived_idx ON public.fabric_collections USING btree (is_archived)"
+    },
+    {
+      "tablename": "communication_requests",
+      "indexname": "communication_requests_pkey",
+      "indexdef": "CREATE UNIQUE INDEX communication_requests_pkey ON public.communication_requests USING btree (id)"
+    },
+    {
+      "tablename": "communication_requests",
+      "indexname": "communication_requests_rfq_number_key",
+      "indexdef": "CREATE UNIQUE INDEX communication_requests_rfq_number_key ON public.communication_requests USING btree (rfq_number)"
+    },
+    {
+      "tablename": "communication_requests",
+      "indexname": "communication_requests_buyer_id_idx",
+      "indexdef": "CREATE INDEX communication_requests_buyer_id_idx ON public.communication_requests USING btree (buyer_id)"
+    },
+    {
+      "tablename": "communication_requests",
+      "indexname": "communication_requests_buyer_id_requester_role_idx",
+      "indexdef": "CREATE INDEX communication_requests_buyer_id_requester_role_idx ON public.communication_requests USING btree (buyer_id, requester_role)"
+    },
+    {
+      "tablename": "supplier_catalog",
+      "indexname": "supplier_catalog_mylonex_code_key",
+      "indexdef": "CREATE UNIQUE INDEX supplier_catalog_mylonex_code_key ON public.supplier_catalog USING btree (mylonex_code)"
+    },
+    {
+      "tablename": "supplier_catalog",
+      "indexname": "supplier_catalog_pkey",
+      "indexdef": "CREATE UNIQUE INDEX supplier_catalog_pkey ON public.supplier_catalog USING btree (id)"
+    },
+    {
+      "tablename": "supplier_catalog",
+      "indexname": "supplier_catalog_supplier_id_idx",
+      "indexdef": "CREATE INDEX supplier_catalog_supplier_id_idx ON public.supplier_catalog USING btree (supplier_id)"
+    },
+    {
+      "tablename": "supplier_catalog",
+      "indexname": "supplier_catalog_is_active_idx",
+      "indexdef": "CREATE INDEX supplier_catalog_is_active_idx ON public.supplier_catalog USING btree (is_active)"
+    },
+    {
+      "tablename": "supplier_catalog",
+      "indexname": "supplier_catalog_fabric_collection_id_idx",
+      "indexdef": "CREATE INDEX supplier_catalog_fabric_collection_id_idx ON public.supplier_catalog USING btree (fabric_collection_id)"
+    },
+    {
+      "tablename": "samples",
+      "indexname": "samples_pkey",
+      "indexdef": "CREATE UNIQUE INDEX samples_pkey ON public.samples USING btree (id)"
+    },
+    {
+      "tablename": "samples",
+      "indexname": "samples_sample_number_key",
+      "indexdef": "CREATE UNIQUE INDEX samples_sample_number_key ON public.samples USING btree (sample_number)"
+    },
+    {
+      "tablename": "samples",
+      "indexname": "samples_buyer_id_idx",
+      "indexdef": "CREATE INDEX samples_buyer_id_idx ON public.samples USING btree (buyer_id)"
+    },
+    {
+      "tablename": "india_city_states",
+      "indexname": "india_city_states_pkey",
+      "indexdef": "CREATE UNIQUE INDEX india_city_states_pkey ON public.india_city_states USING btree (id)"
+    },
+    {
+      "tablename": "india_city_states",
+      "indexname": "india_city_states_city_normalized_state_normalized_country_key",
+      "indexdef": "CREATE UNIQUE INDEX india_city_states_city_normalized_state_normalized_country_key ON public.india_city_states USING btree (city_normalized, state_normalized, country)"
+    },
+    {
+      "tablename": "india_city_states",
+      "indexname": "india_city_states_state_normalized_city_normalized_idx",
+      "indexdef": "CREATE INDEX india_city_states_state_normalized_city_normalized_idx ON public.india_city_states USING btree (state_normalized, city_normalized)"
+    },
+    {
+      "tablename": "india_city_states",
+      "indexname": "india_city_states_country_state_normalized_idx",
+      "indexdef": "CREATE INDEX india_city_states_country_state_normalized_idx ON public.india_city_states USING btree (country, state_normalized)"
+    },
+    {
+      "tablename": "communication_request_responses",
+      "indexname": "communication_request_responses_pkey",
+      "indexdef": "CREATE UNIQUE INDEX communication_request_responses_pkey ON public.communication_request_responses USING btree (id)"
+    },
+    {
+      "tablename": "communication_request_responses",
+      "indexname": "communication_request_responses_request_match_id_key",
+      "indexdef": "CREATE UNIQUE INDEX communication_request_responses_request_match_id_key ON public.communication_request_responses USING btree (request_match_id)"
+    },
+    {
+      "tablename": "communication_request_responses",
+      "indexname": "communication_request_responses_supplier_id_idx",
+      "indexdef": "CREATE INDEX communication_request_responses_supplier_id_idx ON public.communication_request_responses USING btree (supplier_id)"
+    },
+    {
+      "tablename": "communication_request_responses",
+      "indexname": "communication_request_responses_status_created_at_idx",
+      "indexdef": "CREATE INDEX communication_request_responses_status_created_at_idx ON public.communication_request_responses USING btree (status, created_at)"
+    },
+    {
+      "tablename": "communication_request_responses",
+      "indexname": "communication_request_responses_admin_reviewed_by_user_id_idx",
+      "indexdef": "CREATE INDEX communication_request_responses_admin_reviewed_by_user_id_idx ON public.communication_request_responses USING btree (admin_reviewed_by_user_id)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_pkey",
+      "indexdef": "CREATE UNIQUE INDEX communication_request_matches_pkey ON public.communication_request_matches USING btree (id)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_communication_request_id_idx",
+      "indexdef": "CREATE INDEX communication_request_matches_communication_request_id_idx ON public.communication_request_matches USING btree (communication_request_id)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_supplier_id_idx",
+      "indexdef": "CREATE INDEX communication_request_matches_supplier_id_idx ON public.communication_request_matches USING btree (supplier_id)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_communication_request_id_sour_key",
+      "indexdef": "CREATE UNIQUE INDEX communication_request_matches_communication_request_id_sour_key ON public.communication_request_matches USING btree (communication_request_id, source_type, source_id, supplier_id)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_status_created_at_idx",
+      "indexdef": "CREATE INDEX communication_request_matches_status_created_at_idx ON public.communication_request_matches USING btree (status, created_at)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_admin_reviewed_by_user_id_idx",
+      "indexdef": "CREATE INDEX communication_request_matches_admin_reviewed_by_user_id_idx ON public.communication_request_matches USING btree (admin_reviewed_by_user_id)"
+    },
+    {
+      "tablename": "communication_request_matches",
+      "indexname": "communication_request_matches_whatsapp_message_id_idx",
+      "indexdef": "CREATE INDEX communication_request_matches_whatsapp_message_id_idx ON public.communication_request_matches USING btree (whatsapp_message_id)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_pkey",
+      "indexdef": "CREATE UNIQUE INDEX orders_pkey ON public.orders USING btree (id)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_order_number_key",
+      "indexdef": "CREATE UNIQUE INDEX orders_order_number_key ON public.orders USING btree (order_number)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_response_id_key",
+      "indexdef": "CREATE UNIQUE INDEX orders_response_id_key ON public.orders USING btree (response_id)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_sample_id_key",
+      "indexdef": "CREATE UNIQUE INDEX orders_sample_id_key ON public.orders USING btree (sample_id)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_buyer_id_idx",
+      "indexdef": "CREATE INDEX orders_buyer_id_idx ON public.orders USING btree (buyer_id)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_supplier_id_idx",
+      "indexdef": "CREATE INDEX orders_supplier_id_idx ON public.orders USING btree (supplier_id)"
+    },
+    {
+      "tablename": "orders",
+      "indexname": "orders_status_idx",
+      "indexdef": "CREATE INDEX orders_status_idx ON public.orders USING btree (status)"
+    },
+    {
+      "tablename": "order_milestones",
+      "indexname": "order_milestones_pkey",
+      "indexdef": "CREATE UNIQUE INDEX order_milestones_pkey ON public.order_milestones USING btree (id)"
+    },
+    {
+      "tablename": "order_milestones",
+      "indexname": "order_milestones_order_id_idx",
+      "indexdef": "CREATE INDEX order_milestones_order_id_idx ON public.order_milestones USING btree (order_id)"
+    },
+    {
+      "tablename": "conversations",
+      "indexname": "conversations_pkey",
+      "indexdef": "CREATE UNIQUE INDEX conversations_pkey ON public.conversations USING btree (id)"
+    },
+    {
+      "tablename": "conversations",
+      "indexname": "conversations_user_id_updated_at_idx",
+      "indexdef": "CREATE INDEX conversations_user_id_updated_at_idx ON public.conversations USING btree (user_id, updated_at)"
+    },
+    {
+      "tablename": "messages",
+      "indexname": "messages_pkey",
+      "indexdef": "CREATE UNIQUE INDEX messages_pkey ON public.messages USING btree (id)"
+    },
+    {
+      "tablename": "messages",
+      "indexname": "messages_conversation_id_created_at_idx",
+      "indexdef": "CREATE INDEX messages_conversation_id_created_at_idx ON public.messages USING btree (conversation_id, created_at)"
+    },
+    {
+      "tablename": "account_deletion_requests",
+      "indexname": "account_deletion_requests_pkey",
+      "indexdef": "CREATE UNIQUE INDEX account_deletion_requests_pkey ON public.account_deletion_requests USING btree (id)"
+    },
+    {
+      "tablename": "account_deletion_requests",
+      "indexname": "account_deletion_requests_user_id_idx",
+      "indexdef": "CREATE INDEX account_deletion_requests_user_id_idx ON public.account_deletion_requests USING btree (user_id)"
+    },
+    {
+      "tablename": "account_deletion_requests",
+      "indexname": "account_deletion_requests_status_idx",
+      "indexdef": "CREATE INDEX account_deletion_requests_status_idx ON public.account_deletion_requests USING btree (status)"
+    },
+    {
+      "tablename": "whatsapp_webhook_events",
+      "indexname": "whatsapp_webhook_events_pkey",
+      "indexdef": "CREATE UNIQUE INDEX whatsapp_webhook_events_pkey ON public.whatsapp_webhook_events USING btree (id)"
+    },
+    {
+      "tablename": "rfq_batches",
+      "indexname": "rfq_batches_pkey",
+      "indexdef": "CREATE UNIQUE INDEX rfq_batches_pkey ON public.rfq_batches USING btree (id)"
+    },
+    {
+      "tablename": "rfq_batches",
+      "indexname": "rfq_batches_buyer_id_idempotency_key_key",
+      "indexdef": "CREATE UNIQUE INDEX rfq_batches_buyer_id_idempotency_key_key ON public.rfq_batches USING btree (buyer_id, idempotency_key)"
+    },
+    {
+      "tablename": "User",
+      "indexname": "User_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"User_pkey\" ON public.\"User\" USING btree (id)"
+    },
+    {
+      "tablename": "User",
+      "indexname": "User_email_key",
+      "indexdef": "CREATE UNIQUE INDEX \"User_email_key\" ON public.\"User\" USING btree (email)"
+    },
+    {
+      "tablename": "BuyerProfile",
+      "indexname": "BuyerProfile_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"BuyerProfile_pkey\" ON public.\"BuyerProfile\" USING btree (id)"
+    },
+    {
+      "tablename": "BuyerProfile",
+      "indexname": "BuyerProfile_userId_key",
+      "indexdef": "CREATE UNIQUE INDEX \"BuyerProfile_userId_key\" ON public.\"BuyerProfile\" USING btree (\"userId\")"
+    },
+    {
+      "tablename": "_prisma_migrations",
+      "indexname": "_prisma_migrations_pkey",
+      "indexdef": "CREATE UNIQUE INDEX _prisma_migrations_pkey ON public._prisma_migrations USING btree (id)"
+    },
+    {
+      "tablename": "Product",
+      "indexname": "Product_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"Product_pkey\" ON public.\"Product\" USING btree (id)"
+    },
+    {
+      "tablename": "Inquiry",
+      "indexname": "Inquiry_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"Inquiry_pkey\" ON public.\"Inquiry\" USING btree (id)"
+    },
+    {
+      "tablename": "SupplierProfile",
+      "indexname": "SupplierProfile_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"SupplierProfile_pkey\" ON public.\"SupplierProfile\" USING btree (id)"
+    },
+    {
+      "tablename": "SupplierProfile",
+      "indexname": "SupplierProfile_userId_key",
+      "indexdef": "CREATE UNIQUE INDEX \"SupplierProfile_userId_key\" ON public.\"SupplierProfile\" USING btree (\"userId\")"
+    },
+    {
+      "tablename": "InquiryMatch",
+      "indexname": "InquiryMatch_pkey",
+      "indexdef": "CREATE UNIQUE INDEX \"InquiryMatch_pkey\" ON public.\"InquiryMatch\" USING btree (id)"
+    },
+    {
+      "tablename": "InquiryMatch",
+      "indexname": "InquiryMatch_inquiryId_productId_key",
+      "indexdef": "CREATE UNIQUE INDEX \"InquiryMatch_inquiryId_productId_key\" ON public.\"InquiryMatch\" USING btree (\"inquiryId\", \"productId\")"
+    },
+    {
+      "tablename": "system_counters",
+      "indexname": "system_counters_pkey",
+      "indexdef": "CREATE UNIQUE INDEX system_counters_pkey ON public.system_counters USING btree (id)"
+    }
+  ],
+  "history": [
+    {
+      "migration_name": "20260226093043_baseline",
+      "finished_at": "2026-11-05T12:21:35.319Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260226100539_add_product_model",
+      "finished_at": "2026-11-05T12:21:37.885Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260227080515_add_inquiry_match",
+      "finished_at": "2026-11-05T12:21:40.462Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260227084100_add_inquiry_response",
+      "finished_at": "2026-11-05T12:21:43.046Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260309190000_add_rfq_and_samples",
+      "finished_at": "2026-11-05T12:21:45.652Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260310071737_added_new_flows",
+      "finished_at": "2026-11-05T12:21:48.212Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260310100000_flow2_catalog_cutover",
+      "finished_at": "2026-11-05T12:21:50.873Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260310150000_add_collection_images_and_links",
+      "finished_at": "2026-11-05T12:21:53.457Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260310170000_fix_comm_request_match_index_name",
+      "finished_at": "2026-11-05T12:21:56.034Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260406093355_supplier_portal_enhancements",
+      "finished_at": "2026-11-05T12:21:58.630Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260406102730_add_collection_source_type",
+      "finished_at": "2026-11-05T12:22:01.187Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260406103748_add_quote_type_and_response_images",
+      "finished_at": "2026-11-05T12:22:03.745Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260407113000_add_buyer_image_urls",
+      "finished_at": "2026-11-05T12:22:06.296Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260408110049_add_supplier_locations",
+      "finished_at": "2026-11-05T12:22:08.849Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260413160000_capabilities_and_fabric_collections",
+      "finished_at": "2026-11-05T12:22:11.466Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260413183000_add_image_to_fabric_collections",
+      "finished_at": "2026-11-05T12:22:14.022Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260414190000_admin_gated_rfq_quote_and_admin_catalog",
+      "finished_at": "2026-11-05T12:22:16.650Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260415173000_add_india_city_state_lookup",
+      "finished_at": "2026-11-05T12:22:19.213Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260422110000_add_manual_source_type",
+      "finished_at": "2026-11-05T12:22:21.764Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260427151935_add_sample_quote_fields",
+      "finished_at": "2026-11-05T12:22:24.351Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260428114531_add_signup_profile_fields",
+      "finished_at": "2026-11-05T12:22:27.183Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260502144203_add_buyer_decision_to_responses",
+      "finished_at": "2026-11-05T12:22:29.948Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260502175140_add_delivery_tracking",
+      "finished_at": "2026-11-05T12:22:32.917Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260526120000_supplier_rfq_rejection",
+      "finished_at": "2026-11-05T12:22:35.785Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260526130000_communication_request_contact_phone",
+      "finished_at": "2026-11-05T12:22:38.652Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260614181057_add_supplier_original_price",
+      "finished_at": "2026-11-05T12:22:41.519Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260715120000_supplier_catalog_shade_cards",
+      "finished_at": "2026-11-05T12:22:44.387Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260918065741_add_orders_models",
+      "finished_at": "2026-11-05T12:22:47.217Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20260925113000_add_ai_chat_models",
+      "finished_at": "2026-11-05T12:22:50.121Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20261007151500_add_account_deletion_request",
+      "finished_at": "2026-11-05T12:22:52.887Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20261014130000_whatsapp_rfq_tracking_and_consent",
+      "finished_at": "2026-11-05T12:22:55.753Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20261016120000_add_whatsapp_webhook_events",
+      "finished_at": "2026-11-05T12:22:58.620Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20261028120000_allow_omitted_import_material",
+      "finished_at": "2026-11-05T12:23:01.489Z",
+      "rolled_back_at": null
+    },
+    {
+      "migration_name": "20261030100000_buyer_rfq_batches",
+      "finished_at": "2026-11-05T12:23:04.354Z",
+      "rolled_back_at": null
+    }
+  ]
+}
