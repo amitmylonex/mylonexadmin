@@ -1,7 +1,11 @@
+import {Dialog} from "../../../components/ui/Dialog";
 import { FolderKanban } from "lucide-react";
-import { CatalogWorkspace } from "../../catalog/CatalogWorkspace";
-import { CatalogEditor, EditTarget } from "../../catalog/CatalogEditor";
-import React, { useEffect, useState } from "react";
+
+import type { EditTarget } from "../../catalog/CatalogEditor";
+import { LoadingSkeleton } from "../../../components/LoadingSkeleton";
+import React, { useEffect, useState, lazy, Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useAdminViewState } from "../../../hooks/useAdminViewState";
 import { apiRequest } from "../../../lib/api";
 import { SupplierStatusBadge } from "../../../components/Badge";
 import { StatusUpdateModal } from "../../../components/StatusUpdateModal";
@@ -19,6 +23,9 @@ import {
   Archive,
   RotateCcw,
 } from "lucide-react";
+
+const CatalogWorkspace = lazy(() => import("../../catalog/CatalogWorkspace").then(m => ({ default: m.CatalogWorkspace })));
+const CatalogEditor = lazy(() => import("../../catalog/CatalogEditor").then(m => ({ default: m.CatalogEditor })));
 
 interface SupplierDetailData {
   id: string;
@@ -95,59 +102,25 @@ export function SupplierDetailPage({
 }) {
   const [editor, setEditor] = useState<EditTarget | null>(null);
   const [feedback, setFeedback] = useState("");
-  const [loadError, setLoadError] = useState("");
-  const [catalogPage, setCatalogPage] = useState(1);
-  const [catalogPages, setCatalogPages] = useState(1);
-  const [supplier, setSupplier] = useState<SupplierDetailData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [catalogPage, setCatalogPage] = useAdminViewState(`supplier:${supplierId}:catalog-page`, 1);
   const [activeTab, setActiveTab] = useState<"overview" | "catalog">(initialTab);
   useEffect(() => { setActiveTab(initialTab); }, [initialTab, supplierId]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Catalog tab data
-  const [catalogData, setCatalogData] = useState<CatalogData | null>(null);
-  const [catalogLoading, setCatalogLoading] = useState(false);
   const [actionBusyId, setActionBusyId] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchSupplier();
-  }, [supplierId]);
-
-  useEffect(() => {
-    if (activeTab === "catalog") {
-      fetchCatalog();
-    }
-  }, [activeTab, supplierId, catalogPage]);
-
-  const fetchSupplier = async (background = false) => {
-    try {
-      if (!background) setLoading(true);
-      setLoadError("");
-      const res = await apiRequest<{ supplier: SupplierDetailData }>(
-        `/api/v1/admin/suppliers/${supplierId}`
-      );
-      setSupplier(res.supplier);
-    } catch (err) {
-      setLoadError(err instanceof Error ? err.message : "Supplier could not be loaded");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchCatalog = async () => {
-    try {
-      setCatalogLoading(true);
-      const res = await apiRequest<CatalogData>(
-        `/api/v1/admin/suppliers/${supplierId}/catalog?page=${catalogPage}&pageSize=20`
-      );
-      setCatalogData(res);
-      setCatalogPages((res as any).totalPages || 1);
-    } catch (err) {
-      setFeedback(err instanceof Error ? err.message : "Catalog could not be loaded");
-    } finally {
-      setCatalogLoading(false);
-    }
-  };
+  const supplierUrl = `/api/v1/admin/suppliers/${supplierId}`;
+  const catalogUrl = `${supplierUrl}/catalog?page=${catalogPage}&pageSize=20`;
+  const profileQuery = useQuery({ queryKey: ["admin", supplierUrl], queryFn: () => apiRequest<{ supplier: SupplierDetailData }>(supplierUrl) });
+  const catalogQuery = useQuery({ queryKey: ["admin", catalogUrl], queryFn: () => apiRequest<CatalogData & {totalPages?: number}>(catalogUrl), enabled: activeTab === "catalog" });
+  const supplier = profileQuery.data?.supplier;
+  const loading = profileQuery.isPending;
+  const loadError = profileQuery.error?.message;
+  const catalogData = catalogQuery.data;
+  const catalogLoading = catalogQuery.isPending && catalogQuery.isFetching;
+  const catalogPages = catalogData?.totalPages || 1;
+  // A successful write has already invalidated these queries. Coalesce any
+  // explicit refresh with the in-flight request instead of cancelling it.
+  const fetchSupplier = async (_background = false) => { await profileQuery.refetch({ cancelRefetch: false }); };
+  const fetchCatalog = async () => { await catalogQuery.refetch({ cancelRefetch: false }); };
 
   const toggleCatalogItemActive = async (
     type: "catalog" | "woven" | "capability",
@@ -208,7 +181,7 @@ export function SupplierDetailPage({
 
   return (
     <div className="space-y-6">
-      {activeTab === "catalog" ? <header className="legacy-catalog-page-heading"><button onClick={onBack}>← Back to Supplier Catalog Control</button><p className="label mt-3">Admin Console</p><h1 className="text-2xl font-semibold text-ink">Catalog Control: {supplier.companyName}</h1><p className="mt-1 text-sm text-ink/60">Supplier status: {supplier.status}</p></header> : <>
+      {activeTab === "catalog" ? <header className="legacy-catalog-page-heading"><button onClick={onBack}>← Back to Supplier Catalog Control</button><button className="ml-4 text-primary text-sm" onClick={() => setActiveTab("overview")}>View Overview</button><p className="label mt-3">Admin Console</p><h1 className="text-2xl font-semibold text-ink">Catalog Control: {supplier.companyName}</h1><p className="mt-1 text-sm text-ink/60">Supplier status: {supplier.status}</p></header> : <>
       {/* Back button & Action Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
@@ -434,8 +407,10 @@ export function SupplierDetailPage({
       {activeTab === "catalog" && (
         <div className="space-y-6">
           {feedback && <p role="status" className="card p-3 text-sm">{feedback}</p>}
-          {editor && <CatalogEditor supplierId={supplier.id} collections={catalogData?.fabricCollections || []} target={editor} onClose={() => setEditor(null)} onSaved={() => { setFeedback("Catalog saved successfully."); fetchCatalog(); fetchSupplier(true); }} />}
-          <CatalogWorkspace supplierId={supplier.id} supplierName={supplier.companyName} collections={catalogData?.fabricCollections || []} onSaved={() => { fetchCatalog(); fetchSupplier(true); }} />
+          {catalogQuery.error && <p role="alert" className="card p-3 text-sm">{catalogQuery.error.message}<button className="ml-3 underline" onClick={() => { void fetchCatalog(); }}>Retry</button></p>}
+          {catalogQuery.isFetching && catalogData && <p role="status" className="text-xs text-muted">Updating catalog...</p>}
+          {editor && <Dialog open title="Edit catalog item" onClose={() => setEditor(null)}><Suspense fallback={<LoadingSkeleton label="Loading editor" />}><CatalogEditor key={`${editor.kind}:${editor.id}`} supplierId={supplier.id} collections={catalogData?.fabricCollections || []} target={editor} onClose={() => setEditor(null)} onSaved={() => { setFeedback("Catalog saved successfully."); fetchCatalog(); fetchSupplier(true); }} /></Suspense></Dialog>}
+          <Suspense fallback={<LoadingSkeleton label="Loading catalog tools" />}><CatalogWorkspace supplierId={supplier.id} supplierName={supplier.companyName} collections={catalogData?.fabricCollections || []} onSaved={() => { fetchCatalog(); fetchSupplier(true); }} /></Suspense>
           {catalogPages > 1 && <div className="catalog-pagination"><button disabled={catalogPage <= 1} onClick={() => setCatalogPage(p => p-1)}>Previous</button><span>Catalog page {catalogPage} of {catalogPages}</span><button disabled={catalogPage >= catalogPages} onClick={() => setCatalogPage(p => p+1)}>Next</button></div>}
 
           {catalogLoading ? (

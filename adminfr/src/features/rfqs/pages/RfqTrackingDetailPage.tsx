@@ -1,3 +1,6 @@
+import {TrackingQuoteDetails} from "../components/TrackingQuoteDetails";
+import {Breadcrumbs} from "../../../components/layout/Breadcrumbs";
+import {rfqDate,quantity} from "../utils/presentation";
 import React,{useState} from "react";
 import {apiRequest} from "../../../lib/api";
 import {Dialog} from "../../../components/ui/Dialog";
@@ -16,9 +19,11 @@ import type { TrackingSupplier } from "../../../contracts/rfq-tracking";
 export function RfqTrackingDetailPage({
   id,
   onBack,
+  onManageRfq,
 }: {
   id: string;
   onBack: () => void;
+  onManageRfq?: (id:string)=>void;
 }) {
   const list = useAdminList<TrackingSupplier>(
     `/api/v1/admin/rfq-tracking/${id}`,
@@ -31,14 +36,17 @@ export function RfqTrackingDetailPage({
       <button onClick={onBack} className="text-primary text-sm">
         ← Back to RFQ tracking
       </button>
+      <Breadcrumbs items={[{label:"Admin Console"},{label:"RFQ Tracking",onClick:onBack},{label:list.data?.inquiry.rfqNumber||"Detail"}]}/>
       <PageHeading
         title={list.data?.inquiry.rfqNumber || "RFQ tracking detail"}
         description={list.data?.inquiry.fabricName}
       />
       <ListFeedback list={list} />
+      {list.data?.inquiry&&<div className="flex flex-wrap gap-4 items-center text-sm"><span>{quantity(list.data.inquiry.quantity)}</span><span>Submitted {rfqDate(list.data.inquiry.createdAt)}</span><span>Recorded: {list.data.inquiry.recordedStatus}</span>{onManageRfq&&<button className="btn-outline" onClick={()=>onManageRfq(id)}>Manage RFQ / approvals</button>}</div>}
+      {list.data?.asOf&&<p className="text-xs text-muted">As of {rfqDate(list.data.asOf)}. Historical gaps indicate evidence was not retained; they are not inferred events.</p>}
       {list.data?.lifecycle&&<ol aria-label="RFQ lifecycle" className="grid sm:grid-cols-3 xl:grid-cols-6 gap-3">{list.data.lifecycle.map((step:any)=><li key={step.key} className={`rounded-xl border p-4 text-sm ${step.recorded?"bg-green-50 border-green-200":"bg-white border-border"}`}><strong>{step.label}</strong><p className="text-xs mt-2">{step.recorded?(step.at?date(step.at):"Recorded; timestamp unavailable"):"Not recorded"}</p></li>)}</ol>}
       <p className="text-xs text-muted">Steps reflect independent recorded events. A later event does not fill missing earlier history. Supplier dashboard routing is distinct from WhatsApp delivery.</p>
-      {list.data?.inquiry&&<ManualRouteForm id={id} status={list.data.lifecycle?.some((s:any)=>s.recorded&&["accepted","ordered"].includes(s.key))?"closed":list.data.inquiry.recordedStatus} onRouted={list.reload}/>}
+      {list.data?.inquiry&&<ManualRouteForm key={id} matchedSupplierIds={list.items.map(s=>s.supplierId)} id={id} status={list.data.lifecycle?.some((s:any)=>s.recorded&&["accepted","ordered"].includes(s.key))?"closed":list.data.inquiry.recordedStatus} onRouted={list.reload}/>}
       <button className="btn-outline" onClick={list.reload} disabled={list.loading}>Refresh tracking</button>
       {message&&!resend&&<p role="status" className="card p-4 text-sm">{message}</p>}
       {list.items.map((s) => (
@@ -56,7 +64,8 @@ export function RfqTrackingDetailPage({
               <Status value={s.responseStatus} />
             </div>
           </div>
-          <p className="text-xs text-muted">{s.eligibilityReason}</p>
+          <p className="text-xs text-muted">{s.eligible?"Eligible":"Not eligible"}: {s.eligibilityReason}</p>
+          {s.rawWhatsAppStatus&&<p className="text-xs text-muted">Preserved WhatsApp status: {s.rawWhatsAppStatus.replace(/_/g," ")}</p>}
           <p className="text-sm">Consent: {s.consentStatus} · Dispatch channel: {s.dispatchChannel}</p>
           {s.declineReason&&<p className="text-sm">Supplier decline reason: {s.declineReason}</p>}
           <p className="text-xs text-muted">Delivery pill describes the retained original message. Open dispatch logs for individual resends.</p>
@@ -79,36 +88,7 @@ export function RfqTrackingDetailPage({
               )}
             </div>
           </div>
-          {s.quote && (
-            <div className="rounded-xl border border-border bg-slate-50 p-4 grid sm:grid-cols-3 gap-4 text-sm">
-              <div>
-                <strong>{money(s.quote.price)}/m</strong>
-                <p className="text-xs">
-                  Original {money(s.quote.originalPrice)}
-                </p>
-                <p>{s.quote.priceBasis || "Price basis unavailable"}</p>
-                <p>Validity {s.quote.priceValidity || "Unavailable"}</p>
-                <p className={s.quote.priceExpired ? "text-amber-700" : ""}>
-                  {s.quote.priceExpired ? "Expired · " : ""}
-                  {date(s.quote.priceValidUntil)}
-                </p>
-              </div>
-              <div>
-                MOQ {s.quote.totalMoq || "—"}
-                <p>MOQ per colour {s.quote.moqPerColour || "—"}</p>
-                <p>Lead {s.quote.leadDays} days</p>
-                <p>Sample {s.quote.sampleAvailability || "—"}</p>
-                <p>Sample yardage {s.quote.sampleYardage || "—"}</p>
-              </div>
-              <div>
-                <Status value={s.quote.approvalStatus} />
-                <p className="mt-2 text-xs">{s.quote.remarks}</p>
-                <p className="text-xs text-muted mt-2">
-                  {s.quote.submittedAtLabel}: {date(s.quote.submittedAt)}
-                </p>
-              </div>
-            </div>
-          )}
+          {s.quote && <TrackingQuoteDetails quote={s.quote}/>}
           <details>
             <summary className="text-sm font-semibold cursor-pointer">
               Recorded timeline

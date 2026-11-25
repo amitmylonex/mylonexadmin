@@ -1,4 +1,6 @@
 import React from "react";
+import { LoadingSkeleton } from "../LoadingSkeleton";
+import { EmptyState } from "../EmptyState";
 export type Column<T> = { label: string; render: (row: T) => React.ReactNode };
 export function PageHeading({
   title,
@@ -78,6 +80,7 @@ export function QueryToolbar({
 export function ListFeedback({ list }: { list: any }) {
   return (
     <>
+      {list.refreshError && <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">Could not update records. Showing the last loaded data. {list.refreshError}<button className="ml-4 underline" onClick={list.reload}>Retry</button></div>}
       {list.error && (
         <div
           role="alert"
@@ -90,10 +93,9 @@ export function ListFeedback({ list }: { list: any }) {
         </div>
       )}
       {list.loading && (
-        <p role="status" className="text-sm text-muted">
-          Loading…
-        </p>
+        <LoadingSkeleton />
       )}
+      {list.refreshing && <p role="status" className="text-xs text-muted">Updating records…</p>}
     </>
   );
 }
@@ -133,7 +135,7 @@ export function AdminTable<T extends { id: string }>({
         </tbody>
       </table>
       {!items.length && (
-        <p className="p-10 text-center text-sm text-muted">{empty}</p>
+        <EmptyState>{empty}</EmptyState>
       )}
     </div>
   );

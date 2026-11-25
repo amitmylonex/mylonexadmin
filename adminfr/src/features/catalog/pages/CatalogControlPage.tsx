@@ -1,7 +1,6 @@
-import {useDebouncedValue} from "../../../hooks/useDebouncedValue";
-import React, { useEffect, useState, useRef } from "react";
-import { apiRequest } from "../../../lib/api";
-import { FabricLoader } from "../../../components/FabricLoader";
+import { useAdminList } from "../../../hooks/useAdminList";
+import { LoadingSkeleton } from "../../../components/LoadingSkeleton";
+import React from "react";
 
 interface CatalogSupplier {
   id: string;
@@ -17,41 +16,12 @@ interface CatalogSupplier {
 }
 
 export function CatalogControlPage({ onSelectSupplier }: { onSelectSupplier: (id: string) => void }) {
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [search, setSearch] = useState("");
-  const debouncedSearch=useDebouncedValue(search);
-  const [error, setError] = useState("");
-  const requestVersion = useRef(0);
-  const [suppliers, setSuppliers] = useState<CatalogSupplier[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchCatalogSuppliers();
-  }, [page, debouncedSearch]);
-
-  const fetchCatalogSuppliers = async () => {
-    const version = ++requestVersion.current;
-    try {
-      setLoading(true);
-      const res = await apiRequest<{ suppliers: CatalogSupplier[] }>(
-        `/api/v1/admin/catalog/suppliers?page=${page}&search=${encodeURIComponent(debouncedSearch)}`
-      );
-      if (version !== requestVersion.current) return;
-      setSuppliers(res.suppliers);
-      setTotalPages((res as any).totalPages || 1);
-      setError("");
-    } catch (err) {
-      if (version === requestVersion.current) setError(err instanceof Error ? err.message : "Unable to load suppliers");
-    } finally {
-      if (version === requestVersion.current) setLoading(false);
-    }
-  };
-
+  const list = useAdminList<CatalogSupplier>("/api/v1/admin/catalog/suppliers", "suppliers");
+  const { page, setPage, totalPages, search, setSearch, error, items: suppliers, loading } = list;
   if (loading && suppliers.length === 0 && !search && page === 1) {
     return (
       <div className="flex items-center justify-center py-24">
-        <FabricLoader label="Loading supplier catalog repository..." />
+        <LoadingSkeleton label="Loading supplier catalog" />
       </div>
     );
   }
@@ -66,7 +36,7 @@ export function CatalogControlPage({ onSelectSupplier }: { onSelectSupplier: (id
         </p>
       </div>
 
-      {error && <p role="alert" className="text-red-700">{error}</p>}
+      {error && <p role="alert" className="text-red-700">{error}<button className="ml-3 underline" onClick={list.reload}>Retry</button></p>}
       <div className="flex items-center gap-3"><label className="text-xs">Search suppliers<input className="input ml-2" value={search} onChange={e => { setSearch(e.target.value); setPage(1); }} /></label><button className="btn-outline text-xs" disabled={page <= 1} onClick={() => setPage(p => p-1)}>Previous</button><span className="text-xs">Page {page} of {totalPages}</span><button className="btn-outline text-xs" disabled={page >= totalPages} onClick={() => setPage(p => p+1)}>Next</button></div>
       <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
         {suppliers.length === 0 ? (

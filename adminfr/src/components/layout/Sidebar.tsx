@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import {navigationForRole} from "../../routes/admin-navigation";
+import {useAdminViewState} from "../../hooks/useAdminViewState";
 import { routePath } from "../../routes/useAdminRoute";
+import {MobileNavigationDrawer} from "./MobileNavigationDrawer";
 import { Logo } from "./Logo";
 import { ConfirmSignOutModal } from "./ConfirmSignOutModal";
 import { Menu, X } from "lucide-react";
@@ -44,18 +47,8 @@ export function Sidebar({
     return () => { media.removeEventListener("change", update); window.removeEventListener("keydown", keyboard); };
   }, [isMobileMenuOpen]);
 
-  const navItems = [
-    { id: "dashboard", label: "Dashboard" },
-    { id: "suppliers", label: "Suppliers" },
-    { id: "buyers", label: "Buyers" },
-    { id: "rfq-approvals", label: "RFQ Approval Queue" },
-    { id: "quote-approvals", label: "Quote Approval Queue" },
-    { id: "rfqs", label: "All RFQs" },
-    { id: "rfq-tracking", label: "RFQ Tracking" },
-    { id: "catalog", label: "Supplier Catalog Control" },
-    { id: "samples", label: "Sampling Requests" },
-    { id: "accepted-orders", label: "Accepted Orders" },
-  ];
+  const navItems = navigationForRole("ADMIN");
+  const [collapsed,setCollapsed] = useAdminViewState("sidebar:collapsed",false);
 
   return (
     <>
@@ -84,27 +77,20 @@ export function Sidebar({
         </div>
       </div>
 
-      {/* Mobile Overlay Backdrop */}
-      {isMobileMenuOpen && (
-        <div
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="lg:hidden fixed inset-0 z-30 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-150"
-        />
-      )}
-
+      <MobileNavigationDrawer open={isMobileMenuOpen} onClose={()=>setIsMobileMenuOpen(false)}>
       {/* Main Sidebar (Drawer on mobile, Sticky sidebar on desktop) */}
       <aside
         id="admin-sidebar"
         ref={drawerRef}
         aria-label="Admin navigation"
-        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-72 bg-secondary text-white border-r border-white/10 flex flex-col shrink-0 transition-transform duration-200 ease-in-out ${
+        className={`fixed lg:sticky top-0 left-0 z-40 h-screen w-72 ${collapsed ? "lg:w-20" : "lg:w-72"} bg-secondary text-white border-r border-white/10 flex flex-col shrink-0 transition-transform duration-200 ease-in-out ${
           isMobileMenuOpen
             ? "translate-x-0 shadow-2xl"
             : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <div className="p-4 lg:p-6 flex items-center justify-between">
-          <div>
+          <div className={collapsed ? "lg:hidden" : ""}>
             <p className="label text-white/60">MyloNex</p>
             <h2 className="text-xl font-semibold">Admin Console</h2>
             <p className="mt-1 text-sm text-white/60">{userEmail}</p>
@@ -119,6 +105,7 @@ export function Sidebar({
           </button>
         </div>
 
+        <button className="hidden lg:flex mx-4 mb-3 rounded-lg p-2 text-xs hover:bg-white/10" aria-label={collapsed?"Expand sidebar":"Collapse sidebar"} aria-expanded={!collapsed} onClick={()=>setCollapsed(value=>!value)}>{collapsed?"→":"← Collapse"}</button>
         {/* Navigation Items */}
         <nav className="space-y-2 px-4 pb-6 flex-1 overflow-y-auto">
           {navItems.map((item) => {
@@ -126,6 +113,7 @@ export function Sidebar({
 
             return (
               <a
+                title={collapsed?item.label:undefined}
                 key={item.id}
                 href={routePath({ view: item.id })}
                 aria-current={active ? "page" : undefined}
@@ -141,7 +129,7 @@ export function Sidebar({
                     : "text-white/70 hover:bg-white/10 hover:text-white"
                 }`}
               >
-                <span>{item.label}</span>
+                <span className={collapsed ? "lg:sr-only" : ""}>{item.label}</span>{collapsed && <span aria-hidden="true" className="hidden lg:inline font-bold" title={item.label}>{item.label.split(" ").map(word=>word[0]).join("").slice(0,3)}</span>}
                 <span
                   className={`text-xs ${active ? "text-white font-bold" : "text-white/40"}`}
                 >
@@ -165,6 +153,7 @@ export function Sidebar({
           </button>
         </nav>
       </aside>
+      </MobileNavigationDrawer>
 
       {/* Confirm Sign Out Popup */}
       <ConfirmSignOutModal

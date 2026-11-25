@@ -26,7 +26,7 @@ test("unauthenticated admin deep link redirects to login with safe return path",
   await expect(page.locator("#admin-sidebar")).toHaveCount(0);
 });
 
-test("desktop shell shows all routes, active highlight, email and top header", async ({ page }) => {
+test("desktop shell matches original sidebar and page heading layout", async ({ page }) => {
   await setup(page);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/admin/buyers");
@@ -35,7 +35,8 @@ test("desktop shell shows all routes, active highlight, email and top header", a
   await expect(sidebar.getByText(email, { exact: true })).toBeVisible();
   await expect(sidebar.getByRole("link")).toHaveCount(10);
   await expect(sidebar.getByRole("link", { name: "Buyers" })).toHaveAttribute("aria-current", "page");
-  await expect(page.getByRole("heading", { name: "Admin Management Console" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Buyers", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Admin Management Console" })).toHaveCount(0);
   const paths = ["dashboard", "suppliers", "buyers", "rfq-approvals", "quote-approvals", "rfqs", "rfq-tracking", "suppliers/catalog", "samples", "accepted-orders"];
   expect(await sidebar.getByRole("link").evaluateAll(nodes => nodes.map(node => node.getAttribute("href")))).toEqual(paths.map(path => `/admin/${path}`));
   await page.screenshot({ path: "docs/screenshots/phase1-desktop.png", fullPage: true });

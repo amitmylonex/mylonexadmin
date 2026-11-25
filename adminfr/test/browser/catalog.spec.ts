@@ -32,9 +32,11 @@ async function catalogApi(page: Page) {
           skipped: [{ ...identity(1), reason: "Duplicate fabric (already exists in active supplier catalog)" }],
           failures: [{ ...identity(2), reason: "Could not save this row. Retry or contact support." }] });
       }
+      if (path.includes("/manage/fabrics/")) { Object.assign(entries[0], body); return send({item:{id:entries[0].id}}); }
       if (path.includes("/products/")) { entries[0].isActive = body.isActive; return send({ item: entries[0] }); }
       return send({ item: { id: "44444444-4444-4444-8444-444444444444" } }, 201);
     }
+    if (path.includes("/manage/fabrics/")) return send({item:{...entries[0],fabricType:"cotton",composition:"100% Cotton",fabricState:"greige",productionCycle:"made-to-order",widthInches:58,leadTimeDays:21,stockQuantity:0,shadeVariants:[],imageUrls:[],finishOptions:[]}});
     if (path.endsWith("/catalog")) return send({ supplier, fabricCollections: [], catalogEntries: entries, wovenProducts: [], capabilities: [], totalPages: 1 });
     if (path === `/api/v1/admin/suppliers/${id}`) return send({ supplier });
     return send({ items: [], totalPages: 1 });
@@ -43,6 +45,7 @@ async function catalogApi(page: Page) {
 }
 async function openImporter(page: Page) {
   await page.goto(`/admin/suppliers/${id}/catalog`);
+  await page.getByRole("button", { name: "Open Excel importer", exact: true }).click();
   // Opening is lazy until the importer comes near the viewport.
   const launch = page.getByRole("button", { name: "Open importer", exact: true });
   if (await launch.count()) await launch.click();
@@ -238,7 +241,34 @@ test("original catalog authoring layout stays within desktop and mobile viewport
   await catalogApi(page); await page.goto(`/admin/suppliers/${id}/catalog`);
   const header = page.getByRole("heading", { name: "Import Fabrics from Excel", exact: true });
   const quickAdd = page.getByRole("heading", { name: "Create Quick-Add Fabric", exact: true });
+  await expect(quickAdd).toBeVisible();
+  await expect(header).toHaveCount(0);
+  await page.getByRole("button", { name: "Open Excel importer", exact: true }).click();
   await expect(header).toBeVisible();
   const headerBox = await header.boundingBox(), formBox = await quickAdd.boundingBox();
   expect(headerBox!.y).toBeLessThan(formBox!.y);
  });
+
+
+test("listing Edit opens a visible dialog from a scrolled row and saves existing fabric",async({page})=>{
+ const {posts,entries}=await catalogApi(page);await page.goto(`/admin/suppliers/${id}/catalog`);
+ const row=page.getByText("MYLO0041",{exact:true}).locator("..").locator("..").locator("..");
+ await row.getByRole("button",{name:"Edit",exact:true}).click();
+ const dialog=page.getByRole("dialog",{name:"Edit catalog item"});await expect(dialog).toBeVisible();
+ await expect(dialog.getByLabel("Fabric name",{exact:false})).toHaveValue("Existing");
+ await dialog.getByLabel("Fabric name",{exact:false}).fill("Updated Cotton");
+ await dialog.getByRole("button",{name:"Update fabric",exact:true}).click();
+ await expect(dialog).not.toBeVisible();await expect(page.getByText("Updated Cotton",{exact:true})).toBeVisible();
+ const write=posts.find(p=>p.path.includes('/manage/fabrics/'));expect(write?.method).toBe('PUT');expect(write?.body.shadeVariantAction).toBe('preserve');expect(entries[0].mylonexCode).toBe('MYLO0041');
+});
+test("edit load can retry and save errors preserve draft",async({page})=>{
+ await catalogApi(page);await page.goto(`/admin/suppliers/${id}/catalog`);
+ const endpoint=`http://127.0.0.1:4183/api/v1/admin/suppliers/${id}/catalog/manage/fabrics/*`;
+ await page.route(endpoint,r=>r.fulfill({status:503,json:{success:false,error:{message:'Editor temporarily unavailable'}}}));
+ const row=page.getByText("MYLO0041",{exact:true}).locator("..").locator("..").locator("..");await row.getByRole('button',{name:'Edit',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'Edit catalog item'});await expect(dialog.getByRole('alert')).toContainText('Editor temporarily unavailable');await page.unroute(endpoint);
+ await dialog.getByRole('button',{name:'Retry loading editor'}).click();await dialog.getByLabel('Fabric name',{exact:false}).fill('Retained draft');
+ await page.route(endpoint,r=>r.fulfill({status:409,json:{success:false,error:{message:'A fabric with this name, weave and GSM already exists'}}}));
+ await dialog.getByRole('button',{name:'Update fabric',exact:true}).click();await expect(dialog.getByText('A fabric with this name, weave and GSM already exists',{exact:true})).toBeVisible();await expect(dialog.getByLabel('Fabric name',{exact:false})).toHaveValue('Retained draft');
+ await dialog.getByRole('button',{name:'Close editor',exact:true}).click();await expect(dialog).not.toBeVisible();
+});

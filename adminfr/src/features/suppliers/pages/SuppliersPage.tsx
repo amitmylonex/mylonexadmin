@@ -1,6 +1,7 @@
-import { useEffect, useState, type MouseEvent } from "react";
-import { apiRequest } from "../../../lib/api";
-import { useDebouncedValue } from "../../../hooks/useDebouncedValue";
+import { useState, type MouseEvent } from "react";
+import { useAdminList } from "../../../hooks/useAdminList";
+import { useAdminViewState } from "../../../hooks/useAdminViewState";
+import { LoadingSkeleton } from "../../../components/LoadingSkeleton";
 import { SupplierStatusBadge } from "../../../components/Badge";
 import { StatusUpdateModal } from "../../../components/StatusUpdateModal";
 import { CreateSupplierForm } from "../../../components/CreateSupplierForm";
@@ -12,28 +13,12 @@ interface SupplierItem {
 export function SuppliersPage({ onSelectSupplier, onManageCatalog }: {
   onSelectSupplier: (id: string) => void; onManageCatalog?: (id: string) => void;
 }) {
-  const [suppliers, setSuppliers] = useState<SupplierItem[]>([]);
-  const [search, setSearch] = useState("");
-  const term = useDebouncedValue(search);
-  const [status, setStatus] = useState("ALL");
-  const [page, setPage] = useState(1), [pageSize, setPageSize] = useState(15);
-  const [totalPages, setTotalPages] = useState(1), [totalCount, setTotalCount] = useState(0);
-  const [loading, setLoading] = useState(true), [error, setError] = useState("");
-  const [revision, setRevision] = useState(0);
+  const [pageSize, setPageSize] = useAdminViewState("suppliers:page-size", 15);
+  const list = useAdminList<SupplierItem>("/api/v1/admin/suppliers", "suppliers", { pageSize: String(pageSize) });
+  const { items: suppliers, search, setSearch, page, setPage, totalPages, totalCount, loading, error, reload } = list;
+  const status = list.status || "ALL";
+  const setStatus = (value: string) => list.setStatus(value === "ALL" ? "" : value);
   const [target, setTarget] = useState<SupplierItem | null>(null);
-  const reload = () => setRevision(value => value + 1);
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoading(true); setError("");
-    const query = new URLSearchParams({ search: term, status, page: String(page), pageSize: String(pageSize) });
-    apiRequest<{ suppliers: SupplierItem[]; totalCount: number; totalPages: number }>(`/api/v1/admin/suppliers?${query}`, { signal: controller.signal })
-      .then(result => { if (!controller.signal.aborted) {
-        setSuppliers(result.suppliers); setTotalPages(result.totalPages); setTotalCount(result.totalCount);
-        if (page > result.totalPages) setPage(Math.max(1, result.totalPages));
-      } }).catch(failure => { if (!controller.signal.aborted) setError(failure.message || "Could not load suppliers"); })
-      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
-    return () => controller.abort();
-  }, [term, status, page, pageSize, revision]);
   const follow = (event: MouseEvent<HTMLAnchorElement>, id: string, catalog = false) => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     if (catalog && !onManageCatalog) return;
@@ -52,11 +37,13 @@ export function SuppliersPage({ onSelectSupplier, onManageCatalog }: {
         onChange={event => { setSearch(event.target.value); setPage(1); }} /></label>
     </section>
     {error && <div role="alert" className="card p-4 text-rose-700">{error}<button className="btn-outline ml-3" onClick={reload}>Retry</button></div>}
+    {list.refreshError && <p role="alert" className="text-sm text-amber-800">Could not update suppliers. Showing the last loaded data. <button className="underline" onClick={reload}>Retry</button></p>}
+    {list.refreshing && <p role="status" className="text-xs text-muted">Updating suppliers…</p>}
     <div className="overflow-x-auto rounded-2xl border border-border bg-white" aria-busy={loading}>
       <table className="min-w-[850px] w-full text-left text-sm"><thead className="bg-slate-50 text-muted"><tr>
         {["Company", "Email", "Location", "Status", "WhatsApp", "Catalog", "Actions"].map(label => <th key={label} scope="col" className="p-4">{label}</th>)}
       </tr></thead><tbody className="divide-y divide-border">
-        {loading ? <tr><td colSpan={7} className="p-10 text-center" role="status">Loading suppliers…</td></tr> : suppliers.map(supplier => <tr key={supplier.id}>
+        {loading ? <tr><td colSpan={7} className="p-10 text-center" ><LoadingSkeleton label="Loading suppliers" /></td></tr> : suppliers.map(supplier => <tr key={supplier.id}>
           <td className="p-4 font-semibold"><a className="text-primary hover:underline" href={`/admin/suppliers/${supplier.id}`} onClick={event => follow(event, supplier.id)}>{supplier.companyName}</a></td>
           <td className="p-4 text-muted">{supplier.user.email}</td><td className="p-4">{supplier.city || "—"}</td>
           <td className="p-4"><SupplierStatusBadge status={supplier.status} /></td>

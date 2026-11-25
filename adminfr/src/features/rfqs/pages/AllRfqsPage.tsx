@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useAdminViewState } from "../../../hooks/useAdminViewState";
 import { useAdminList } from "../../../hooks/useAdminList";
 import {
   AdminTable,
@@ -11,10 +12,12 @@ import {
 } from "../../../components/tables/AdminTable";
 export function AllRfqsPage({
   onSelectRfq,
+  onTrackRfq,
 }: {
   onSelectRfq?: (id: string) => void;
+  onTrackRfq?: (id:string)=>void;
 }) {
-  const [filters,setFilters]=useState({from:"",to:"",quantityMin:"",quantityMax:""});
+  const [filters,setFilters]=useAdminViewState("rfqs:filters",{from:"",to:"",quantityMin:"",quantityMax:""});
   const list = useAdminList("/api/v1/admin/rfqs", "rfqs",filters);
   const change=(key:string,value:string)=>{setFilters(previous=>({...previous,[key]:value}));list.setPage(1);};
   return (
@@ -23,6 +26,7 @@ export function AllRfqsPage({
         title="All RFQs"
         description="Review requester requirements, supplier matches and quote progress."
       />
+      {list.data?.summary&&<section aria-label="Sourcing summary" className="grid sm:grid-cols-3 gap-4">{[["Total RFQs",list.data.summary.totalRfqs],["Zero Matches (Sourcing)",list.data.summary.zeroMatches],["With Matches",list.data.summary.withMatches]].map(([label,count])=><article key={label} className="card p-5"><p className="text-xs text-muted">{label}</p><strong className="text-2xl">{Number(count).toLocaleString("en-IN")}</strong></article>)}</section>}
       <QueryToolbar
         list={list}
 
@@ -61,7 +65,7 @@ export function AllRfqsPage({
               <>
                 {r.fabricName}
                 <p className="text-xs text-muted">
-                  {r.quantity} m · {r.deliveryPincode}
+                  {r.quantity.toLocaleString("en-IN")} m · {r.deliveryPincode}
                 </p>
               </>
             ),
@@ -78,7 +82,7 @@ export function AllRfqsPage({
             ),
           },
           { label: "Created", render: (r) => date(r.createdAt) },
-          {label:"Tracking",render:r=><a className="text-primary whitespace-nowrap" href={`/admin/rfq-tracking/${r.id}`}>Track RFQ</a>},
+          {label:"Tracking",render:r=>r.requesterRole==="BUYER"?<a className="text-primary whitespace-nowrap" href={`/admin/rfq-tracking/${r.id}`} onClick={event=>{if(onTrackRfq&&!event.ctrlKey&&!event.metaKey&&!event.shiftKey&&!event.altKey){event.preventDefault();onTrackRfq(r.id);}}}>Track RFQ</a>:<span className="text-xs text-muted">Manage supplier RFQ in detail</span>},
         ]}
       />
       <Pagination list={list} />

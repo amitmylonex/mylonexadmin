@@ -1,10 +1,11 @@
 import { useState, type MouseEvent } from "react";
 import { useAdminList } from "../../../hooks/useAdminList";
+import { useAdminViewState } from "../../../hooks/useAdminViewState";
 import { AdminTable, PageHeading, ListFeedback, Pagination, date } from "../../../components/tables/AdminTable";
 import type { BuyerDirectoryItem } from "../../../contracts/buyer-contracts";
 
 export function BuyersPage({ onSelectBuyer }: { onSelectBuyer?: (id: string) => void }) {
-  const [from, setFrom] = useState(""), [to, setTo] = useState(""), [size, setSize] = useState("25");
+  const [from, setFrom] = useAdminViewState("buyers:from", ""), [to, setTo] = useAdminViewState("buyers:to", ""), [size, setSize] = useAdminViewState("buyers:page-size", "25");
   const invalidRange = Boolean(from && to && from > to);
   const list = useAdminList<BuyerDirectoryItem>("/api/v1/admin/buyers", "buyers", { from, to, pageSize: size }, { enabled: !invalidRange });
   const follow = (event: MouseEvent<HTMLAnchorElement>, id: string) => {

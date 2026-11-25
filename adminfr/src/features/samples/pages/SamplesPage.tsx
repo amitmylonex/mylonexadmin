@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from "react";
 import {useAdminList} from "../../../hooks/useAdminList";
+import {useApprovedSuppliers} from "../../../hooks/useApprovedSuppliers";
 import {apiRequest} from "../../../lib/api";
 import {AdminTable,PageHeading,QueryToolbar,ListFeedback,Pagination,Status,date,money} from "../../../components/tables/AdminTable";
 import {Dialog} from "../../../components/ui/Dialog";
@@ -10,15 +11,11 @@ export function SamplesPage(){
   const list=useAdminList("/api/v1/admin/samples","samples");
   const [target,setTarget]=useState<any>(null),[mode,setMode]=useState<"quote"|"view"|"delivered">("view"),[form,setForm]=useState(emptyForm);
   const [reason,setReason]=useState(""),[busy,setBusy]=useState(false),[message,setMessage]=useState(""),[error,setError]=useState("");
-  const [courier,setCourier]=useState({courierName:"",courierTrackingNumber:""}),[search,setSearch]=useState(""),[suppliers,setSuppliers]=useState<any[]>([]);
+  const [courier,setCourier]=useState({courierName:"",courierTrackingNumber:""}),[search,setSearch]=useState("");
   useEffect(()=>{const value=new URLSearchParams(window.location.search).get("search");if(value)list.setSearch(value.slice(0,150));},[]);
-  useEffect(()=>{
-    if(!target||mode!=="quote")return;
-    const controller=new AbortController();const timer=setTimeout(()=>apiRequest<any>("/api/v1/admin/suppliers?status=APPROVED&pageSize=25&search="+encodeURIComponent(search),{signal:controller.signal})
-      .then(result=>{if(!controller.signal.aborted)setSuppliers(result.suppliers||[]);}).catch(failure=>{if(!controller.signal.aborted){setSuppliers([]);setError(failure.message);}}),300);
-    return()=>{controller.abort();clearTimeout(timer);};
-  },[search,target,mode]);
-  function open(sample:any,next:typeof mode){setTarget(sample);setMode(next);setReason("");setError("");setSearch("");setSuppliers([]);setForm({...emptyForm,supplierId:sample.fulfillmentSupplier?.status==="APPROVED"?sample.fulfillmentSupplier.id:""});setCourier({courierName:"",courierTrackingNumber:""});}
+  const {suppliers,error:supplierError}=useApprovedSuppliers(search,!!target&&mode==="quote");
+  useEffect(()=>{if(supplierError)setError(supplierError.message);},[supplierError]);
+  function open(sample:any,next:typeof mode){setTarget(sample);setMode(next);setReason("");setError("");setSearch("");setForm({...emptyForm,supplierId:sample.fulfillmentSupplier?.status==="APPROVED"?sample.fulfillmentSupplier.id:""});setCourier({courierName:"",courierTrackingNumber:""});}
   const total=sampleTotal(form.quoteSampleCostInr,form.quoteCourierCostInr);
   const options=[...(target?.fulfillmentSupplier?.status==="APPROVED"?[target.fulfillmentSupplier]:[]),...suppliers.filter(s=>s.id!==target?.fulfillmentSupplier?.id)];
   async function save(action:"quote"|"reject"|"delivered"){

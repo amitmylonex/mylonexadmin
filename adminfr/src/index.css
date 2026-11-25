@@ -66,3 +66,11 @@ body {
     @apply w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-muted/80 transition duration-150 hover:border-border-strong focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-muted;
   }
 }
+
+/* Compact RFQ queue follows the original admin table layout. */
+.rfq-approval-table td { padding: 0.75rem 1rem; vertical-align: top; color: rgb(var(--color-ink) / 0.7); }
+.rfq-approval-table th { white-space: nowrap; }
+.rfq-approval-table td:nth-child(2) { min-width: 100px; max-width: 140px; }
+.rfq-approval-table td:nth-child(3) { min-width: 145px; }
+.rfq-approval-table td:nth-child(4) { min-width: 155px; }
+.rfq-approval-table td:nth-child(5) { min-width: 210px; }

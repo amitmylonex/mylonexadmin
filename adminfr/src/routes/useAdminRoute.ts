@@ -1,3 +1,4 @@
+import {adminNavigation} from "./admin-navigation";
 import { useEffect, useState } from "react";
 export type AdminRoute = {
   view: string;
@@ -6,18 +7,7 @@ export type AdminRoute = {
   rfqId?: string;
   trackingId?: string;
 };
-const slugs: Record<string, string> = {
-  dashboard: "dashboard",
-  suppliers: "suppliers",
-  buyers: "buyers",
-  "rfq-approvals": "rfq-approvals",
-  "quote-approvals": "quote-approvals",
-  rfqs: "rfqs",
-  "rfq-tracking": "rfq-tracking",
-  catalog: "suppliers/catalog",
-  samples: "samples",
-  "accepted-orders": "accepted-orders",
-};
+const slugs = Object.fromEntries(adminNavigation.map(item=>[item.id,item.slug]));
 export function routePath(route: AdminRoute) {
   if (route.supplierId)
     return `/admin/suppliers/${encodeURIComponent(route.supplierId)}${route.view === "catalog" ? "/catalog" : ""}`;
@@ -59,7 +49,9 @@ export function useAdminRoute() {
   return [
     route,
     (next: AdminRoute) => {
-      window.history.pushState(null, "", routePath(next));
+      const destination = routePath(next);
+      if (window.location.pathname === destination) return;
+      window.history.pushState(null, "", destination);
       setRoute(next);
       window.scrollTo({ top: 0 });
     },

@@ -1,5 +1,6 @@
 import React,{createContext,useCallback,useContext,useMemo,useState} from "react";
 import {apiRequest} from "../../../lib/api";
+import {queryClient} from "../../../services/query-client";
 type Integration={refresh:()=>void;close:()=>void;uploading:(busy:boolean)=>void};
 const Context=createContext<Integration|null>(null);
 export function CatalogIntegration({onSaved,onClose,children}:{onSaved:()=>void;onClose?:()=>void;children:React.ReactNode}){
@@ -31,7 +32,12 @@ export function useCatalogRequest(){
       path=path.replace(/\/(fabric-collections|woven-listings|capabilities)(?=\/|$)/,(_match,kind:string)=>"/manage/"+({"fabric-collections":"collections","woven-listings":"woven",capabilities:"capabilities"} as Record<string,string>)[kind]);
       if(/\/quick-add\//.test(path))path=path.replace("/quick-add/","/manage/fabrics/");
       const method=init.method==="PATCH"&&path!==original?"PUT":init.method;
-      const result=await apiRequest<any>(path,{...init,method});
+      // Catalog forms share the same first-page read as the supplier overview.
+      // Deduplicate concurrent mounts and reuse it when revisiting the tab.
+      const readPath = /\/catalog$/.test(path) ? `${path}?page=1&pageSize=20` : path;
+      const result = (!method || method.toUpperCase() === "GET")
+        ? await queryClient.fetchQuery({queryKey:["admin",readPath],queryFn:()=>apiRequest<any>(readPath,{...init,method})})
+        : await apiRequest<any>(path,{...init,method});
       return {ok:true,json:async()=>({data:result.item??result})};
     }catch(error:any){return {ok:false,json:async()=>({error:{message:error.message||"Unable to save catalog",details:error.details}})};}
     finally{if(imageUpload)uploading(false);}

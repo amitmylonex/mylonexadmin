@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { LoadingSkeleton } from "../../../components/LoadingSkeleton";
 import { apiRequest } from "../../../lib/api";
 import { PageHeading } from "../../../components/tables/AdminTable";
 export function DashboardPage({
@@ -8,36 +10,18 @@ export function DashboardPage({
   onSelectSupplier: (id: string) => void;
   onNavigate: (view: string) => void;
 }) {
-  const [data, setData] = useState<any>(null),
-    [error, setError] = useState(""),
-    [revision, setRevision] = useState(0);
-  useEffect(() => {
-    const c = new AbortController();
-    setError("");
-    apiRequest("/api/v1/admin/dashboard", { signal: c.signal })
-      .then(setData)
-      .catch((e) => {
-        if (!c.signal.aborted) setError(e.message);
-      });
-    return () => c.abort();
-  }, [revision]);
-  const m = data?.platformMetrics,
-    b = data?.buyerMetrics;
+  const platform = useQuery({ queryKey: ["admin", "dashboard", "platform"], queryFn: () => apiRequest("/api/v1/admin/dashboard/platform") });
+  const buyers = useQuery({ queryKey: ["admin", "dashboard", "buyers"], queryFn: () => apiRequest("/api/v1/admin/dashboard/buyers") });
+  const moderation = useQuery({ queryKey: ["admin", "dashboard", "moderation"], queryFn: () => apiRequest("/api/v1/admin/dashboard/moderation") });
+  const m = platform.data?.platformMetrics, b = buyers.data?.buyerMetrics;
+  const data = moderation.data;
   return (
     <div className="space-y-6">
       <PageHeading title="Platform Metrics" />
-      {error && (
-        <div role="alert" className="card p-5 text-sm text-red-700">
-          {error}
-          <button
-            onClick={() => setRevision((r) => r + 1)}
-            className="ml-4 underline"
-          >
-            Retry
-          </button>
-        </div>
-      )}
-      {!data && !error && <p role="status">Loading metrics…</p>}
+      {[platform, buyers, moderation].map((widget, index) => <React.Fragment key={index}>
+        {widget.isPending && <LoadingSkeleton label={["Loading platform metrics", "Loading buyer metrics", "Loading supplier activity"][index]} rows={2} />}
+        {widget.error && <div role="alert" className="card p-5 text-sm text-red-700">{["Platform metrics", "Buyer metrics", "Supplier activity"][index]}: {widget.error.message}<button onClick={() => { void widget.refetch(); }} className="ml-4 underline">Retry</button></div>}
+      </React.Fragment>)}
       {m && (
         <>
           <div className="grid md:grid-cols-3 gap-6">
@@ -80,7 +64,10 @@ export function DashboardPage({
               </article>
             ))}
           </div>
-          <section className="card p-5">
+
+        </>
+      )}
+      {b && (          <section className="card p-5">
             <h2 className="label mb-4">Buyers</h2>
             <div className="flex gap-8 flex-wrap">
               {[
@@ -94,9 +81,7 @@ export function DashboardPage({
                 </div>
               ))}
             </div>
-          </section>
-        </>
-      )}
+          </section>)}
       <section className="card p-5">
         <h2 className="text-sm text-muted mb-3">Admin workflow shortcuts</h2>
         <div className="flex gap-3 flex-wrap">
@@ -119,7 +104,7 @@ export function DashboardPage({
           ))}
         </div>
       </section>
-      {data?.recentPending.length > 0 && (
+      {data?.recentPending?.length > 0 && (
         <section className="card p-5">
           <h2 className="text-sm font-semibold mb-3">
             Recent pending suppliers
