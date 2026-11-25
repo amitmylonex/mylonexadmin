@@ -1,7 +1,12 @@
 import { prisma } from "../../infrastructure/db.js";
+import { MemoryCache } from "../../shared/cache/ttl-cache.js";
+const cache = new MemoryCache(1);
 const openRfqs = ["pending", "open", "in_progress"];
 const openSamples = ["requested", "in_progress", "dispatched"];
 export async function metrics(client = prisma) {
+  return client === prisma ? cache.remember("buyers", 15_000, () => readMetrics(client)) : readMetrics(client);
+}
+async function readMetrics(client: typeof prisma) {
   const now = Date.now();
   const [
     totalBuyers,

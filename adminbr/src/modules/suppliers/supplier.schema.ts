@@ -2,6 +2,7 @@ import { z } from "zod";
 import { SupplierType } from "@prisma/client";
 export const supplierListSchema = z.object({
   page: z.coerce.number().int().min(1).max(100000).default(1), pageSize: z.coerce.number().int().min(1).max(50).default(15),
+  unmatchedForRfq: z.string().uuid().optional(),
   status: z.enum(["ALL", "PENDING", "APPROVED", "SUSPENDED"]).optional(), search: z.string().trim().max(200).optional(),
   supplierType: z.nativeEnum(SupplierType).optional(), city: z.string().trim().max(200).optional(), catalogStatus: z.enum(["active", "empty"]).optional(),
 });

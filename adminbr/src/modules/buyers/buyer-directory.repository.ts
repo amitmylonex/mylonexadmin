@@ -26,7 +26,8 @@ export async function list(q: BuyerListQuery, client = prisma) {
     client.user.findMany({
       where,
       ...buyerPaging(q),
-      include: {
+      select: {
+        id: true, fullName: true, email: true, createdAt: true,
         buyerProfile: { select: { company: true, phone: true, city: true, gstNumber: true } },
         _count: {
           select: {

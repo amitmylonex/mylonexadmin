@@ -8,6 +8,10 @@ import { ZodError } from "zod";
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
+import compress from "@fastify/compress";
+import { randomUUID } from "node:crypto";
+import { parseRuntime } from "./config/runtime.js";
+import { MemoryCache } from "./shared/cache/ttl-cache.js";
 import { apiError } from "./common/errors/api-error.js";
 import { createAdminAuthenticator, type AdminSessionResolver } from "./modules/auth/verify-admin.js";
 import { config } from "./config.js";
@@ -15,8 +19,7 @@ import { authRoutes } from "./modules/auth/auth.routes.js";
 import { dashboardRoutes } from "./modules/dashboard/dashboard.routes.js";
 import { supplierRoutes } from "./modules/suppliers/supplier.routes.js";
 import { buyerRoutes } from "./modules/buyers/buyer.routes.js";
-import { rfqRoutes } from "./modules/rfqs/rfq.routes.js";
-import { moderationRoutes } from "./modules/rfqs/moderation.routes.js";
+import { rfqRoutes,moderationRoutes } from "./modules/rfqs/routes.js";
 import { sampleRoutes } from "./modules/samples/sample.routes.js";
 import { catalogRoutes } from "./modules/catalog/catalog.routes.js";
 import { catalogActionsRoutes } from "./modules/catalog/catalog-actions.routes.js";
@@ -25,9 +28,18 @@ declare module "fastify" {
   interface FastifyInstance { authenticate: ReturnType<typeof createAdminAuthenticator> }
 }
 export function buildApp(options: { resolveSession?: AdminSessionResolver; checkSchema?: typeof checkDatabaseSchema;
-  catalogActions?: Parameters<typeof catalogActionsRoutes>[1]; buyerHandlers?: Parameters<typeof buyerRoutes>[1]; moderationHandlers?: Parameters<typeof moderationRoutes>[1]; quoteHandlers?: Parameters<typeof quoteRoutes>[1]; rfqHandlers?: Parameters<typeof rfqRoutes>[1]; receiptRecorder?: Parameters<typeof receiptBridgeRoutes>[1]; sampleHandlers?: Parameters<typeof sampleRoutes>[1] } = {}) {
+  dashboardHandlers?: Parameters<typeof dashboardRoutes>[1]; catalogActions?: Parameters<typeof catalogActionsRoutes>[1]; buyerHandlers?: Parameters<typeof buyerRoutes>[1]; moderationHandlers?: Parameters<typeof moderationRoutes>[1]; quoteHandlers?: Parameters<typeof quoteRoutes>[1]; rfqHandlers?: Parameters<typeof rfqRoutes>[1]; receiptRecorder?: Parameters<typeof receiptBridgeRoutes>[1]; sampleHandlers?: Parameters<typeof sampleRoutes>[1] } = {}) {
+  const runtime = parseRuntime(process.env);
+  const readiness = new MemoryCache(1);
   const app = Fastify({
+    bodyLimit: runtime.bodyLimit,
+    requestTimeout: runtime.requestTimeout,
+    trustProxy: runtime.trustProxy,
+    genReqId: () => randomUUID(),
+    requestIdHeader: false,
+    disableRequestLogging: true,
     logger: {
+      serializers: { req: req => ({ method: req.method }), err: () => ({ type: "Error", message: "Internal error", stack: "" }) },
       redact: ["req.headers.authorization", "req.headers.cookie", "req.headers.x-mylonex-signature", "password", "token"],
       level: process.env.NODE_ENV === "production" ? "info" : "debug",
     },
@@ -40,7 +52,7 @@ export function buildApp(options: { resolveSession?: AdminSessionResolver; check
     if (code === "P2002") return reply.code(409).send(apiError(409, "A record with these unique values already exists."));
     const httpError = error as { statusCode?: number; message: string };
     const status = error instanceof PublicError ? error.statusCode : httpError.statusCode && httpError.statusCode >= 400 && httpError.statusCode < 500 ? httpError.statusCode : 500;
-    if (status === 500) request.log.error({ err: error, requestId: request.id }, "Request failed");
+    if (status === 500) request.log.error({ requestId: request.id }, "Request failed");
     return reply.code(status).send(apiError(status, status >= 500 && !(error instanceof PublicError) ? "Unable to complete this request. Please retry or contact support." : httpError.message));
   });
   app.addHook("preSerialization", async (request,reply,payload) => {
@@ -55,20 +67,28 @@ export function buildApp(options: { resolveSession?: AdminSessionResolver; check
     }
     return payload;
   });
-  app.addHook("onSend", async (request, reply) => { reply.header("X-Request-Id", request.id); });
+  app.addHook("onSend", async (request, reply) => {
+    reply.header("X-Request-Id", request.id);
+    reply.header("Cache-Control", "no-store");
+  });
+  app.addHook("onResponse", async (request, reply) => {
+    request.log.info({ method: request.method, route: request.routeOptions.url || "unmatched",
+      statusCode: reply.statusCode, elapsedMs: reply.elapsedTime }, "Request completed");
+  });
   app.get("/ready", async (_request, reply) => {
-    try { const missing = await (options.checkSchema || checkDatabaseSchema)(); if (missing.length) return reply.code(503).send({ ...apiError(503, "Database schema upgrade required", "DATABASE_SCHEMA_UNAVAILABLE"), status: "unavailable" }); return { status: "ready" }; }
+    try { const missing = await readiness.remember("schema", 5000, options.checkSchema || checkDatabaseSchema); if (missing.length) return reply.code(503).send({ ...apiError(503, "Database schema upgrade required", "DATABASE_SCHEMA_UNAVAILABLE"), status: "unavailable" }); return { status: "ready" }; }
     catch { return reply.code(503).send({ ...apiError(503, "Database unavailable", "DATABASE_UNAVAILABLE"), status: "unavailable" }); }
   });
   // Enable CORS for adminfr (Vite SPA on port 5173)
   app.register(cors, {
-    origin: [...new Set((process.env.FRONTEND_ORIGINS || config.frontendOrigin).split(",").map(s=>s.trim()).filter(Boolean).concat(process.env.NODE_ENV === "production" ? [] : ["http://localhost:5173","http://127.0.0.1:5173"]))],
+    origin: runtime.origins,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     exposedHeaders: ["X-Request-Id"],
   });
   app.register(helmet);
+  app.register(compress, { threshold: 2048, encodings: ["gzip", "deflate"], customTypes: /^application\/json/ });
   app.decorate("authenticate", createAdminAuthenticator(options.resolveSession));
   // onRequest runs before body parsing: every method and future admin route is guarded.
   app.after(() => app.addHook("onRequest", async (request, reply) => {
@@ -84,7 +104,7 @@ export function buildApp(options: { resolveSession?: AdminSessionResolver; check
   // Register all modules
   app.register(authRoutes);
   app.register(async scope => receiptBridgeRoutes(scope,options.receiptRecorder));
-  app.register(dashboardRoutes);
+  app.register(async scope => dashboardRoutes(scope, options.dashboardHandlers));
   app.register(supplierRoutes);
   app.register(async scope => { await buyerRoutes(scope, options.buyerHandlers); });
   app.register(async scope => rfqRoutes(scope, options.rfqHandlers));

@@ -1,4 +1,4 @@
-import {allowAuthVerification} from "../../common/auth/request-limit.js";
+import {allowAuthVerification, allowAuthEndpoint} from "../../common/auth/request-limit.js";
 import { resolveAdminSession, AdminSessionError } from "./admin-session.js";
 import { allowAdminWrite } from "./write-limit.js";
 import { FastifyRequest, FastifyReply } from "fastify";
@@ -29,7 +29,11 @@ export function createAdminAuthenticator(resolve: AdminSessionResolver = token =
   reply: FastifyReply
 ) {
   // Global namespace protection and older route hooks share this verified identity.
-  if (request.admin) return;
+  if (request.admin?.role === "ADMIN") return;
+  if (request.admin) return reply.code(403).send({error:"Admin privileges required"});
+  if (request.url.split("?")[0].startsWith("/api/v1/admin/auth/") && !allowAuthEndpoint(request.ip)) {
+    return reply.header("Retry-After", "60").code(429).send({ error: "Too many session checks. Retry shortly." });
+  }
   const authHeader = request.headers.authorization;
   if (!authHeader || !/^Bearer\s+\S+$/i.test(authHeader)) {
     return reply.status(401).send({ error: "Missing or invalid authorization header" });
@@ -40,7 +44,7 @@ export function createAdminAuthenticator(resolve: AdminSessionResolver = token =
 
   try {
     const dbUser = await resolve(token);
-
+    if (dbUser.role !== "ADMIN") return reply.code(403).send({error:"Admin privileges required"});
     request.admin = dbUser;
     if (!["GET", "HEAD", "OPTIONS"].includes(request.method) && !allowAdminWrite(dbUser.id)) {
       return reply.header("Retry-After", "60").code(429).send({ error: "Too many admin changes. Wait a minute and retry." });

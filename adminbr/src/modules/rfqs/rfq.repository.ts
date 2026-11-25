@@ -24,6 +24,7 @@ export const matchSelect = {
   adminReviewedByUserId: true,
   adminReviewNote: true,
   forwardedAt: true,
+  supplierRejectedAt: true, supplierRejectionReason: true, whatsappStatus: true,
   supplier: { select: supplierSelect },
   response: {
     select: {
@@ -34,7 +35,7 @@ export const matchSelect = {
       leadTimeDays: true,
       moq: true,
       quoteType: true,
-      supplierOriginalPrice: true,
+      supplierOriginalPrice: true, buyerDecisionReason: true, buyerDecisionAt: true, adminReviewNote: true, totalValueEstimate: true, dispatchLocation: true, sampleAvailability: true,
     },
   },
 } satisfies Prisma.CommunicationRequestMatchSelect;
@@ -85,9 +86,11 @@ export async function listRfqs(q: ListQuery) {
 export async function rfqDetail(id: string, q: ListQuery) {
   const rfq = await prisma.communicationRequest.findUnique({
     where: { id },
-    include: {
-      buyer: { select: party },
-      _count: { select: { matches: true } },
+    select: {
+      id:true,rfqNumber:true,fabricName:true,quantity:true,status:true,requesterRole:true,priority:true,
+      deliveryPincode:true,requiredDeliveryDate:true,targetPriceMin:true,targetPriceMax:true,productionCycle:true,
+      contactPhone:true,buyerMessage:true,buyerImageUrls:true,specPayload:true,createdAt:true,adminReviewedAt:true,
+      buyer:{select:party},_count:{select:{matches:true}},
     },
   });
   if (!rfq) return null;
@@ -97,7 +100,8 @@ export async function rfqDetail(id: string, q: ListQuery) {
     orderBy: [{ score: "desc" }, { id: "asc" }],
     select: matchSelect,
   });
-  return { rfq: { ...rfq, matches }, ...pageInfo(rfq._count.matches, q) };
+  const groups = await prisma.communicationRequestMatch.groupBy({ by:["status"],where:{communicationRequestId:id},_count:{_all:true} });
+  return { rfq: { ...rfq, matches, matchCounts:Object.fromEntries(groups.map(group=>[group.status,group._count._all])) }, ...pageInfo(rfq._count.matches, q) };
 }
 export async function listPendingMatches(q: ListQuery) {
   const contains = { contains: q.search, mode: "insensitive" as const };
@@ -136,30 +140,4 @@ export async function listPendingMatches(q: ListQuery) {
   ]);
   return { matches, ...pageInfo(total, q) };
 }
-export async function decideMatches(
-  ids: string[],
-  decision: "forward" | "reject",
-  actor: string,
-  note?: string,
-) {
-  return prisma.$transaction(async (tx) => {
-    const changed = await tx.communicationRequestMatch.updateMany({
-      where: {
-        id: { in: ids },
-        status: "PENDING_ADMIN_REVIEW",
-        ...(decision === "forward" ? { supplier: { status: "APPROVED" } } : {}),
-      },
-      data: {
-        status:
-          decision === "forward"
-            ? "FORWARDED_TO_SUPPLIER"
-            : "REJECTED_BY_ADMIN",
-        adminReviewedAt: new Date(),
-        adminReviewedByUserId: actor,
-        adminReviewNote: note || null,
-        ...(decision === "forward" ? { forwardedAt: new Date() } : {}),
-      },
-    });
-    return { changedCount: changed.count, requestedCount: ids.length };
-  });
-}
+export { decideMatchBatch as decideMatches } from "./matching/match-decision.service.js";

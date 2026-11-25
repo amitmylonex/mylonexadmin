@@ -35,30 +35,30 @@ export async function decide(
   body: unknown,
   actor: string,
 ) {
-  const input = decisionSchema.parse(body || {});
+  const input = decisionSchema.strict().parse(body || {});
   const result = await repo.decideMatches(
     [idSchema.parse({ id }).id],
     decision,
     actor,
     input.note,
   );
-  if (!result.changedCount)
+  if (!result.changedCount && !result.alreadyReviewedCount)
     throw new PublicError(
       409,
-      "Match is no longer pending or supplier is not approved. Refresh the queue.",
+      result.failures[0]?.message || "Match is no longer pending or supplier is not approved. Refresh the queue.",
     );
   return {
     ok: true,
     ...result,
-    ...(decision === "forward" ? { notification: notificationStatus } : {}),
+    notification: result.notification,
   };
 }
 export async function bulk(body: unknown, actor: string) {
-  const input = bulkDecisionSchema.parse(body);
+  const input = bulkDecisionSchema.strict().parse(body);
   return {
     ok: true,
     ...(await repo.decideMatches(input.ids, input.decision, actor, input.note)),
-    notification: input.decision === "forward" ? notificationStatus : undefined,
+
   };
 }
 export { manualRoute as manual } from "./tracking/actions.js";

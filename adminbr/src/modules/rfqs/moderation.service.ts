@@ -33,6 +33,7 @@ export function createModerationService(client = prisma, matcher = findRoutingCa
       }
       return { requestedCount: input.ids.length, changedCount: results.filter(r => !r.alreadyReviewed).length,
         failedCount: failures.length, results, failures,
+        awaitingSupplierCount: input.decision === "approve" ? results.filter(r => !r.alreadyReviewed && r.matchedSupplierCount === 0).length : 0,
         queuedCount: results.reduce((sum, r) => sum + r.queuedCount, 0), matchedSupplierCount: results.reduce((sum, r) => sum + r.matchedSupplierCount, 0) };
     },
   };

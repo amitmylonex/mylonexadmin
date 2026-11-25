@@ -24,7 +24,13 @@ export async function commitModeration(id: string, decision: "approve" | "reject
       await tx.communicationRequest.update({ where: { id }, data: { status: target, adminReviewNote: note, adminReviewedAt: now, adminReviewedByUserId: actor } });
       return { rfqId: id, status: target, alreadyReviewed: false, matchedSupplierCount: 0, queuedCount: 0, dashboardOnlyCount: 0 };
     }
-    if (!prepared.candidates.length) throw new PublicError(409, "No eligible approved supplier matches. Review specs or add an explicit manual match.");
+    if (!prepared.candidates.length) {
+      await tx.communicationRequest.update({ where: { id }, data: {
+        status: target, adminReviewNote: note || null, adminReviewedAt: now, adminReviewedByUserId: actor,
+      } });
+      return { rfqId: id, status: target, alreadyReviewed: false, routingPending: true,
+        matchedSupplierCount: 0, queuedCount: 0, dashboardOnlyCount: 0 };
+    }
     const ids = [...new Set(prepared.candidates.map(row => row.supplierId))].sort();
     const locked = await tx.$queryRaw<Array<{ id: string }>>(Prisma.sql`SELECT id FROM "SupplierProfile" WHERE id IN (${Prisma.join(ids)}) AND status = 'APPROVED' ORDER BY id FOR SHARE`);
     const suppliers = await tx.supplierProfile.findMany({ where: { id: { in: locked.map(row => row.id) }, status: "APPROVED" } });

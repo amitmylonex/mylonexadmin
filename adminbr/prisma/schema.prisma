@@ -170,6 +170,8 @@ model User {
   orders                   Order[]
   conversations            Conversation[]
   deletionRequests         AccountDeletionRequest[]
+
+  @@index([role, createdAt(sort: Desc), id], map: "users_role_created_page_idx")
 }
 
 // ─── Buyer Profile ────────────────────────────────────────
@@ -222,6 +224,9 @@ model SupplierProfile {
   communicationRequestMatches   CommunicationRequestMatch[]
   communicationRequestResponses CommunicationRequestResponse[]
   orders                        Order[]
+
+  @@index([status, createdAt(sort: Desc), id], map: "suppliers_status_created_page_idx")
+  @@index([createdAt(sort: Desc), id], map: "suppliers_created_page_idx")
 }
 
 // ─── Products (Supplier Catalog) ──────────────────────────
@@ -453,6 +458,7 @@ model SupplierCatalog {
   @@index([supplierId])
   @@index([fabricCollectionId])
   @@index([isActive])
+  @@index([supplierId, createdAt(sort: Desc), id], map: "supplier_catalog_supplier_page_idx")
   @@map("supplier_catalog")
 }
 
@@ -488,6 +494,7 @@ model WovenProduct {
 
   @@index([supplierId])
   @@index([isActive])
+  @@index([supplierId, createdAt(sort: Desc), id], map: "woven_products_supplier_page_idx")
   @@map("woven_products")
 }
 
@@ -559,6 +566,7 @@ model SupplierCapability {
 
   @@index([supplierId])
   @@index([isActive])
+  @@index([supplierId, createdAt(sort: Desc), id], map: "supplier_capabilities_supplier_page_idx")
   @@map("supplier_capabilities")
 }
 
@@ -579,6 +587,7 @@ model FabricCollection {
   @@unique([supplierId, name])
   @@index([supplierId])
   @@index([isArchived])
+  @@index([supplierId, createdAt(sort: Desc), id], map: "fabric_collections_supplier_page_idx")
   @@map("fabric_collections")
 }
 

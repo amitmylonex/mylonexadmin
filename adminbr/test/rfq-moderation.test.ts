@@ -72,6 +72,30 @@ test("non-consented suppliers receive dashboard routing without WhatsApp calls o
   const result = await commitModeration(id, "approve", "admin", undefined, {updatedAt:now, candidates:[candidate]}, db.client);
   assert.equal(result.dashboardOnlyCount,1); assert.equal(result.queuedCount,0); assert.equal(db.matches[0].whatsappStatus,"SKIPPED_NO_CONSENT");
 });
+
+test("unmatched RFQ can be approved for later sourcing without routes or notifications", async () => {
+  const db = memory();
+  const result = await commitModeration(id,"approve","admin","Source suppliers later",{updatedAt:now,candidates:[]},db.client);
+  assert.equal(db.request.status,"approved");
+  assert.equal(db.request.adminReviewedByUserId,"admin");
+  assert.equal(db.request.adminReviewNote,"Source suppliers later");
+  assert.ok(db.request.adminReviewedAt instanceof Date);
+  assert.equal(result.routingPending,true);
+  assert.equal(result.matchedSupplierCount,0); assert.equal(result.queuedCount,0);
+  assert.equal(db.matches.length,0);
+  assert.equal(db.sql.length,1); // Only the RFQ lock; no supplier locks or routing writes.
+  const replay = await commitModeration(id,"approve","admin",undefined,{updatedAt:now,candidates:[]},db.client);
+  assert.equal(replay.alreadyReviewed,true); assert.equal(db.matches.length,0);
+});
+
+test("bulk approval counts unmatched RFQs awaiting sourcing", async () => {
+  const db = memory();
+  const service = createModerationService(db.client,async () => [],commitModeration);
+  const result = await service.bulk({ids:[id],decision:"approve",note:"Ready for sourcing"},"admin");
+  assert.equal(result.changedCount,1); assert.equal(result.failedCount,0);
+  assert.equal(result.awaitingSupplierCount,1); assert.equal(result.queuedCount,0);
+  assert.equal(db.request.status,"approved");
+});
 test("supplier suspended after preview and inactive listings cannot receive matches", async () => {
   for (const change of ["supplier", "listing"]) {
     const db = memory(); if (change === "supplier") db.tx.supplierProfile.findMany = async () => []; else db.tx.supplierCatalog.findFirst = async () => null;

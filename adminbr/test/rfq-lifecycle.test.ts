@@ -65,8 +65,8 @@ test("delivered is not read, lowercase statuses work, and queued does not imply 
   const queued=trackingState(match({whatsappStatus:"QUEUED"}),fixtureNow);assert.equal(queued.sent,false);assert.equal(queued.attempted,false);
   const projected=projectTrackingSupplier(inquiry,match({whatsappStatus:"READ",whatsappReadAt:null}),fixtureNow);assert.equal(projected.deliveryStatus,"Read");assert.equal(projected.readAt,null);assert.ok(projected.unavailableEvents.includes("Read timestamp"));
 });
-test("manual route is immediate for active RFQs, staged for pending, and consent-free routing stays on portal",async()=>{
-  for(const state of ["approved","pending"]){const db=memory(state);db.supplier.whatsappConsent=false;const result=await manualRoute(id,{supplierId:mill,note:"Additional capacity"},"admin",db.client);assert.equal(result.match.status,state==="pending"?"PENDING_ADMIN_REVIEW":"FORWARDED_TO_SUPPLIER");assert.equal(db.created[0].whatsappStatus,state==="pending"?undefined:"SKIPPED_NO_CONSENT");}
+test("manual matches always await Admin review, including active RFQs",async()=>{
+  for(const state of ["approved","pending"]){const db=memory(state);db.supplier.whatsappConsent=false;const result=await manualRoute(id,{supplierId:mill,note:"Additional capacity"},"admin",db.client);assert.equal(result.match.status,"PENDING_ADMIN_REVIEW");assert.equal(db.created[0].whatsappStatus,undefined);assert.equal(db.created[0].forwardedAt,undefined);}
 });
 test("manual routing refuses suspended, closed and accepted RFQs, and concurrent duplicates",async()=>{
   for(const setup of ["suspended","closed","accepted"]){const db=memory(setup==="closed"?"closed":"approved");if(setup==="suspended")db.supplier.status="SUSPENDED";if(setup==="accepted")db.accepted=true;await assert.rejects(manualRoute(id,{supplierId:mill,note:"Extra"},"admin",db.client));assert.equal(db.created.length,0);}

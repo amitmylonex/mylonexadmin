@@ -48,3 +48,6 @@ No existing old Admin feature is removed as obsolete. Unsupported buyer account 
 ## Implementation outcome
 
 The table above deliberately preserves the pre-implementation audit. The final module-by-module status, folder structure, verification boundaries, remaining gaps and production checklist are in `complete-admin-implementation-summary.md`. Current source/API inventory: `complete-admin-code-and-api-inventory.json`. Machine-readable checks: `complete-admin-check-results.json`; disposable workflow results: `complete-admin-test-db-results.json`. Core auth/dashboard/supplier/buyer/RFQ/tracking/quote/sample/order code is implemented; notification dispatch, canonical automatic rematching and specified advanced catalog controls remain explicit gaps. Full Admin parity and production readiness are not claimed.
+
+
+RFQ follow-up (24 November 2026): persisted staged re-matching, transactional match forwarding, structured detail/navigation and an explicit WhatsApp worker adapter are now implemented. See `../../docs/rfq-admin-workflow-implementation-report.md` for verified results and remaining integration/performance limits. Earlier gap lists above describe their original implementation stage.

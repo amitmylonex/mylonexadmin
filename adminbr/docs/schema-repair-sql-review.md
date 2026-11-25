@@ -13,7 +13,7 @@ No DROP TABLE, DROP COLUMN, TRUNCATE, DELETE, reset/reseed of existing codes, au
 
 ## Target and scope
 
-Inspected shared target (NOT modified): `postgresql://postgres.[REDACTED]:REDACTED@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres?schema=public`. Exact credential-free target-identity SHA-256: `d971bdf1817236c92f6e149a8851c261801991a92139465141116072d054d8ca`. PostgreSQL 17.6. Both `adminbr/.env` and old `mylonex-nextjs/.env` DATABASE_URL resolve to that same identity. Old DIRECT_URL uses the same host/user/database on port 5432; use an operator-confirmed direct or session connection for deployment, not an unreviewed pooler endpoint. Environment labels cannot prove that this is the intended production tenant.
+Inspected shared target (NOT modified): `postgresql://postgres.[REDACTED]:[REDACTED]@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres?schema=public`. Exact credential-free target-identity SHA-256: `d971bdf1817236c92f6e149a8851c261801991a92139465141116072d054d8ca`. PostgreSQL 17.6. Both `adminbr/.env` and old `mylonex-nextjs/.env` DATABASE_URL resolve to that same identity. Old DIRECT_URL uses the same host/user/database on port 5432; use an operator-confirmed direct or session connection for deployment, not an unreviewed pooler endpoint. Environment labels cannot prove that this is the intended production tenant.
 
 Disposable target only: `postgresql://repair_test@127.0.0.1:55489/schema_repair_test?schema=public`. PostgreSQL 18.2 in this workspace's private `.schema-repair/pgdata`; synthetic rows only, no live row data copied, no Supabase Auth/email/storage operations. Schema-only public dump is local/private, not a backup of production data. Port 55439 was already occupied and was not used or changed.
 

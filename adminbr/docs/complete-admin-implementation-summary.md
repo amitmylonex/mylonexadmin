@@ -71,3 +71,6 @@ Production application checklist:
 - Keep the previous application build available; application rollback should preserve additive schema and all existing codes. Never reset counters or reseed.
 
 Next safe action: authenticated read-only old/new screen comparison and disposable-browser workflow verification. This does not authorize shared business mutations or production deployment.
+
+
+RFQ follow-up (24 November 2026): persisted staged re-matching, transactional match forwarding, structured detail/navigation and an explicit WhatsApp worker adapter are now implemented. See `../../docs/rfq-admin-workflow-implementation-report.md` for verified results and remaining integration/performance limits. Earlier gap lists above describe their original implementation stage.

@@ -43,7 +43,7 @@ export const trackingQuerySchema = z
   .refine((value) => !value.from || !value.to || value.from <= value.to, {
     path: ["to"],
     message: "End date must follow start date",
-  });
+  }).refine(value=>!value.from||!value.to||(new Date(value.to).getTime()-new Date(value.from).getTime())/86400000<=366,{path:["to"],message:"Choose a date range of at most 366 days"});
 export const trackingIdSchema = z.string().uuid("Invalid RFQ identifier");
 export const trackingDetailQuerySchema = z.object({
   page: z.coerce.number().int().min(1).max(100000).default(1),

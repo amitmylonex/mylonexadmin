@@ -15,9 +15,11 @@
     "test:db": "tsx test/database-smoke.ts",
     "postbuild": "node tools/copy-runtime.mjs",
     "audit:backend": "tsx tools/backend-audit.ts",
-    "db:repair-admin": "tsx tools/apply-admin-schema.ts --apply"
+    "db:repair-admin": "tsx tools/apply-admin-schema.ts --apply",
+    "worker:rfq": "tsx src/modules/rfqs/notifications/worker.ts"
   },
   "dependencies": {
+    "@fastify/compress": "^8.3.1",
     "@fastify/cors": "^10.0.1",
     "@fastify/helmet": "^13.2.0",
     "@prisma/client": "^5.22.0",

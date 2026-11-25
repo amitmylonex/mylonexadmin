@@ -6,6 +6,7 @@ import { getRfqTracking, getRfqTrackingDetail } from "./tracking/service.js";
 import { registry } from "./registry.js";
 import { manualRoute, queueResend } from "./tracking/actions.js";
 import { dispatchLogs } from "./tracking/dispatch-logs.js";
+import {rerunController} from "./controller.js";
 const defaults = {registry,manualRoute,queueResend,dispatchLogs,getRfqTrackingDetail};
 export async function rfqRoutes(app: FastifyInstance, handlers = defaults) {
   const auth = { preHandler: [requireAdminAuth] };
@@ -48,6 +49,10 @@ export async function rfqRoutes(app: FastifyInstance, handlers = defaults) {
       requestId: r.id,
     });
     return result;
+  });
+  app.post("/api/v1/admin/rfqs/:id/matches/re-run", auth, async r => {
+    const id = (r.params as {id:string}).id;
+    return rerunController(id,r.body,r.admin!,r.id);
   });
   app.post("/api/v1/admin/rfqs/:id/manual-match", auth, async (r) => {
     const result = await handlers.manualRoute((r.params as any).id, r.body, r.admin!.id);

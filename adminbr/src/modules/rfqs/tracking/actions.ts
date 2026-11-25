@@ -32,14 +32,10 @@ export async function manualRoute(rawId: unknown, body: unknown, actor: string, 
     await tx.$queryRaw`SELECT id FROM "SupplierProfile" WHERE id=${input.supplierId} FOR SHARE`;
     const supplier = await tx.supplierProfile.findFirst({where:{id:input.supplierId,status:"APPROVED"}});
     if (!supplier) throw new PublicError(409,"Choose a currently approved supplier");
-    if (await tx.communicationRequestMatch.findFirst({where:{communicationRequestId:id,supplierId:supplier.id,status:{in:["PENDING_ADMIN_REVIEW","FORWARDED_TO_SUPPLIER","REJECTED_BY_SUPPLIER"]}},select:{id:true}})) throw new PublicError(409,"This supplier already has a match for this RFQ");
-    const pending = rfq.status === "pending", now = new Date();
-    const queue = supplier.whatsappConsent && supplier.whatsappConsentAt && normalizeConsentPhone(supplier.phone,supplier.phoneCountryCode);
+    if (await tx.communicationRequestMatch.findFirst({where:{communicationRequestId:id,supplierId:supplier.id},select:{id:true}})) throw new PublicError(409,"This supplier already has a match for this RFQ");
     const match = await tx.communicationRequestMatch.create({data:{communicationRequestId:id,supplierId:supplier.id,sourceType:"manual",sourceId:`admin_manual_${randomUUID()}`,
-      score:0,explanation:input.note,listingSnapshot:{sourceType:"manual",createdByAdmin:actor},routeMeta:{manual:true},
-      status:pending?"PENDING_ADMIN_REVIEW":"FORWARDED_TO_SUPPLIER", ...(!pending?{forwardedAt:now,adminReviewedAt:now,adminReviewedByUserId:actor,adminReviewNote:input.note,
-        quoteDeadlineAt:new Date(now.getTime()+72*3600000),whatsappStatus:queue?"QUEUED":!supplier.whatsappConsent||!supplier.whatsappConsentAt?"SKIPPED_NO_CONSENT":"SKIPPED_INVALID_PHONE"}:{})}});
-    return {ok:true,match:{id:match.id,status:match.status},notification:{state:pending?"PENDING_REVIEW":queue?"QUEUED":"DASHBOARD_ONLY",message:pending?"Manual match staged for RFQ approval.":queue?"Supplier routed on the dashboard; WhatsApp queued.":"Supplier routed on the dashboard only."}};
+      score:0,explanation:input.note,listingSnapshot:{sourceType:"manual",createdByAdmin:actor},routeMeta:{manual:true},status:"PENDING_ADMIN_REVIEW"}});
+    return {ok:true,match:{id:match.id,status:match.status},notification:{state:"PENDING_REVIEW",message:"Manual match staged for Admin review. Forward it before notifying the supplier."}};
   });
 }
 export async function queueResend(rawId: unknown, body: unknown, actor: string, client = prisma, now = new Date()) {
